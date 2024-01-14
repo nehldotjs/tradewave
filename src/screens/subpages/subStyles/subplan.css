@@ -1,0 +1,125 @@
+.suplanWrapper {
+    width: 100%;
+    height: auto;
+    padding: 5% 10%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.planTypeBtn {
+    display: flex;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    border: 1px solid black;
+}
+
+.planTypeBtn button {
+    padding: 10px 20px;
+    background-color: white;
+    border: 1px solid black;
+    transition: 500ms all ease;
+    cursor: pointer;
+    text-transform: uppercase;
+
+}
+
+.planTypeBtn button:hover {
+    background-color: black;
+    color: white;
+}
+
+.paymentCards {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(3,
+            1fr);
+    width: 100%;
+    background-color: white;
+    justify-content: space-evenly;
+}
+
+.paymentCard {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    gap: 10px;
+    padding: 10px 0px;
+    transition: 500ms all ease;
+}
+
+.paymentCard:hover {
+    box-shadow: 0px 5px 5px 5px skyblue;
+}
+
+.pips {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: linear-gradient(to bottom right, lightgreen, teal);
+    width: 100%;
+    color: white;
+    padding: 20px;
+}
+
+.pricing {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding: 10px 0px;
+    gap: 10px;
+}
+
+.pricing p {
+    text-transform: capitalize;
+}
+
+.gh3 {
+
+    border-width: 3px;
+    border-style: solid;
+    border-image: linear-gradient(to right, lightgreen,
+            teal);
+    border-image-slice: 1;
+    text-decoration: none;
+    position: relative;
+    transition: 500ms all ease;
+    z-index: 1;
+}
+
+.p-gh3 {
+    background: linear-gradient(to right, lightgreen, teal);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    padding: 10px 20px;
+}
+
+.p-gh3:hover {
+    color: white;
+}
+
+.gh3::before {
+    z-index: - 1;
+    content: "";
+    position: absolute;
+    width: 5%;
+    height: 100%;
+    background: linear-gradient(to right, lightgreen, teal);
+    transition: 500ms all ease;
+}
+
+.gh3:hover::before {
+    width: 100%;
+}

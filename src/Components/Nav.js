@@ -1,0 +1,132 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaGreaterThan } from "react-icons/fa";
+import "../styles/nav.css";
+
+// ASSET IMPORTS
+
+import logo from "../assets/favicon.png";
+
+function Nav() {
+  const [planHover, setPlanHover] = useState(false);
+  const [investSubLinks, setInvestSubLinks] = useState(false);
+
+  const handleEnterPlanLinks = () => {
+    setPlanHover(true);
+  };
+  const handleLeavePlanLinks = () => {
+    setPlanHover(false);
+  };
+
+  const handleInvestSubLinkEnter = () => {
+    setInvestSubLinks(true);
+  };
+  const handleInvestSubLinkLeave = () => {
+    setInvestSubLinks(false);
+  };
+  
+  const planSubLink = [
+    { id: 1, name: "PLANNING SERVICES", link: "/financial-planning" },
+    { id: 2, name: "ASSETS MANAGEMENT", link: "/Assets" },
+    { id: 2, name: "ALTERNATIVE INVESTING", link: "/Alternatives" },
+    { id: 2, name: "RETIREMENT PLANNING", link: "/Retirements" },
+    { id: 2, name: " PRIVATE WEALTH", link: "/Private-wealth" }
+  ];
+
+  const investmentSubLinks = [
+    { id: 1, name: "OPTION TRADING", link: "/option-trading" },
+    { id: 2, name: " REAL ESTATE", link: "/real-estate" },
+    { id: 3, name: "  STOCK MARKET", link: "/stock-market" },
+    { id: 4, name: "INFRASTRUCTURE", link: "/Infrastructure" },
+    { id: 5, name: "FOREX TRADING", link: "/forex-trading" },
+    { id: 6, name: " CRYPTO ASSETS", link: "/crypto-assets" },
+    { id: 7, name: " FIXED INCOME", link: "/fixed-income" },
+    { id: 8, name: "AGRICULTURE", link: "/agriculture" },
+  ];
+
+  return (
+    <div className="navWrapper">
+      <Link to="/" className="logoWrapper">
+        <img src={logo} alt="trade wave logo Image" className="logo" />
+        <h2 className="logoHeader">TradeWave</h2>
+      </Link>
+
+      <div className="linksWrapper">
+        <Link className="aboutLink" to="/About">
+          About
+        </Link>
+
+        <div className="parentSubLinks">
+          <button
+            className="sublinksHeader"
+            onMouseEnter={handleEnterPlanLinks}
+            onMouseLeave={handleLeavePlanLinks}>
+            PLANNING SERVICES
+            <div className="greaterThan">
+              <FaGreaterThan color="white" />
+            </div>
+          </button>
+          {planHover && (
+            <div
+              className="sublinks"
+              onMouseEnter={handleEnterPlanLinks}
+              onMouseLeave={handleLeavePlanLinks}>
+              {planSubLink.map((x) => {
+                const { id, name, link } = x;
+                return (
+                  <>
+                    <Link className="sublink" to={link} key={id}>
+                      {name}
+                    </Link>
+                  </>
+                );
+              })}
+            </div>
+          )}
+        </div>
+        <div className="parentSubLinks">
+          <button
+            className="sublinksHeader"
+            onMouseEnter={handleInvestSubLinkEnter}
+            onMouseLeave={handleInvestSubLinkLeave}>
+            INVESTMENT PRODUCTS
+            <div className="greaterThan">
+              <FaGreaterThan color="white" />
+            </div>
+          </button>
+          {investSubLinks && (
+            <div
+              className="sublinks"
+              onMouseEnter={handleInvestSubLinkEnter}
+              onMouseLeave={handleInvestSubLinkLeave}>
+              {investmentSubLinks.map((x) => {
+                const { id, name, link } = x;
+                return (
+                  <>
+                    <Link className="sublink" to={link} key={id}>
+                      {name}
+                    </Link>
+                  </>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        <Link to="/insights" className="insightLink">
+          INSIGHTS
+        </Link>
+      </div>
+      <div className="authBtns">
+        <Link className="loginBtn" to="/login">
+          Login
+        </Link>
+        <Link className="signupBtn" to="/sign-up">
+          Register{" "}
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default Nav;

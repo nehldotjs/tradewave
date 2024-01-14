@@ -1,0 +1,157 @@
+.assets-mainWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.assets-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 5% 10%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.asset-header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    /* background-color: gray; */
+}
+
+.asstes-writeup {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.assets-description {
+    display: flex;
+}
+
+.assetsImageWrapper {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.assetsImageWrapper img {
+    width: 100%;
+    display: flex;
+    height: auto;
+    object-fit: contain;
+}
+
+.multi-assets {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    padding: 0px 10%;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.multi-image-wrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.multi-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.multi-image-wrapper img:hover {
+    animation: scaler 0.5s ease;
+}
+
+@keyframes scaler {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.assetsTypes {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 10%;
+}
+
+.types-header {
+    padding-bottom: 10px;
+    gap: 20px;
+    border-bottom: 1px solid lightgreen;
+}
+
+.typesCards {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.t-card:nth-child(odd) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 100%;
+    padding: 20px;
+    border-right: 1px solid skyblue;
+    border-bottom: 1px solid skyblue;
+}
+
+.t-card:nth-child(even) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 100%;
+    padding: 20px;
+    border-left: 1px solid lightgreen;
+    border-bottom: 1px solid burlywood;
+}
+
+.t-card-header {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.t-card-header h2 {
+    display: flex;
+    flex: 2;
+    width: 100%;
+    background: transparent;
+}
+
+.t-card-imageWrapper {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.t-card p {
+    display: flex;
+    margin: auto;
+    width: 90%;
+}

@@ -1,0 +1,135 @@
+.finacePageWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    padding: 20px 5%;
+    height: auto;
+    width: auto;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.financeHeaderSection {
+    width: 100%;
+    gap: 20px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.financeHeaderWriteUp {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 20px;
+    height: 100%;
+    /* background-color: blueviolet; */
+}
+
+.financeHeaderWriteUp h1 {
+    color: rgb(65, 65, 65);
+    text-transform: uppercase;
+}
+
+.financeHeaderWriteUp h1 span {
+    background: linear-gradient(to right, rgb(0, 180, 180),
+            rgb(128, 240, 128));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.finceLearnMoreButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: .4;
+    height: 100%;
+    padding: 0px 20px;
+
+}
+
+.financeBtn h3 {
+    padding: 10px 20px;
+}
+
+.financeBtn {
+    position: relative;
+    text-decoration: none;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    color: black;
+    align-items: flex-start;
+    justify-content: center;
+    transition: 500ms all ease;
+}
+
+.financeBtn:hover {
+    color: white;
+}
+
+.financeBtn::before {
+    transition: 500ms all ease;
+    content: "";
+    width: 5%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    z-index: -1;
+}
+
+.financeBtn:hover::before {
+    width: 100%;
+}
+
+
+
+.financeCardSection {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: auto;
+    margin-top: 50px;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative;
+}
+
+.financeCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    height: 100%;
+    padding: 20px;
+    width: auto;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.384);
+    cursor: pointer;
+    transition: 500ms all ease;
+}
+
+.financeCard:hover {
+    box-shadow: 5px 5px 10px 1px lightseagreen;
+
+}
+
+.svgWrapper {
+    height: 150px;
+    width: 100%;
+
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+}
+
+.svgWrapper img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    display: flex;
+}

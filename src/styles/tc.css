@@ -1,0 +1,49 @@
+.tc-wracpper {
+    /* background-color: red; */
+    padding: 10% 20% 5% 20%;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: black;
+    align-items: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.tc-wracpper h1 {
+    color: white;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
+}
+
+.tc-wracpper p {
+    padding: 5%;
+    height: auto;
+    background-color: white;
+    display: block;
+}
+
+.tc-wracpper span {
+    background: linear-gradient(to right,
+     rgb(77, 214, 77), teal);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
+}
+
+.tc-certWrapper {
+    height: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.tc-certWrapper img {
+    height: 100%;
+    width: auto;
+    display: flex;
+    object-fit: contain;
+}
