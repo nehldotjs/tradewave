@@ -108,6 +108,21 @@ function Footer() {
           </div>
           <div className="hr"></div>
         </>
+        <div className="footerDisclaimer">
+          <p>
+            IMPORTANT NOTICE: Engaging in the trading of stocks, stock options,
+            cryptocurrencies, and their derivatives carries a significant level
+            of risk and may not be suitable for all investors. It's important to
+            note that cryptocurrencies are presently not explicitly regulated by
+            any U.S. government agency. Past performance does not guarantee
+            future results. Tradewave offers support and trading information.
+            Your agreement to the terms and conditions is implied by visiting
+            the website and accessing our content. The testimonials included in
+            this communication were unsolicited and may not be representative of
+            the typical experience. Tradewave has not independently verified the
+            accuracy of the statements within any testimonial.
+          </p>
+        </div>
         <div className="subFooter">
           <div className="footerSocials">
             <Link to="/">

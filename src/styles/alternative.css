@@ -115,10 +115,7 @@
     gap: 10px;
     margin: auto;
     border-radius: 10px;
-    border-top: 1px solid skyblue;
-    border-right: 1px solid tomato;
-    border-bottom: 1px solid gold;
-    box-shadow: 5px 2px 5px 2px tomato;
+    box-shadow: -5px 2px 5px 2px tomato;
 }
 
 .alt-real-assets-wrapper:nth-child(even) {
@@ -129,8 +126,25 @@
     gap: 10px;
     margin: auto;
     border-radius: 10px;
-    border-bottom: 1px solid rgb(255, 173, 135);
-    border-left: 1px solid skyblue;
-    border-top: 1px solid greenyellow;
-    box-shadow: -5px 2px 5px 2px skyblue;
+    box-shadow: 5px 2px 5px 2px skyblue;
+}
+
+.alt-youtubeAdWrapper {
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+    display: flex;
+    height: auto;
+    width: 100%;
+}
+
+.altBaseSection-wrapper {
+    background-color: aqua;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 20px;
+    margin: auto;
+    height: auto;
+    width: 100%;
 }

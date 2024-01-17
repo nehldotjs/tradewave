@@ -53,6 +53,7 @@ function Alternatives() {
             traditional markets.
           </h4>
         </div>
+
         <div className="alt-infrastructural">
           <h1>Infrastructure</h1>
           <div className="alt-inf-writeup-wrapper">
@@ -83,6 +84,17 @@ function Alternatives() {
           </div>
         </div>
 
+        <div className="alt-youtubeAdWrapper">
+          <iframe
+            width="700"
+            height="400"
+            src="https://www.youtube.com/embed/AyAjB88kGnQ?si=z1ZEbzX9haacIxVR"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+
         <div className="alt-real-assets-wrapper-container">
           {infConcepts.map((item) => {
             const { id, header, text, mission } = item;
@@ -97,7 +109,48 @@ function Alternatives() {
             );
           })}
         </div>
-
+        <div className="altBaseSection-wrapper">
+          <div className="alt-institute-wrapper">
+            <div className="inst-management">
+              <h1>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Exercitationem, maxime.
+              </h1>
+              <div className="inst-management-writeup-wrapper">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+                  eos perferendis illum incidunt fuga molestias obcaecati ipsam
+                  assumenda, delectus atque laudantium animi perspiciatis ea
+                  magnam sapiente in numquam error ipsum nobis tempora porro.
+                  Eaque atque quod, ratione odit esse tenetur. Ad aut suscipit
+                  aspernatur aliquam ut? Quasi, sequi rerum! Suscipit.
+                </p>
+                <div className="inst-management-img-wrapper">
+                  <img src="" alt="" />
+                </div>
+              </div>
+            </div>
+            <div className="int-foreign-wrapper">
+              <h1>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore,
+                eius!
+              </h1>
+              <div className="inst-foreign-writeup-wrapper">
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Molestias magni quidem debitis exercitationem officia.
+                  Voluptatum, iste? Nemo possimus autem distinctio modi, sit nam
+                  numquam ex error quis facilis, rem exercitationem iusto
+                  pariatur neque natus corrupti vero excepturi dolorum, impedit
+                  eligendi incidunt aspernatur sed! Sit repellendus quod ipsa
+                  vero recusandae. Est!
+                </p>
+                <div className="inst-foreign-img-wrapper"></div>
+                <img src="" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
         {/* <Carousel /> */}
       </div>
       <Footer />
