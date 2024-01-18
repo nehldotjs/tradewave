@@ -26,7 +26,7 @@ import Infrastructure from "./screens/Infrastructure";
 
 const App = () => {
   return (
-    <>
+    <div style={{ backgroundColor: "#F7F7F7" }}>
       <AuthContext>
         <Router>
           <Routes>
@@ -53,7 +53,7 @@ const App = () => {
           </Routes>
         </Router>
       </AuthContext>
-    </>
+    </div>
   );
 };
 export default App;

@@ -101,8 +101,10 @@ function Alternatives() {
             return (
               <div className="alt-real-assets-wrapper" key={id}>
                 <h1>{header}</h1>
-                <h3>Our Identity :</h3>
-                <p>{text}</p>
+                <h3>
+                  Our Identity :<p>{text}</p>{" "}
+                </h3>
+
                 <h3>Our Approach :</h3>
                 <p>{mission}</p>
               </div>
