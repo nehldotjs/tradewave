@@ -1,6 +1,9 @@
 import React from "react";
 import "../styles/alternative.css";
 
+import cryptoManagement from "../assets/crypto-managemeent.jpg";
+import foreignExchange from "../assets/foreign-exchange.jpg";
+
 import cc from "../assets/infrastructure.jpg";
 import c1 from "../assets/civil-1.jpg";
 import c2 from "../assets/civil-2.jpg";
@@ -101,10 +104,8 @@ function Alternatives() {
             return (
               <div className="alt-real-assets-wrapper" key={id}>
                 <h1>{header}</h1>
-                <h3>
-                  Our Identity :<p>{text}</p>{" "}
-                </h3>
-
+                <h3>Our Identity :</h3>
+                <p>{text}</p>
                 <h3>Our Approach :</h3>
                 <p>{mission}</p>
               </div>
@@ -113,45 +114,89 @@ function Alternatives() {
         </div>
         <div className="altBaseSection-wrapper">
           <div className="alt-institute-wrapper">
-            <div className="inst-management">
-              <h1>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Exercitationem, maxime.
-              </h1>
+            <div className="inst-management alt-mf-custom">
+              <h1>Institutional Management</h1>
               <div className="inst-management-writeup-wrapper">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-                  eos perferendis illum incidunt fuga molestias obcaecati ipsam
-                  assumenda, delectus atque laudantium animi perspiciatis ea
-                  magnam sapiente in numquam error ipsum nobis tempora porro.
-                  Eaque atque quod, ratione odit esse tenetur. Ad aut suscipit
-                  aspernatur aliquam ut? Quasi, sequi rerum! Suscipit.
+                  When you select TRADEWAVE to manage institutional assets, you
+                  will discover why we've earned the reputation for solid
+                  performance and equally solid relationships. Our stable
+                  ownership and strong balance sheet allow us to think
+                  long-term, while our dynamic culture inspires long tenures and
+                  deep institutional knowledge. And, above all, our high rate of
+                  client retention demonstrates that we not only say what we do,
+                  we do what we say.
                 </p>
-                <div className="inst-management-img-wrapper">
-                  <img src="" alt="" />
+                <div className="inst-management-img-wrapper alt-subImages-container">
+                  <img src={cryptoManagement} alt="" />
                 </div>
               </div>
             </div>
-            <div className="int-foreign-wrapper">
-              <h1>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore,
-                eius!
-              </h1>
+            <div className="int-foreign-wrapper  alt-mf-custom">
+              <h1>Foreign Exchange</h1>
               <div className="inst-foreign-writeup-wrapper">
                 <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Molestias magni quidem debitis exercitationem officia.
-                  Voluptatum, iste? Nemo possimus autem distinctio modi, sit nam
-                  numquam ex error quis facilis, rem exercitationem iusto
-                  pariatur neque natus corrupti vero excepturi dolorum, impedit
-                  eligendi incidunt aspernatur sed! Sit repellendus quod ipsa
-                  vero recusandae. Est!
+                  TRADEWAVE finance offers a broad array of professional
+                  services and access to the global foreign exchange markets for
+                  commercial and institutional clients. execution and clearing
+                  services in virtually all tradable currency pairs and
+                  derivative instruments. Currency pair trading, also known as
+                  FX or forex (foreign exchange), enables traders to take
+                  advantage of increases and decreases in a currency's value.
+                  The foreign exchange market is the most liquid in the world,
+                  with a daily trading volume of over $5 trillion. We are
+                  specialists in leveraged trading, giving you the potential to
+                  generate financial returns on both rising and falling prices
+                  across FX, market. Whether you're an experienced trader or
+                  completely new to it, we're here to help you find freedom in
+                  the financial markets.
                 </p>
-                <div className="inst-foreign-img-wrapper"></div>
-                <img src="" alt="" />
+                <div className="inst-foreign-img-wrapper alt-subImages-container">
+                  <img src={foreignExchange} alt="" />
+                </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="alt-crypto-assets-wrapper">
+          <h2>Crypto Assets</h2>
+          <p>
+            TRADEWAVE presents a diverse array of cryptocurrencies available for
+            trading, each paired with a wide range of currencies. Our platform
+            features pairings with prominent cryptocurrencies such as Bitcoin,
+            Litecoin, Ripple, TRON, Ethereum, and others. Explore cryptocurrency
+            price charts on TRADEWAVE Investing for comprehensive market
+            analysis. When engaging in the cryptocurrency market, investors face
+            a crucial decision between two primary options. The first involves
+            purchasing actual cryptocurrency on exchanges, granting ownership of
+            the underlying asset. This approach is deemed a long-term investment
+            strategy, as it entails patiently awaiting substantial price
+            increases before considering a sale. In alignment with the global
+            transition towards sustainable energy sources, TRADEWAVE is at the
+            forefront, expanding its coverage to monitor this pivotal evolution.
+            We are dedicated to delivering cutting-edge insights and leveraging
+            superior capital markets and advisory expertise. Choose TRADEWAVE
+            for a professional and insightful approach to navigating the dynamic
+            cryptocurrency landscape.
+          </p>
+          <h3>Committed to fostering sustainable expansion.</h3>
+          <p>
+            Sustainability and the Energy Transition are pivotal focal points
+            within the investment community, influencing virtually every sector.
+            At TRADEWAVE, our comprehensive research and thought leadership
+            across the firm are key resources as we delve into the realm of
+            Sustainability and its profound impact on the business and social
+            landscape. We possess specialized expertise in alternative energy,
+            mobility technology, biotechnology, synthetic biology, Internet of
+            Things, edge computing and 5G, as well as robotics and automation.
+            Our leadership in next-generation energy coverage uniquely positions
+            us in the domain of Energy Transition. This seamlessly complements
+            our well-established proficiency in traditional energy, further
+            solidifying our commitment to staying at the forefront of
+            transformative developments in the global economic and technological
+            landscape.
+          </p>
         </div>
         {/* <Carousel /> */}
       </div>
