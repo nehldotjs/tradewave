@@ -1,9 +1,10 @@
 import React from 'react'
+import "../styles/optiontradig.css"
 
 function OptionTrading() {
   return (
-    <div>
-      <h1>OPTION TRADING</h1>
+    <div className='opt-sectionWrapper'>
+      <h1>OPTION TRADING hello world</h1>
     </div>
   )
 }
