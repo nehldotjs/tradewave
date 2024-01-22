@@ -28,9 +28,9 @@ function Entrepreneurs(prop) {
           </p>
         </div>
         <div className="sponsors">
-          {sposorImage.map((item) => {
+          {sposorImage.map((item, index) => {
             return (
-              <div className="sponsorWrapper">
+              <div className="sponsorWrapper" key={index}>
                 <img src={item} alt="" />
               </div>
             );

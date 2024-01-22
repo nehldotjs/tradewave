@@ -7,7 +7,7 @@ import sideImmg from "../assets/meeting.jpg";
 import Footer from "./subpages/Footer";
 import Nav from "../Components/Nav";
 import SubHeaders from "./subpages/SubHeaders";
-import { Screener } from "react-ts-tradingview-widgets";
+import { Screener, TickerTape } from "react-ts-tradingview-widgets";
 
 function OptionTrading() {
   return (
@@ -49,6 +49,9 @@ function OptionTrading() {
         <div className="opt-section-2">
           <img src={sideImmg} alt="" />
         </div>
+      </div>{" "}
+      <div className="optt-tradeWave-widget">
+        <Screener />
       </div>
       <div className="opt-section-wrapper-2">
         <h1
@@ -73,9 +76,6 @@ function OptionTrading() {
           $100 stock, you could hypothetically spend, say, $2,000 on a call
           contract with a strike price 10% higher than the current market price.
         </p>
-      </div>
-      <div className="optt-tradeWave-widget">
-        <Screener />
       </div>
       <div className="opt-section-wrapper-3">
         <div className="opt-card">
