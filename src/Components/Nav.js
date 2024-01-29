@@ -24,7 +24,7 @@ function Nav() {
   const handleInvestSubLinkLeave = () => {
     setInvestSubLinks(false);
   };
-  
+
   const planSubLink = [
     { id: 1, name: "PLANNING SERVICES", link: "/financial-planning" },
     { id: 2, name: "ASSETS MANAGEMENT", link: "/Assets" },
@@ -41,91 +41,137 @@ function Nav() {
     { id: 5, name: "FOREX TRADING", link: "/forex-trading" },
     { id: 6, name: " CRYPTO ASSETS", link: "/crypto-assets" },
     { id: 7, name: " FIXED INCOME", link: "/fixed-income" },
-    { id: 8, name: "AGRICULTURE", link: "/agriculture" },
+    { id: 8, name: "AGRICULTURE", link: "/agriculture" }
   ];
-
+  const handleNav = () => {
+    console.log("heloo biaaaccccccccchhhhhhhhhh");
+  };
   return (
-    <div className="navWrapper">
-      <Link to="/" className="logoWrapper">
-        <img src={logo} alt="trade wave logo Image" className="logo" />
-        <h2 className="logoHeader">TradeWave</h2>
-      </Link>
+    <>
+      {/* MOBILE NAV VERSION  */}
 
-      <div className="linksWrapper">
-        <Link className="aboutLink" to="/About">
-          About
+      <div className="nav-mobile-Wrapper">
+        <div className="nav-burgerBtn">
+          <button className="burgerBtn" onClick={handleNav}></button>
+        </div>
+        <div className="nav-mobile-links-container">
+          <div className="mobileLinkWrapper">
+            <Link className="mobile-aboutLink" to="/About">
+              About
+            </Link>
+
+            {planSubLink.map((x) => {
+              const { id, name, link } = x;
+              return (
+                <>
+                  <Link className="nav-sub-Link" to={link} key={id}>
+                    {name}
+                  </Link>
+                </>
+              );
+            })}
+
+            {investmentSubLinks.map((x) => {
+              const { id, name, link } = x;
+              return (
+                <>
+                  <Link className="nav-sub-Link" to={link} key={id}>
+                    {name}
+                  </Link>
+                </>
+              );
+            })}
+
+            <Link to="/insights" className="mobile-insightLink">
+              INSIGHTS
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* WEB NAV VERSION  */}
+      <div className="navWrapper">
+        <Link to="/" className="logoWrapper">
+          <img src={logo} alt="trade wave logo Image" className="logo" />
+          <h2 className="logoHeader">TradeWave</h2>
         </Link>
 
-        <div className="parentSubLinks">
-          <button
-            className="sublinksHeader"
-            onMouseEnter={handleEnterPlanLinks}
-            onMouseLeave={handleLeavePlanLinks}>
-            PLANNING SERVICES
-            <div className="greaterThan">
-              <FaGreaterThan color="white" />
-            </div>
-          </button>
-          {planHover && (
-            <div
-              className="sublinks"
+        <div className="linksWrapper">
+          <Link className="aboutLink" to="/About">
+            About
+          </Link>
+
+          <div className="parentSubLinks">
+            <button
+              className="sublinksHeader"
               onMouseEnter={handleEnterPlanLinks}
               onMouseLeave={handleLeavePlanLinks}>
-              {planSubLink.map((x) => {
-                const { id, name, link } = x;
-                return (
-                  <>
-                    <Link className="sublink" to={link} key={id}>
-                      {name}
-                    </Link>
-                  </>
-                );
-              })}
-            </div>
-          )}
-        </div>
-        <div className="parentSubLinks">
-          <button
-            className="sublinksHeader"
-            onMouseEnter={handleInvestSubLinkEnter}
-            onMouseLeave={handleInvestSubLinkLeave}>
-            INVESTMENT PRODUCTS
-            <div className="greaterThan">
-              <FaGreaterThan color="white" />
-            </div>
-          </button>
-          {investSubLinks && (
-            <div
-              className="sublinks"
+              PLANNING SERVICES
+              <div className="greaterThan">
+                <FaGreaterThan color="white" />
+              </div>
+            </button>
+            {planHover && (
+              <div
+                className="sublinks"
+                onMouseEnter={handleEnterPlanLinks}
+                onMouseLeave={handleLeavePlanLinks}>
+                {planSubLink.map((x) => {
+                  const { id, name, link } = x;
+                  return (
+                    <>
+                      <Link className="sublink" to={link} key={id}>
+                        {name}
+                      </Link>
+                    </>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+          <div className="parentSubLinks">
+            <button
+              className="sublinksHeader"
               onMouseEnter={handleInvestSubLinkEnter}
               onMouseLeave={handleInvestSubLinkLeave}>
-              {investmentSubLinks.map((x) => {
-                const { id, name, link } = x;
-                return (
-                  <>
-                    <Link className="sublink" to={link} key={id}>
-                      {name}
-                    </Link>
-                  </>
-                );
-              })}
-            </div>
-          )}
-        </div>
+              INVESTMENT PRODUCTS
+              <div className="greaterThan">
+                <FaGreaterThan color="white" />
+              </div>
+            </button>
+            {investSubLinks && (
+              <div
+                className="sublinks"
+                onMouseEnter={handleInvestSubLinkEnter}
+                onMouseLeave={handleInvestSubLinkLeave}>
+                {investmentSubLinks.map((x) => {
+                  const { id, name, link } = x;
+                  return (
+                    <>
+                      <Link className="sublink" to={link} key={id}>
+                        {name}
+                      </Link>
+                    </>
+                  );
+                })}
+              </div>
+            )}
+          </div>
 
-        <Link to="/insights" className="insightLink">
-          INSIGHTS
-        </Link>
+          <Link to="/insights" className="insightLink">
+            INSIGHTS
+          </Link>
+        </div>
+        <div className="authBtns">
+          <Link className="loginBtn" to="/login">
+            Login
+          </Link>
+          <Link className="signupBtn" to="/sign-up">
+            Register{" "}
+          </Link>
+        </div>
       </div>
-      <div className="authBtns">
-        <Link className="loginBtn" to="/login">
-          Login
-        </Link>
-        <Link className="signupBtn" to="/sign-up">
-          Register{" "}
-        </Link>
-      </div>
-    </div>
+    </>
   );
 }
 

@@ -1,0 +1,17 @@
+.crypto-main-page {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    gap: 30px;
+}
+
+.crypto-seection-wrapper {
+    width: 80%;
+    display: flex;
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
