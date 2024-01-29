@@ -133,3 +133,40 @@
     object-fit: contain;
     display: flex;
 }
+
+@media screen and (max-width: 900px) {
+    .financeHeaderSection {
+        flex-direction: column;
+    }
+
+    .finceLearnMoreButton {
+        width: 100%;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: unset;
+    }
+
+    .financeBtn {
+        margin: unset;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .financeCardSection {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        height: auto;
+        margin-top: 50px;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 20px;
+        position: relative;
+    }
+
+
+
+
+
+
+}

@@ -8,6 +8,7 @@ import "../styles/nav.css";
 import logo from "../assets/favicon.png";
 
 function Nav() {
+  const [isBurgerMenu, setIsBurgerMenu] = useState(false);
   const [planHover, setPlanHover] = useState(false);
   const [investSubLinks, setInvestSubLinks] = useState(false);
 
@@ -28,9 +29,9 @@ function Nav() {
   const planSubLink = [
     { id: 1, name: "PLANNING SERVICES", link: "/financial-planning" },
     { id: 2, name: "ASSETS MANAGEMENT", link: "/Assets" },
-    { id: 2, name: "ALTERNATIVE INVESTING", link: "/Alternatives" },
-    { id: 2, name: "RETIREMENT PLANNING", link: "/Retirements" },
-    { id: 2, name: " PRIVATE WEALTH", link: "/Private-wealth" }
+    { id: 3, name: "ALTERNATIVE INVESTING", link: "/Alternatives" },
+    { id: 4, name: "RETIREMENT PLANNING", link: "/Retirements" },
+    { id: 5, name: " PRIVATE WEALTH", link: "/Private-wealth" }
   ];
 
   const investmentSubLinks = [
@@ -44,50 +45,63 @@ function Nav() {
     { id: 8, name: "AGRICULTURE", link: "/agriculture" }
   ];
   const handleNav = () => {
-    console.log("heloo biaaaccccccccchhhhhhhhhh");
+    setIsBurgerMenu(() => (isBurgerMenu ? false : true));
   };
   return (
     <>
       {/* MOBILE NAV VERSION  */}
 
-      <div className="nav-mobile-Wrapper">
-        <div className="nav-burgerBtn">
-          <button className="burgerBtn" onClick={handleNav}></button>
-        </div>
-        <div className="nav-mobile-links-container">
-          <div className="mobileLinkWrapper">
-            <Link className="mobile-aboutLink" to="/About">
-              About
-            </Link>
+      <div className="nav-burgerBtn">
+        <>
+          {" "}
+          <Link to="/" className="Mobile-logoWrapper">
+            <img src={logo} alt="trade wave logo Image" className="logo" />
+            <h2 className="logoHeader">TradeWave</h2>
+          </Link>
+          <button
+            className={!isBurgerMenu ? "burgerBtn" : "burgerBtnAni"}
+            onClick={handleNav}></button>
+        </>
 
-            {planSubLink.map((x) => {
-              const { id, name, link } = x;
-              return (
-                <>
+      </div>
+        <div
+          style={{
+            transform: isBurgerMenu ? "translateX(0px)" : "translateX(100%)"
+          }}
+          className="nav-mobile-Wrapper">
+          <div className="nav-mobile-links-container">
+            <div className="mobileLinkWrapper">
+              {/* <Link className="mobile-aboutLink" to="/">
+              Home
+            </Link> */}
+              <Link className="mobile-aboutLink" to="/About">
+                About
+              </Link>
+
+              {planSubLink.map((x) => {
+                const { id, name, link } = x;
+                return (
                   <Link className="nav-sub-Link" to={link} key={id}>
                     {name}
                   </Link>
-                </>
-              );
-            })}
+                );
+              })}
 
-            {investmentSubLinks.map((x) => {
-              const { id, name, link } = x;
-              return (
-                <>
+              {investmentSubLinks.map((x) => {
+                const { id, name, link } = x;
+                return (
                   <Link className="nav-sub-Link" to={link} key={id}>
                     {name}
                   </Link>
-                </>
-              );
-            })}
+                );
+              })}
 
-            <Link to="/insights" className="mobile-insightLink">
-              INSIGHTS
-            </Link>
+              <Link to="/insights" className="mobile-insightLink">
+                INSIGHTS
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
 
       {/* WEB NAV VERSION  */}
       <div className="navWrapper">

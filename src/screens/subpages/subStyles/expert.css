@@ -1,5 +1,4 @@
 .expertWrapper {
-    background-color: red;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,6 +25,14 @@
     align-items: center;
     justify-content: center;
     object-fit: cover;
+    display: flex;
+}
+
+.expertBackgroundImage .exprt-mobile {
+    display: none;
+}
+
+.expertBackgroundImage .exprt-web {
     display: flex;
 }
 
@@ -71,4 +78,64 @@
     align-items: flex-start;
     backdrop-filter: blur(5px);
     background-color: rgba(0, 0, 0, 0.35);
+}
+
+@media screen and (max-width: 900px) {
+    .expertWrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: red;
+    }
+
+    .expertBackgroundImage {
+        height: 100%;
+        width: 100%;
+        flex: 1;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        overflow: hidden;
+    }
+
+    .expertBackgroundImage img {
+        width: 100%;
+        height: 100%;
+        flex: 1;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+        object-fit: cover;
+        display: flex;
+    }
+
+    .expertBackgroundImage .exprt-web {
+        display: none;
+    }
+
+    .expertBackgroundImage .exprt-mobile {
+        display: flex;
+    }
+
+    .expertWriteUp {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        gap: 20px;
+        margin: 20px;
+        z-index: 1;
+        color: white;
+        /* background-color: aquamarine; */
+    }
+
+    .expertWriteUp h1 {
+        font-size: 20px;
+    }
+
+    .experCardWrapper {
+        flex-direction: column;
+    }
 }

@@ -3,9 +3,17 @@
     align-items: center;
     height: 50vh;
 }
-.tradingview-widget-copyright{
+
+.tradingview-widget-copyright {
     display: none;
 }
-.widget {
-    height: 100%;
+
+@media screen and (max-width:900px) {
+    .widgetWrapper {
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+        width: 100%;
+    }
+
 }

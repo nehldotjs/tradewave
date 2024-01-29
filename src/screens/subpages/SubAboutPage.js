@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./subStyles/subaboutpage.css";
 
 import bckimg from "../../assets/mac2.png";
+import bckimg1 from "../../assets/rmac2.png";
 
 function SubAboutPage() {
   return (
@@ -32,13 +33,14 @@ function SubAboutPage() {
         </h2>
         <div className="getStarted">
           <Link to="/sign-up" className="getStartedBtn">
-            <h3 > Get Started</h3>
+            <h3> Get Started</h3>
           </Link>
         </div>
       </div>
 
       <div className="backgroundtradewallpaer">
-        <img src={bckimg} alt="" />
+        <img src={bckimg} alt="" className="wb-subabout" />
+        <img src={bckimg1} className="mb-subabout" alt="" />
       </div>
     </div>
   );

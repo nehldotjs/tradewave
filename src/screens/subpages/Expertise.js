@@ -1,6 +1,7 @@
 import React from "react";
 import "./subStyles/expert.css";
 import ExpImg from "../../assets/mac1.png";
+import ExpImg1 from "../../assets/rmac1.png";
 function Expertise() {
   const ExprtCrdDetails = [
     {
@@ -22,7 +23,12 @@ function Expertise() {
   return (
     <div className="expertWrapper">
       <div className="expertBackgroundImage">
-        <img src={ExpImg} alt="trade-wave-background-image" />
+        <img src={ExpImg} className="exprt-web" alt="trade-wave-background-image" />
+        <img
+          src={ExpImg1}
+          className="exprt-mobile"
+          alt="mobile-trade-wave-background-image"
+        />
       </div>
 
       <div className="expertWriteUp">

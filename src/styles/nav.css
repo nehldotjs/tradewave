@@ -220,36 +220,26 @@
     padding: 0px 10px;
 }
 
-.nav-mobile-Wrapper {
-    width: auto;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    z-index: 999;
-    background-color: rgb(21, 41, 56);
-    top: 0px;
-    gap: 20px;
-    right: 0px;
-    padding: 20px;
-    justify-content: flex-start;
-    align-items: flex-end;
-    border-radius: 10px 0px 0px 10px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
 
 .nav-burgerBtn {
+    z-index: 999;
     justify-content: flex-end;
-    /* background-color: blue; */
     align-items: center;
     display: flex;
-    height: 50px;
+    height: auto;
+    position: fixed;
     width: 100%;
+    padding: 20px 20px 0px 0px;
+}
+
+.Mobile-logoWrapper {
+    display: none;
 }
 
 .burgerBtn {
+    cursor: pointer;
     width: 50px;
-    height: 100%;
+    height: 60px;
     background-color: transparent;
     justify-content: center;
     align-items: center;
@@ -263,7 +253,7 @@
 .burgerBtn::before {
     transition: 500ms all ease;
     content: "";
-    background-color: white;
+    background-color: lightgreen;
     width: 100%;
     position: relative;
     height: 3px;
@@ -273,22 +263,75 @@
 .burgerBtn::after {
     transition: 500ms all ease;
     content: "";
-    background-color: white;
+    background-color: lightgreen;
     width: 100%;
     position: relative;
     height: 3px;
 
 }
 
-.burgerBtn:hover::after {
-    position: absolute;
-    transform: rotate(45deg);
+/* -----------------------------------  */
+.burgerBtnAni {
+    outline: none;
+    cursor: pointer;
+    width: 50px;
+    height: 60px;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    gap: 10px;
 }
 
-.burgerBtn:hover::before {
-    position: absolute;
+.burgerBtnAni::before {
+    transition: 500ms all ease;
+    background-color: lightgreen;
     transform: rotate(-45deg);
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 3px;
+}
 
+.burgerBtnAni::after {
+    transition: 500ms all ease;
+    background-color: lightgreen;
+    transform: rotate(45deg);
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 3px;
+}
+
+
+
+/* -----------------------------  */
+
+.nav-mobile-Wrapper {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 99;
+    background-color: teal;
+    top: 0px;
+    right: 0px;
+    padding: 20px;
+    padding-top: 120px;
+    justify-content: flex-start;
+    align-items: flex-end;
+    /* border-radius: 10px 0px 0px 10px; */
+    transition: 500ms all ease;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.nav-mobile-WrapperAni {
+    transition: 500ms all ease;
+    transform: translateX(100%);
 }
 
 .nav-mobile-links-container {
@@ -307,7 +350,7 @@
     height: 100%;
     justify-content: space-evenly;
     font-weight: medium;
-    gap: 5px;
+    /* gap: 20px; */
 }
 
 .nav-sub-Link {
@@ -331,4 +374,33 @@
     display: flex;
     height: 100%;
     text-align: center;
+}
+
+
+@media screen and (max-width: 900px) {
+    .navWrapper {
+        display: none;
+    }
+
+    .nav-burgerBtn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 20px;
+        width: 100%;
+        background: linear-gradient(to bottom, black, transparent);
+    }
+
+    .Mobile-logoWrapper {
+        display: flex;
+        height: 50px;
+        gap: 20px;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .Mobile-logoWrapper .logo {
+        height: 100%;
+        width: auto;
+    }
 }

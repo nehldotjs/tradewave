@@ -123,3 +123,14 @@
 .gh3:hover::before {
     width: 100%;
 }
+
+@media screen and (max-width:900px) {
+    .paymentCards {
+        display: grid;
+        gap: 30px;
+        grid-template-columns: repeat(1,
+                1fr);
+        width: 100%;
+        justify-content: space-evenly;
+    }
+}

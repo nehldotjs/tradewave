@@ -38,7 +38,6 @@ function HowToTrade() {
             <div className="exCards">
               <div className="exCard">
                 <p>
-                  {" "}
                   Options trading involves the buying or selling of an
                   underlying asset at a pre-negotiated price by a specified
                   future date. Unlike stock trading, where you decide on the
@@ -46,7 +45,7 @@ function HowToTrade() {
                   prevailing market price, options trading is more intricate. It
                   demands a grasp of advanced strategies, and the process of
                   opening an options trading account entails additional steps
-                  compared to a typical investment account. <br /> <br />{" "}
+                  compared to a typical investment account. <br /> <br />
                   Navigating the stock options landscape can be more complex
                   than trading stocks, requiring a nuanced understanding of
                   various strategies. In 2022, the stock market has experienced
