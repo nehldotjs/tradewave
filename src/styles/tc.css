@@ -25,7 +25,7 @@
 
 .tc-wracpper span {
     background: linear-gradient(to right,
-     rgb(77, 214, 77), teal);
+            rgb(77, 214, 77), teal);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -46,4 +46,12 @@
     width: auto;
     display: flex;
     object-fit: contain;
+}
+
+@media screen and (max-width:900px) {
+    .tc-wracpper {
+        /* background-color: red; */
+        padding: 5%;
+        padding-top: 30%;
+    }
 }

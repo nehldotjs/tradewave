@@ -20,6 +20,7 @@ function Forex() {
       </div>
       <div className="forex-section-wrapper">
         <h2>FOREIGN EXCHANGE</h2>
+
         <p>
           FOREX, short for Foreign Exchange, stands as the world's largest
           financial asset market. In Forex trading, currencies are exchanged
@@ -27,10 +28,13 @@ function Forex() {
           dollars. Operating on a global scale, Forex remains open 24 hours a
           day, five days a week, from Monday through Friday.
         </p>
+
         <div className="forex-image-wrapper">
           <img src={fxImg} alt="" />
         </div>
+
         <h2>Market Indices</h2>
+
         <p>
           Forex trading involves speculating on the fluctuation of exchange
           prices by buying one currency while simultaneously selling another.

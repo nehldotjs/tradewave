@@ -26,3 +26,13 @@
 .stock-section-wraper h4 {
     color: teal;
 }
+
+@media screen and (max-width: 900px) {
+    .stock-section-wraper {
+        flex-direction: column;
+        display: flex;
+        margin: auto;
+        width: 90%;
+        gap: 20px;
+    }
+}

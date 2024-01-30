@@ -87,3 +87,24 @@
 .private-getStarted-Btn .pri-getStartedBtn h3:hover {
     color: white;
 }
+
+@media screen and (max-width:900px) {
+    .pri-mainWrapper {
+        gap: 15px;
+    }
+
+    .priv-SectionWrapper {
+        gap: 10px;
+        width: 90%;
+    }
+
+    .private-writeup-section1Wrapper {
+        gap: 20px;
+        width: 90%;
+    }
+
+    .private-writeup-section1Wrapper h1 {
+        font-size: 20px;
+        width: 100%;
+    }
+}

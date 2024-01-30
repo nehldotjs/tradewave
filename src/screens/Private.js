@@ -10,6 +10,7 @@ import Nav from "../Components/Nav";
 import Footer from "./subpages/Footer";
 import SubHeaders from "./subpages/SubHeaders";
 import Entrepreneurs from "./subpages/Entrepreneurs";
+import TickerTapeWidget from "./subpages/TickerTape";
 
 function Private() {
   return (
@@ -55,6 +56,7 @@ function Private() {
       </div>
 
       <Entrepreneurs bckImg={mapImg} />
+      <TickerTapeWidget />
       <Footer />
     </div>
   );

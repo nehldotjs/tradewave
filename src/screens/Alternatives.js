@@ -49,7 +49,6 @@ function Alternatives() {
             to factors and asset classes, our alternative strategies are crafted
             to pursue returns in diverse market conditions.
             <br />
-            {/* <br /> */}
             Choose from our absolute return strategies, designed for zero
             exposure to traditional markets either consistently or on average,
             or explore our total return strategies, maintaining some exposure to

@@ -126,7 +126,7 @@ function SignUp() {
               <p>
                 Already have an account?
                 <Link className="s-tcLoginBtn" to={"/login"}>
-                  Login{" "}
+                  Login
                 </Link>
               </p>
             </div>

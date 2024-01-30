@@ -69,3 +69,22 @@
     width: 100%;
     height: auto;
 }
+
+@media screen and (max-width:900px) {
+    .estate-sections-wrapper {
+        width: 90%;
+    }
+
+    .est-image-header-wrapper {
+        height: 200px;
+        border-radius: 20px;
+    }
+.estate-section2 {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 90%;
+}
+ 
+}

@@ -43,3 +43,14 @@
     top: 0px;
     object-fit: cover;
 }
+
+@media screen and (max-width:900px) {
+    .forex-section-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 90%;
+        height: auto;
+        margin: auto;
+    }
+}

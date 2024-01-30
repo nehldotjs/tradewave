@@ -8,6 +8,7 @@ import Nav from "../Components/Nav";
 import SubHeader from "../screens/subpages/SubHeaders";
 import Footer from "../screens/subpages/Footer";
 import Entrepreneurs from "../screens/subpages/Entrepreneurs";
+import TickerTapeWidget from "./subpages/TickerTape";
 
 function Estate() {
   return (
@@ -18,7 +19,6 @@ function Estate() {
         header="Real Estate"
       />
       <div className="estate-sections-wrapper">
-      
         <div className="est-image-header-wrapper">
           <img src={estateImage} alt="" />
         </div>
@@ -69,6 +69,7 @@ function Estate() {
         </h5>
       </div>
       <Entrepreneurs bckImg={mapImg} />
+      <TickerTapeWidget />
       <Footer />
     </div>
   );

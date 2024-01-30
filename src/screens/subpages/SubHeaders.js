@@ -6,12 +6,12 @@ function SubHeaders(prop) {
   const { header, description } = prop;
   return (
     <div className="subHeader-wrapper">
-      <div className="sp-overlay">
-        
-      </div>
+      <div className="sp-overlay"></div>
+
       <div className="sh-imageWrapper">
         <img src={shWaveLine} alt="" />
       </div>
+
       <div className="sh-writeUp">
         <h4>{description}</h4>
         <h1>{header}</h1>
