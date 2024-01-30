@@ -17,18 +17,19 @@ function DashBoard() {
   return (
     <div className="dashboard-main-wrapper">
       <DashNav />
-
       <div className="dashboard-page">
         <HeaderNav />
-        <Routes>
-          <Route path="/" element={<Overview />} />
-          <Route path="/deposit" element={<Deposit />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/referal" element={<Referals />} />
-          <Route path="/withdraw" element={<Withdraw />} />
-          <Route path="/interface" element={<Interface />} />
-          <Route path="/history" element={<TransactionHistory />} />
-        </Routes>
+        <div className="dash-main-content-wrapper">
+          <Routes>
+            <Route path="/" element={<Overview />} />
+            <Route path="/deposit" element={<Deposit />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/referal" element={<Referals />} />
+            <Route path="/withdraw" element={<Withdraw />} />
+            <Route path="/interface" element={<Interface />} />
+            <Route path="/history" element={<TransactionHistory />} />
+          </Routes>
+        </div>
       </div>
     </div>
   );

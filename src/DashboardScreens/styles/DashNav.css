@@ -1,4 +1,30 @@
 .dashnav-main-wrapper {
     display: flex;
-    background-color: red;
+    flex-direction: column;
+    background-color: rgb(27, 38, 58);
+    width: auto;
+    flex: .2;
+    padding: 20px;
+    gap: 20px;
+    align-items: center;
+    color: white;
+    justify-content: space-between;
+}
+
+.dashNavLink-Section-Wrapper {
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dashNavLink-Section-Wrapper .dn-link {
+    text-decoration: none;
+    display: flex;gap: 10px;
+    color: lightgray;
+}
+
+.dashnav-main-wrapper p {
+    font-size: 12px;
 }
