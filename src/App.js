@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { AuthContext } from "./Context/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -28,40 +28,40 @@ import ContextTester from "./screens/ContextTester";
 import DashBoard from "./DashBoard";
 
 const App = () => {
+  const [isUser, setIsUser] = useState(true);
+
   return (
     <div style={{ backgroundColor: "#F7F7F7" }}>
       <AuthContext>
-
         <Router>
-          <Routes>
-            <Route path="/" element={<DashBoard />} />
-          </Routes>
+          {isUser ? (
+            <Routes>
+              <Route path="/" element={<DashBoard />} />
+            </Routes>
+          ) : (
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/About" element={<About />} />
+              <Route path="/Assets" element={<Assets />} />
+              <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/insights" element={<Insigth />} />
+              <Route path="/real-estate" element={<Estate />} />
+              <Route path="/fixed-income" element={<Fixed />} />
+              <Route path="/stock-market" element={<Stock />} />
+              <Route path="/user-policy" element={<Policy />} />
+              <Route path="/forex-trading" element={<Forex />} />
+              <Route path="/crypto-assets" element={<Crypto />} />
+              <Route path="/Terms-and-condition" element={<Tc />} />
+              <Route path="/Private-wealth" element={<Private />} />
+              <Route path="/Retirements" element={<Retirements />} />
+              <Route path="/financial-planning" element={<Plan />} />
+              <Route path="/Alternatives" element={<Alternatives />} />
+              <Route path="/option-trading" element={<OptionTrading />} />
+              <Route path="/Infrastructure" element={<Infrastructure />} />
+            </Routes>
+          )}
         </Router>
-
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/About" element={<About />} />
-            <Route path="/Assets" element={<Assets />} />
-            <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/insights" element={<Insigth />} />
-            <Route path="/real-estate" element={<Estate />} />
-            <Route path="/fixed-income" element={<Fixed />} />
-            <Route path="/stock-market" element={<Stock />} />
-            <Route path="/user-policy" element={<Policy />} />
-            <Route path="/forex-trading" element={<Forex />} />
-            <Route path="/crypto-assets" element={<Crypto />} />
-            <Route path="/Terms-and-condition" element={<Tc />} />
-            <Route path="/Private-wealth" element={<Private />} />
-            <Route path="/Retirements" element={<Retirements />} />
-            <Route path="/financial-planning" element={<Plan />} />
-            <Route path="/Alternatives" element={<Alternatives />} />
-            <Route path="/option-trading" element={<OptionTrading />} />
-            <Route path="/Infrastructure" element={<Infrastructure />} />
-          </Routes>
-        </Router>
-
       </AuthContext>
     </div>
   );
