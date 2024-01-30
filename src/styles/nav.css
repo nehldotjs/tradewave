@@ -376,10 +376,21 @@
     text-align: center;
 }
 
+.nav-burgerBtn {
+    display: none;
+}
+
+.nav-mobile-Wrapper {
+    display: none;
+}
 
 @media screen and (max-width: 900px) {
     .navWrapper {
         display: none;
+    }
+
+    .nav-mobile-Wrapper {
+        display: flex;
     }
 
     .nav-burgerBtn {
