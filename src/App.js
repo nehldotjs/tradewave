@@ -23,16 +23,22 @@ import Alternatives from "./screens/Alternatives";
 import OptionTrading from "./screens/OptionTrading";
 import Infrastructure from "./screens/Infrastructure";
 
-
 import ContextTester from "./screens/ContextTester";
+
+import DashBoard from "./DashBoard";
 
 const App = () => {
   return (
     <div style={{ backgroundColor: "#F7F7F7" }}>
       <AuthContext>
-        <ContextTester />
 
-        {/* <Router>
+        <Router>
+          <Routes>
+            <Route path="/" element={<DashBoard />} />
+          </Routes>
+        </Router>
+
+        <Router>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -54,7 +60,7 @@ const App = () => {
             <Route path="/option-trading" element={<OptionTrading />} />
             <Route path="/Infrastructure" element={<Infrastructure />} />
           </Routes>
-        </Router> */}
+        </Router>
 
       </AuthContext>
     </div>
