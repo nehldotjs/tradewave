@@ -18,17 +18,21 @@ import SignUp from "./screens/SignUp";
 import Policy from "./screens/Policy";
 import Private from "./screens/Private";
 import Insigth from "./screens/Insigth";
-import Agriculture from "./screens/Agriculture";
 import Retirements from "./screens/Retirements";
 import Alternatives from "./screens/Alternatives";
 import OptionTrading from "./screens/OptionTrading";
 import Infrastructure from "./screens/Infrastructure";
 
+
+import ContextTester from "./screens/ContextTester";
+
 const App = () => {
   return (
     <div style={{ backgroundColor: "#F7F7F7" }}>
       <AuthContext>
-        <Router>
+        <ContextTester />
+
+        {/* <Router>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -45,13 +49,13 @@ const App = () => {
             <Route path="/Terms-and-condition" element={<Tc />} />
             <Route path="/Private-wealth" element={<Private />} />
             <Route path="/Retirements" element={<Retirements />} />
-            <Route path="/agriculture" element={<Agriculture />} />
             <Route path="/financial-planning" element={<Plan />} />
             <Route path="/Alternatives" element={<Alternatives />} />
             <Route path="/option-trading" element={<OptionTrading />} />
             <Route path="/Infrastructure" element={<Infrastructure />} />
           </Routes>
-        </Router>
+        </Router> */}
+
       </AuthContext>
     </div>
   );

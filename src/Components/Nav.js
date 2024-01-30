@@ -42,7 +42,6 @@ function Nav() {
     { id: 5, name: "FOREX TRADING", link: "/forex-trading" },
     { id: 6, name: " CRYPTO ASSETS", link: "/crypto-assets" },
     { id: 7, name: " FIXED INCOME", link: "/fixed-income" },
-    { id: 8, name: "AGRICULTURE", link: "/agriculture" }
   ];
   const handleNav = () => {
     setIsBurgerMenu(() => (isBurgerMenu ? false : true));
@@ -53,7 +52,7 @@ function Nav() {
 
       <div className="nav-burgerBtn">
         <>
-          {" "}
+          
           <Link to="/" className="Mobile-logoWrapper">
             <img src={logo} alt="trade wave logo Image" className="logo" />
             <h2 className="logoHeader">TradeWave</h2>
@@ -181,7 +180,7 @@ function Nav() {
             Login
           </Link>
           <Link className="signupBtn" to="/sign-up">
-            Register{" "}
+            Register
           </Link>
         </div>
       </div>
