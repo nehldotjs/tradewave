@@ -1,14 +1,30 @@
 .dashnav-main-wrapper {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(27, 38, 58);
-    width: auto;
     flex: .2;
-    padding: 20px;
-    gap: 20px;
-    align-items: center;
+    width: auto;
+    position: relative;
+    height: 100%;
+}
+
+.dashNav-section-wrapper {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    margin: auto;
+    height: 100vh;
+    position: relative;
     color: white;
+    padding: 20px 10px;
+    align-items: center;
+    background-color: rgb(27, 38, 58);
     justify-content: space-between;
+    flex-direction: column;
+}
+
+.dashnav-main-wrapper h2 {
+    background: linear-gradient(to right, lightgreen, teal);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .dashNavLink-Section-Wrapper {
@@ -21,7 +37,8 @@
 
 .dashNavLink-Section-Wrapper .dn-link {
     text-decoration: none;
-    display: flex;gap: 10px;
+    display: flex;
+    gap: 10px;
     color: lightgray;
 }
 
