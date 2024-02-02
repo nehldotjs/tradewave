@@ -35,9 +35,7 @@ const App = () => {
       <AuthContext>
         <Router>
           {isUser ? (
-            <Routes>
-              <Route path="/" element={<DashBoard />} />
-            </Routes>
+            <DashBoard />
           ) : (
             <Routes>
               <Route path="/" element={<Home />} />

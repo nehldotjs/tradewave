@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/DashNav.css";
+import "./style/DashNav.css";
 import { Link } from "react-router-dom";
 import { TbBrandCashapp } from "react-icons/tb";
 import { BiMoneyWithdraw } from "react-icons/bi";
@@ -17,38 +17,38 @@ function DashNav() {
       <div className="dashNav-section-wrapper">
         <h2>TradeWave</h2>
         <div className="dashNavLink-Section-Wrapper">
-          <Link className="dn-link" to={"/"}>
+          <Link className="dn-link" to={"/overview"}>
             <GoHome />
             <h5> Dashboard</h5>
           </Link>
 
           <div className="hr"></div>
 
-          <Link className="dn-link" to={"/overview"}>
+          <Link className="dn-link" to={"/interface"}>
             <SlGraph /> <h5> Trading Interface</h5>
           </Link>
-          <Link className="dn-link" to={"/overview"}>
+          <Link className="dn-link" to={"/history"}>
             <BiHistory /> <h5> Transaction history</h5>
           </Link>
 
           <div className="hr"></div>
 
-          <Link className="dn-link" to={"/overview"}>
+          <Link className="dn-link" to={"/deposit"}>
             <TbBrandCashapp /> <h5> Deposit</h5>
           </Link>
-          <Link className="dn-link" to={"/overview"}>
+          <Link className="dn-link" to={"/withdraw"}>
             <BiMoneyWithdraw /> <h5> Withdraw</h5>
           </Link>
 
           <div className="hr"></div>
 
-          <Link className="dn-link" to={"/overview"}>
+          <Link className="dn-link" to={"/2fa"}>
             <FiShield /> <h5> 2FA</h5>
           </Link>
-          <Link className="dn-link" to={"/overview"}>
+          <Link className="dn-link" to={"/referal"}>
             <FaUsers /> <h5> Referrals</h5>
           </Link>
-          <Link className="dn-link" to={"/overview"}>
+          <Link className="dn-link" to={"/settings"}>
             <VscSettings /> <h5> Settings</h5>
           </Link>
         </div>

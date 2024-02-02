@@ -1,0 +1,22 @@
+/* ArrayTable.css */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid red;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: yellow;
+}

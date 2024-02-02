@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, memo } from "react";
-import "./tcw.css";
+import "./style/tcw.css";
 function TradeCustomWidget() {
   const container = useRef();
 
@@ -38,12 +38,6 @@ function TradeCustomWidget() {
       <div
         className="tradingview-widget-container__widget"
         style={{ height: "calc(100% - 32px)", width: "100%" }}></div>
-      <div className="tradingview-widget-copyright">
-        <a
-          href="https://www.tradingview.com/"
-          rel="noopener nofollow"
-          target="_blank"></a>
-      </div>
     </div>
   );
 }

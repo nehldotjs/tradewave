@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import "./styles/history.css";
+
+import TableForm from "./SubComponent/TableForm";
 
 function TransactionHistory() {
   return (
-    <div>
-      <h1>Transaction History</h1>
+    <div className="th-main-wrapper">
+      <TableForm />
     </div>
   );
 }
