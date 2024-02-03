@@ -2,36 +2,50 @@ import React, { useEffect, useState } from "react";
 import "./style/table.css";
 
 function TableForm() {
-  const [dataArray, setDataArray] = useState([
-    { column1: "Value 1-1", column2: "Value 1-2" },
-    { column1: "Value 2-1", column2: "Value 2-2" }
-    // Add more objects as needed
-  ]);
-
-  useEffect(() => {
-    // You can fetch data here or perform any other asynchronous operation
-    // For simplicity, using static data in this example
-  }, []);
+  const transactionData = [
+    {
+      id: 1,
+      date: "2024-02-01",
+      description: "Purchase Item A",
+      amount: "$20.00"
+    },
+    {
+      id: 2,
+      date: "2024-02-02",
+      description: "Payment Received",
+      amount: "$50.00"
+    },
+    { id: 3, date: "2024-02-03", description: "Withdrawal", amount: "$30.00" },
+    { id: 4, date: "2024-02-04", description: "Deposit", amount: "$25.00" }
+  ];
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Column 1</th>
-          <th>Column 2</th>
-          {/* Add more columns if needed */}
-        </tr>
-      </thead>
-      <tbody>
-        {dataArray.map((data, index) => (
-          <tr key={index}>
-            <td>{data.column1}</td>
-            <td>{data.column2}</td>
-            {/* Add more cells if needed */}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="transaction-container">
+      {transactionData.length === 0 ? (
+        <p>you have no deposit yet </p>
+      ) : (
+        <table className="transaction-table">
+          <thead>
+            <tr>
+              <th>S/N</th>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Amount(s)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactionData.map((transaction) => (
+              <tr key={transaction.id}>
+                <td>{transaction.id}</td>
+                <td>{transaction.date}</td>
+                <td>{transaction.description}</td>
+                <td>{transaction.amount}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
   );
 }
 

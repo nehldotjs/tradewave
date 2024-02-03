@@ -1,22 +1,44 @@
-/* ArrayTable.css */
+/* TransactionHistory.css */
 
-body {
-    font-family: Arial, sans-serif;
+.transaction-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    background-color: red;
+    background-color: transparent;
+
 }
 
-table {
-    border-collapse: collapse;
+.transaction-table {
     width: 100%;
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    border-collapse: collapse;
 }
 
 th,
 td {
-    border: 1px solid red;
-    padding: 8px;
+    border: 1px solid #ffffff;
+    padding: 10px 20px;
     text-align: left;
+    display: flex;
+    width: 100%;
+    color: teal;
 }
 
 th {
-    background-color: yellow;
+    background-color: #f2f2f2;
+}
+
+tr {
+    display: flex;
+    padding: unset;
+    height: auto;
+    width: 100%;
+}
+
+tr:nth-child(even) {
+    background-color: #ebe9e9;
 }
