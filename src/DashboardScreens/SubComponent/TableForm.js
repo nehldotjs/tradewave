@@ -22,7 +22,10 @@ function TableForm() {
   return (
     <div className="transaction-container">
       {transactionData.length === 0 ? (
-        <p>you have no deposit yet </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Error,
+          explicabo.{" "}
+        </p>
       ) : (
         <table className="transaction-table">
           <thead>
