@@ -23,8 +23,12 @@ function TableForm() {
     <div className="transaction-container">
       {transactionData.length === 0 ? (
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Error,
-          explicabo.{" "}
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias nobis
+          ad ab dolor officia. Repellendus corporis illo debitis in unde
+          necessitatibus architecto, accusantium modi earum ad ducimus?
+          Similique dicta molestias repellat dolore asperiores commodi ullam
+          quaerat rem exercitationem eos, ea nulla natus possimus vitae porro,
+          reprehenderit vero tempore voluptates. Rerum.
         </p>
       ) : (
         <table className="transaction-table">
