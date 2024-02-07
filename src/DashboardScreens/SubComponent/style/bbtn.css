@@ -1,0 +1,22 @@
+.hamburgerBtn-wrapper {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 20px;
+    height: 100%;
+    width: auto;
+}
+
+.hamburgerBtn-wrapper button {
+    background-color: aquamarine;
+    display: flex;
+    margin: auto;
+    height: 50px;
+    width: 50px;
+    gap: 20px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}

@@ -12,6 +12,7 @@ import Interface from "./DashboardScreens/Interface";
 import DashNav from "./DashboardScreens/SubComponent/DashNav";
 import HeaderNav from "./DashboardScreens/SubComponent/HeaderNav";
 import TransactionHistory from "./DashboardScreens/TransactionHistory";
+import Settings from "./DashboardScreens/Settings"
 
 function DashBoard() {
   return (
@@ -26,7 +27,7 @@ function DashBoard() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/referal" element={<Referals />} />
             <Route path="/withdraw" element={<Withdraw />} />
-            <Route path="/settings" element={<Interface />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="/interface" element={<Interface />} />
             <Route path="/history" element={<TransactionHistory />} />
           </Routes>

@@ -1,13 +1,13 @@
 import React from "react";
 import "./style/DashNav.css";
 import { Link } from "react-router-dom";
-import { TbBrandCashapp } from "react-icons/tb";
 import { BiMoneyWithdraw } from "react-icons/bi";
+import { TbBrandCashapp } from "react-icons/tb";
+import { VscSettings } from "react-icons/vsc";
 import { BiHistory } from "react-icons/bi";
 import { SlGraph } from "react-icons/sl";
-import { FiShield } from "react-icons/fi";
 import { FaUsers } from "react-icons/fa";
-import { VscSettings } from "react-icons/vsc";
+// import { FiShield } from "react-icons/fi";
 
 import { GoHome } from "react-icons/go";
 
@@ -42,9 +42,9 @@ function DashNav() {
 
           <div className="hr"></div>
 
-          <Link className="dn-link" to={"/2fa"}>
+          {/* <Link className="dn-link" to={"/2fa"}>
             <FiShield /> <h5> 2FA</h5>
-          </Link>
+          </Link> */}
           <Link className="dn-link" to={"/referal"}>
             <FaUsers /> <h5> Referrals</h5>
           </Link>

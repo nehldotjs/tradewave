@@ -2,11 +2,13 @@ import React from "react";
 import "./style/headerNav.css";
 
 import { TickerTape } from "react-ts-tradingview-widgets";
+import HamBurgerBtn from "./HamBurgerBtn";
 
 function HeaderNav() {
   return (
     <>
       <div className="dash-headerNav-section-wrapper">
+        <HamBurgerBtn />
         <div className="dash-headerNav-section-container">
           <div className="hn-balance-wrapper">
             <div className="hn-b-wrapper">

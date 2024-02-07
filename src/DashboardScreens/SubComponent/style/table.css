@@ -42,3 +42,40 @@ tr {
 tr:nth-child(even) {
     background-color: #ebe9e9;
 }
+
+.transaction-report {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: ivory;
+    height: 100%;
+    border-radius: 10px;
+    gap: 20px;
+}
+
+.transaction-report-image-wrapper {
+    /* flex: .4; */
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.transaction-report-error-icon {
+    display: flex;
+    color: gray;
+    margin: auto;
+}
+
+.transaction-report h3 {
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: 0px 30px;
+    color: gray;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
