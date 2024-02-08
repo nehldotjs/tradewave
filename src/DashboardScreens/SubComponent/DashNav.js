@@ -53,6 +53,15 @@ function DashNav() {
           </Link>
         </div>
         <p> &copy; 2024 -TradeWave All rights Reserved</p>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
+          sequi nulla pariatur voluptatem, et eos quam. Sapiente fugit itaque
+          sit, minima eligendi veniam, rerum ex nihil officiis cum quos
+          voluptate aspernatur. Corrupti, ipsam consequuntur veniam officia et
+          tempore. Soluta ipsa nesciunt ad reiciendis magnam unde, sit ut enim
+          delectus consectetur?
+        </p>
       </div>
     </div>
   );

@@ -45,3 +45,7 @@
 .dashnav-main-wrapper p {
     font-size: 12px;
 }
+
+.dashNav-state {
+    position: fixed;
+}
