@@ -8,7 +8,7 @@ function HamBurgerBtn({ isActive, setIsActive }) {
 
   return (
     <div className="hamburgerBtn-wrapper">
-      <button onClick={handleBurgerClick}>click here</button>
+      <button onClick={handleBurgerClick}>btn</button>
     </div>
   );
 }
