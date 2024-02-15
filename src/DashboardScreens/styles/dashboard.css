@@ -21,6 +21,11 @@
 
 @media screen and (max-width:900px) {
     .dashboard-main-wrapper {
-        background-color: red;
+        background-color: purple;
+    }
+
+    .dashboard-page {
+        width: 100%;
+        background-color: green;
     }
 }

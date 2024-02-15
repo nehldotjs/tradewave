@@ -19,5 +19,31 @@
     align-items: center;
     justify-content: center;
     transition: 500ms all ease;
-    background-color: lightpink;
+}
+
+@media screen and (max-width:900px) {
+    .hamburgerBtn-wrapper {
+        justify-content: flex-end;
+        align-items: center;
+        display: flex;
+        margin: unset;
+        height: 100%;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .hamburgerBtn-wrapper button {
+        display: flex;
+        margin: unset;
+        height: 50px;
+        width: 50px;
+        gap: 20px;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        transition: 500ms all ease;
+        background-color: lightpink;
+    }
 }

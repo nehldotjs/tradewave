@@ -52,12 +52,14 @@
 
 @media screen and (max-width:900px) {
     .dashnav-main-wrapper {
-        flex: .2;
-        width: auto;
+        flex: 1;
         position: fixed;
+        width: 100%;
         height: 100%;
-        padding-top: 80px;
+        margin: auto;
         background-color: green;
+        display: none;
+        /* transform: translateX(-100%) */
     }
 
     .dashNav-section-wrapper {
