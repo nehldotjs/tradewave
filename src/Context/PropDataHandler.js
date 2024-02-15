@@ -1,11 +1,26 @@
-import React from "react";
+import React, { createContext, useContext, useState } from "react";
 
-function PropDataHandler() {
+const PropContext = createContext();
+
+function PropDataHandler({ children }) {
+  const propValues = PropValues();
   return (
-    <div>
-      <h1>PROP DATA CONTEXT</h1>
-    </div>
+    <PropContext.Provider value={propValues}>{children}</PropContext.Provider>
   );
 }
 
-export default PropDataHandler;
+const PropValues = () => {
+  const [isNavActive, setIsNavActive] = useState(false);
+  const x = { isNavActive, setIsNavActive };
+  return x;
+};
+
+function PropData() {
+  const context = useContext(PropContext);
+  if (!context) {
+    throw new Error("PropData must be used within a PropDataHandler");
+  }
+  return context;
+}
+
+export { PropDataHandler, PropData };

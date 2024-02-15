@@ -24,6 +24,7 @@ import OptionTrading from "./screens/OptionTrading";
 import Infrastructure from "./screens/Infrastructure";
 
 import ContextTester from "./screens/ContextTester";
+import { PropDataHandler } from "./Context/PropDataHandler";
 
 import DashBoard from "./DashBoard";
 
@@ -33,33 +34,35 @@ const App = () => {
   return (
     <div style={{ backgroundColor: "#F7F7F7" }}>
       <AuthContext>
-        <Router>
-          {isUser ? (
-            <DashBoard />
-          ) : (
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/About" element={<About />} />
-              <Route path="/Assets" element={<Assets />} />
-              <Route path="/sign-up" element={<SignUp />} />
-              <Route path="/insights" element={<Insigth />} />
-              <Route path="/real-estate" element={<Estate />} />
-              <Route path="/fixed-income" element={<Fixed />} />
-              <Route path="/stock-market" element={<Stock />} />
-              <Route path="/user-policy" element={<Policy />} />
-              <Route path="/forex-trading" element={<Forex />} />
-              <Route path="/crypto-assets" element={<Crypto />} />
-              <Route path="/Terms-and-condition" element={<Tc />} />
-              <Route path="/Private-wealth" element={<Private />} />
-              <Route path="/Retirements" element={<Retirements />} />
-              <Route path="/financial-planning" element={<Plan />} />
-              <Route path="/Alternatives" element={<Alternatives />} />
-              <Route path="/option-trading" element={<OptionTrading />} />
-              <Route path="/Infrastructure" element={<Infrastructure />} />
-            </Routes>
-          )}
-        </Router>
+        <PropDataHandler>
+          <Router>
+            {isUser ? (
+              <DashBoard />
+            ) : (
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/About" element={<About />} />
+                <Route path="/Assets" element={<Assets />} />
+                <Route path="/sign-up" element={<SignUp />} />
+                <Route path="/insights" element={<Insigth />} />
+                <Route path="/real-estate" element={<Estate />} />
+                <Route path="/fixed-income" element={<Fixed />} />
+                <Route path="/stock-market" element={<Stock />} />
+                <Route path="/user-policy" element={<Policy />} />
+                <Route path="/forex-trading" element={<Forex />} />
+                <Route path="/crypto-assets" element={<Crypto />} />
+                <Route path="/Terms-and-condition" element={<Tc />} />
+                <Route path="/Private-wealth" element={<Private />} />
+                <Route path="/Retirements" element={<Retirements />} />
+                <Route path="/financial-planning" element={<Plan />} />
+                <Route path="/Alternatives" element={<Alternatives />} />
+                <Route path="/option-trading" element={<OptionTrading />} />
+                <Route path="/Infrastructure" element={<Infrastructure />} />
+              </Routes>
+            )}
+          </Router>
+        </PropDataHandler>
       </AuthContext>
     </div>
   );

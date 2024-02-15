@@ -9,13 +9,18 @@ import { SlGraph } from "react-icons/sl";
 import { FaUsers } from "react-icons/fa";
 // import { FiShield } from "react-icons/fi";
 
+import { PropData } from "../../Context/PropDataHandler";
+
 import { GoHome } from "react-icons/go";
 
 function DashNav() {
+  const { isNavActive } = PropData();
   return (
-    <div className="dashnav-main-wrapper">
+    <div
+      className="dashnav-main-wrapper"
+      style={{ margin: isNavActive ? "50px" : "0px", backgroundColor: "red" }}>
       <div className="dashNav-section-wrapper">
-        <h2>TradeWave</h2>
+        <h2>TradeWave </h2>
         <div className="dashNavLink-Section-Wrapper">
           <Link className="dn-link" to={"/overview"}>
             <GoHome />
@@ -45,6 +50,7 @@ function DashNav() {
           {/* <Link className="dn-link" to={"/2fa"}>
             <FiShield /> <h5> 2FA</h5>
           </Link> */}
+
           <Link className="dn-link" to={"/referal"}>
             <FaUsers /> <h5> Referrals</h5>
           </Link>
@@ -53,8 +59,6 @@ function DashNav() {
           </Link>
         </div>
         <p> &copy; 2024 -TradeWave All rights Reserved</p>
-
-      
       </div>
     </div>
   );

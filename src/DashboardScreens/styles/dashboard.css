@@ -18,3 +18,9 @@
     height: 100%;
     width: 100%;
 }
+
+@media screen and (max-width:900px) {
+    .dashboard-main-wrapper {
+        background-color: red;
+    }
+}

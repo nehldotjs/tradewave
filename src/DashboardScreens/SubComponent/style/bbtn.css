@@ -8,7 +8,6 @@
 }
 
 .hamburgerBtn-wrapper button {
-    background-color: aquamarine;
     display: flex;
     margin: auto;
     height: 50px;
@@ -19,4 +18,6 @@
     position: relative;
     align-items: center;
     justify-content: center;
+    transition: 500ms all ease;
+    background-color: lightpink;
 }

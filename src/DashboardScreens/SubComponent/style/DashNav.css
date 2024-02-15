@@ -49,3 +49,29 @@
 .dashNav-state {
     position: fixed;
 }
+
+@media screen and (max-width:900px) {
+    .dashnav-main-wrapper {
+        flex: .2;
+        width: auto;
+        position: fixed;
+        height: 100%;
+        padding-top: 80px;
+        background-color: green;
+    }
+
+    .dashNav-section-wrapper {
+        display: flex;
+        gap: 30px;
+        flex-direction: column;
+        margin: auto;
+        height: 100vh;
+        position: relative;
+        color: white;
+        padding: 20px 10px;
+        align-items: center;
+        background-color: rgb(27, 38, 58);
+        justify-content: space-between;
+        flex-direction: column;
+    }
+}

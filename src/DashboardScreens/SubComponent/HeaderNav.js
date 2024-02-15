@@ -3,8 +3,10 @@ import "./style/headerNav.css";
 
 import { TickerTape } from "react-ts-tradingview-widgets";
 import HamBurgerBtn from "./HamBurgerBtn";
+// import { PropData } from "../../Context/PropDataHandler";
 
 function HeaderNav() {
+
   return (
     <>
       <div className="dash-headerNav-section-wrapper">

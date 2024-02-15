@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style/bbtn.css";
+import { PropData } from "../../Context/PropDataHandler";
 
-function HamBurgerBtn({ isActive, setIsActive }) {
+function HamBurgerBtn() {
+  const { isNavActive, setIsNavActive } = PropData();
+
   const handleBurgerClick = () => {
-    setIsActive(!isActive);
+    setIsNavActive(() => !isNavActive);
   };
+  console.log(isNavActive);
 
   return (
     <div className="hamburgerBtn-wrapper">
@@ -13,4 +17,4 @@ function HamBurgerBtn({ isActive, setIsActive }) {
   );
 }
 
-export default HamBurgerBtn; 
+export default HamBurgerBtn;
