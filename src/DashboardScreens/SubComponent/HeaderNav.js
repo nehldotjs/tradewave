@@ -6,11 +6,9 @@ import HamBurgerBtn from "./HamBurgerBtn";
 // import { PropData } from "../../Context/PropDataHandler";
 
 function HeaderNav() {
-
   return (
     <>
       <div className="dash-headerNav-section-wrapper">
-        <HamBurgerBtn />
         <div className="dash-headerNav-section-container">
           <div className="hn-balance-wrapper">
             <div className="hn-b-wrapper">
@@ -33,6 +31,8 @@ function HeaderNav() {
             </div>
           </div>
           <div className="hn-b-wrapper-name">
+            <HamBurgerBtn />
+
             <p className="hn-b-p-name">John</p>
             <p className="hn-b-p-name">doe</p>
             <div className="hn-b-image-wrarpper">
