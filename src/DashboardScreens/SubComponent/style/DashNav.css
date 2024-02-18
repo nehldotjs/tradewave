@@ -57,12 +57,14 @@
         width: 100%;
         height: 100%;
         margin: auto;
-        display: none;
+        display: flex;
+        
+        /* background-color: aqua; */
         /* transform: translateX(-100%) */
     }
 
     .dashNav-section-wrapper {
-        display: flex;
+        display: none;
         gap: 30px;
         flex-direction: column;
         margin: auto;

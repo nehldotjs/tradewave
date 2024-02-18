@@ -8,7 +8,6 @@ function HamBurgerBtn() {
   const handleBurgerClick = () => {
     setIsNavActive(() => !isNavActive);
   };
-  console.log(isNavActive);
 
   return (
     <div className="hamburgerBtn-wrapper">

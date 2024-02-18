@@ -99,6 +99,7 @@ span {
         justify-content: center;
         z-index: 1;
         position: relative;
+        padding: 10px;
 
     }
 
