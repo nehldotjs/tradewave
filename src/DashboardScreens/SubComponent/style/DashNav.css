@@ -58,22 +58,43 @@
         height: 100%;
         margin: auto;
         display: flex;
-        
-        /* background-color: aqua; */
-        /* transform: translateX(-100%) */
+        transition: all 500ms ease;
+        z-index: 1;
+    }
+
+    .isDashActive {
+        transform: translateX(-100%);
     }
 
     .dashNav-section-wrapper {
-        display: none;
+        display: flex;
         gap: 30px;
         flex-direction: column;
-        margin: auto;
+        margin: unset;
         height: 100vh;
         position: relative;
         color: white;
-        padding: 20px 10px;
+        padding: 20px 5px;
         align-items: center;
         justify-content: space-between;
         flex-direction: column;
+    }
+
+    .dashNavLink-Section-Wrapper {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        height: auto;
+    }
+
+    .dashNavLink-Section-Wrapper .dn-link {
+        text-decoration: none;
+        display: flex;
+        gap: 10px;
+        color: lightgray;
+        font-size: 20px;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: center;
     }
 }

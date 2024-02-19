@@ -87,6 +87,10 @@ span {
     object-fit: cover;
 }
 
+.dash-headerNav-section-wrapper h2 {
+    display: none;
+}
+
 @media screen and (max-width:900px) {
     .dash-headerNav-section-wrapper {
         background: linear-gradient(to bottom right, rgb(53, 82, 82), rgb(15, 20, 48));
@@ -140,5 +144,14 @@ span {
         gap: 20px;
         width: 100%;
         /* flex: 1; */
+    }
+
+
+    .dash-headerNav-section-wrapper h2 {
+        background: linear-gradient(to right, lightgreen, teal);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        display: flex;
     }
 }

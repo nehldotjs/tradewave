@@ -16,7 +16,12 @@ import { GoHome } from "react-icons/go";
 function DashNav() {
   const { isNavActive } = PropData();
   return (
-    <div className="dashnav-main-wrapper" style={{ backgroundColor: "red" }}>
+    <div
+      className={
+        isNavActive
+          ? "dashnav-main-wrapper isDashActive"
+          : "dashnav-main-wrapper"
+      }>
       <div className="dashNav-section-wrapper">
         <h2>TradeWave </h2>
         <div className="dashNavLink-Section-Wrapper">

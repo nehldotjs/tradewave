@@ -11,7 +11,9 @@ function HamBurgerBtn() {
 
   return (
     <div className="hamburgerBtn-wrapper">
-      <button onClick={handleBurgerClick}>btn</button>
+      <button
+        className={isNavActive ? " hamburgerBtn" : "  hamburgerBtnIsActive"}
+        onClick={handleBurgerClick}></button>
     </div>
   );
 }

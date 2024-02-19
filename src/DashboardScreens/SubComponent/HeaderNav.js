@@ -9,6 +9,8 @@ function HeaderNav() {
   return (
     <>
       <div className="dash-headerNav-section-wrapper">
+        <h2>TradeWave </h2>
+
         <div className="dash-headerNav-section-container">
           <div className="hn-balance-wrapper">
             <div className="hn-b-wrapper">
