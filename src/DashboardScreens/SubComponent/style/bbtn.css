@@ -5,6 +5,7 @@
   @media screen and (max-width:900px) {
       .hamburgerBtn-wrapper {
           display: flex;
+          transition: all 500ms ease;
       }
 
       .hamburgerBtn-wrapper {
@@ -16,7 +17,6 @@
           width: 100%;
           padding: 10px;
           flex: 1;
-          transition: all 500ms ease;
       }
 
       .hamburgerBtn-wrapper .hamburgerBtn {
