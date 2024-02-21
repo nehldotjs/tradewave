@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import "../styles/signup.css";
+import { Link, useHistory } from "react-router-dom";
+import { Country, State } from "country-state-city";
+
 import Nav from "../Components/Nav";
+import "../styles/signup.css";
 
 import mainBckImg from "../assets/pamm_levels.jpg";
 
-import { useAuth } from "../Context/AuthContext";
-
-import { Country, State } from "country-state-city";
+// import { useAuth } from "../Context/AuthContext";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
 import { FIREBASE_AUTH } from "../Firebase";
 
 function SignUp() {
-  const { isAuthenticated, setIsAuthenticated } = useAuth();
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
-  const [isUserInfo, setIsUserInfo] = useState({ email: "", password: "" });
+  const [isUserInfo, setIsUserInfo] = useState({
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    gender: "",
+    country: "",
+    state: ""
+  });
 
   const [isChecked, setIsChecked] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("US");
   const [selectedState, setSelectedState] = useState("");
-
-  console.log(isChecked);
 
   const updateDimensions = () => {
     setScreenHeight(window.innerHeight);
@@ -50,14 +56,24 @@ function SignUp() {
   const handlePasswordChange = (e) => {
     setIsUserInfo({ ...isUserInfo, password: e.target.value });
   };
+  const history = useHistory();
 
   const handleSignUp = async () => {
+    const { email, password, firstName, lastName, gender } = isUserInfo;
     try {
-      await createUserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         FIREBASE_AUTH,
-        isUserInfo.email,
-        isUserInfo.password
-      ).then(setIsAuthenticated(() => !isAuthenticated));
+        email,
+        password
+      );
+
+      // Update user profile with additional information
+      const user = userCredential.user;
+      await updateProfile(user, {
+        displayName: firstName + " " + lastName,
+        gender: gender
+      });
+      history.push("/login");
     } catch (error) {
       console.error("Error signing up:", error);
     }
@@ -75,11 +91,21 @@ function SignUp() {
             <div className="userNames">
               <div className="s-firstName">
                 <label htmlFor="firstname">First name</label>
-                <input type="text" />
+                <input
+                  type="text"
+                  onChange={(e) =>
+                    setIsUserInfo({ ...isUserInfo, firstName: e.target.value })
+                  }
+                />
               </div>
               <div className="s-lastName">
                 <label htmlFor="lastName">Last name</label>
-                <input type="text" />
+                <input
+                  type="text"
+                  onChange={(e) =>
+                    setIsUserInfo({ ...isUserInfo, lastName: e.target.value })
+                  }
+                />
               </div>
             </div>
             <div className="s-Email">

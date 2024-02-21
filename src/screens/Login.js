@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "../styles/login.css";
 
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
@@ -13,6 +12,8 @@ import stockExchangeBckgrndVideo from "../assets/videos/stock-video.mp4";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { FIREBASE_AUTH } from "../Firebase";
 import { useAuth } from "../Context/AuthContext";
+
+import "../styles/login.css";
 
 function Login() {
   const [isUserInfo, setIsUserInfo] = useState({ email: "", password: "" });
@@ -102,6 +103,7 @@ function Login() {
                 }
               />
             </div>
+
             <div className="password">
               <label htmlFor="passwordInput">Password</label>
               <input
@@ -113,6 +115,7 @@ function Login() {
                 }
               />
             </div>
+
             <div className="loginBtnWrapper">
               <button onClick={handleLogin}>
                 <h3>Login</h3>

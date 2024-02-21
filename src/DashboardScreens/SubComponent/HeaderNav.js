@@ -6,6 +6,10 @@ import HamBurgerBtn from "./HamBurgerBtn";
 // import { PropData } from "../../Context/PropDataHandler";
 
 function HeaderNav() {
+  const handleImageClick = () => {
+    // console.log("heys");
+  };
+
   return (
     <>
       <div className="dash-headerNav-section-wrapper">
@@ -38,12 +42,14 @@ function HeaderNav() {
             <p className="hn-b-p-name">John</p>
             <p className="hn-b-p-name">doe</p>
             <div className="hn-b-image-wrarpper">
-              <img
-                src={
-                  "https://images.pexels.com/photos/6347705/pexels-photo-6347705.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                }
-                alt="profile"
-              />
+              <button onClick={handleImageClick}>
+                <img
+                  src={
+                    "https://images.pexels.com/photos/6347705/pexels-photo-6347705.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  }
+                  alt="profile"
+                />
+              </button>
             </div>
           </div>
         </div>

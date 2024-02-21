@@ -95,18 +95,18 @@
 }
 
 .l-sponsors {
-    width: auto;
+    width: 100%;
     height: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background-color: blueviolet; */
     gap: 20px;
 }
 
 .l-sponsors img {
     flex: 1;
     height: 100%;
+    width: 100%;
     display: flex;
     margin: auto;
     object-fit: contain;
@@ -313,7 +313,6 @@
 
     .l-loginForm {
         color: white;
-        /* background-color: red; */
         padding: 5% 2%;
         width: 100%;
         height: 100%;
@@ -335,14 +334,18 @@
         margin: auto;
     }
 
+    .l-siteWriteUp p {
+        font-size: 25px;
+    }
+
     .l-sponsors {
         width: 100%;
         height: auto;
         display: flex;
         flex-wrap: wrap;
+        flex: 1;
         justify-content: space-between;
         align-items: center;
-        /* background-color: blueviolet; */
         gap: 10px;
     }
 

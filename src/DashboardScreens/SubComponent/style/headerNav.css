@@ -79,6 +79,13 @@ span {
     overflow: hidden;
 }
 
+.hn-b-image-wrarpper button {
+    height: 100%;
+    width: auto;
+    display: flex;
+    border: none;
+}
+
 .hn-b-image-wrarpper img {
     height: 100%;
     width: 100%;
