@@ -3,11 +3,18 @@ import { Link } from "react-router-dom";
 import "../styles/signup.css";
 import Nav from "../Components/Nav";
 
-import { Country, State } from "country-state-city";
 import mainBckImg from "../assets/pamm_levels.jpg";
 
+import { useAuth } from "../Context/AuthContext";
+
+import { Country, State } from "country-state-city";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { FIREBASE_AUTH } from "../Firebase";
+
 function SignUp() {
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+  const [isUserInfo, setIsUserInfo] = useState({ email: "", password: "" });
 
   const [isChecked, setIsChecked] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("US");
@@ -35,8 +42,25 @@ function SignUp() {
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
-  const handleSignUp = () => {
-    console.log("SIGN UP BTN");
+
+  const handleEmailChange = (e) => {
+    setIsUserInfo({ ...isUserInfo, email: e.target.value });
+  };
+
+  const handlePasswordChange = (e) => {
+    setIsUserInfo({ ...isUserInfo, password: e.target.value });
+  };
+
+  const handleSignUp = async () => {
+    try {
+      await createUserWithEmailAndPassword(
+        FIREBASE_AUTH,
+        isUserInfo.email,
+        isUserInfo.password
+      ).then(setIsAuthenticated(() => !isAuthenticated));
+    } catch (error) {
+      console.error("Error signing up:", error);
+    }
   };
 
   return (
@@ -60,7 +84,12 @@ function SignUp() {
             </div>
             <div className="s-Email">
               <label htmlFor="email">Email</label>
-              <input type="text" />
+              <input
+                type="email"
+                value={isUserInfo.email}
+                onChange={handleEmailChange}
+                id="email"
+              />
             </div>
             <div className="s-country">
               <label htmlFor="country">Country</label>
@@ -98,11 +127,19 @@ function SignUp() {
             </div>
             <div className="s-password">
               <label htmlFor="password">Password</label>
-              <input type="text" />
+              <input
+                type="password"
+                value={isUserInfo.password}
+                onChange={handlePasswordChange}
+              />
             </div>
             <div className="s-confirmPassword">
               <label htmlFor="confirmPassword">Confirm Password</label>
-              <input type="text" />
+              <input
+                type="password"
+                value={isUserInfo.password}
+                onChange={handlePasswordChange}
+              />
             </div>
             <div className="s-TcWrapper">
               <input

@@ -1,28 +1,23 @@
- import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 
+const AuthContext = createContext();
 
-const AuthContextProvider = createContext();
+function AuthContextProvider({ children }) {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-const AuthValues = () => {
-  const x = { name: "pixu" };
-  return x;
-};
-function AuthContext({ children }) {
   return (
-    <>
-      <AuthContextProvider.Provider value={AuthValues()}>
-        {children}
-      </AuthContextProvider.Provider>
-    </>
+    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
 
-function AuthData() {
-  const context = useContext(AuthContextProvider);
+function useAuth() {
+  const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error("useAuth must be used within an AuthContextProvider");
   }
   return context;
 }
 
-export { AuthContext, AuthData };
+export { AuthContextProvider, useAuth };

@@ -1,53 +1,66 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
-import stockExchangeBckgrndVideo from "../assets/videos/stock-video.mp4";
-
-import { AuthData } from "../Context/AuthContext";
-
 import "../styles/login.css";
 
-import Nav from "../Components/Nav";
+import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+
 import Ent1 from "../assets/focalpoint-sponsor.png";
 import Ent2 from "../assets/cloudwatch-sponsor.png";
 import Ent3 from "../assets/epicurious-sponsor.png";
 import Ent4 from "../assets/acmecorp-sponsor.png";
+import stockExchangeBckgrndVideo from "../assets/videos/stock-video.mp4";
+
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { FIREBASE_AUTH } from "../Firebase";
+import { useAuth } from "../Context/AuthContext";
 
 function Login() {
+  const [isUserInfo, setIsUserInfo] = useState({ email: "", password: "" });
+  const { setIsAuthenticated } = useAuth();
+
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  const { name } = AuthData();
-  const EntList = [Ent1, Ent2, Ent3, Ent4];
   const updateDimensions = () => {
     setScreenHeight(window.innerHeight);
     setScreenWidth(window.innerWidth);
   };
 
   useEffect(() => {
-    // Update dimensions on mount
     updateDimensions();
-    // Add event listener to update dimensions on window resize
     window.addEventListener("resize", updateDimensions);
-    // Clean up the event listener on component unmount
     return () => {
       window.removeEventListener("resize", updateDimensions);
     };
   }, []);
 
-  const handleLogin = () => {
-    console.log("LOGIN");
+  const handleLogin = async () => {
+    try {
+      await signInWithEmailAndPassword(
+        FIREBASE_AUTH,
+        isUserInfo.email,
+        isUserInfo.password
+      );
+      // If login successful, set isAuthenticated to true
+      setIsAuthenticated(true);
+    } catch (error) {
+      console.error("Error signing in:", error);
+      // Handle login failure here
+    }
   };
+
   const handleForgotPass = () => {
-    console.log("FORGET PASSWORD");
+    console.log("FORGOT PASSWORD");
   };
+
   const handleSignUpWithGoogle = () => {
     console.log("CONTINUE WITH GOOGLE");
   };
 
+  const EntList = [Ent1, Ent2, Ent3, Ent4];
+
   return (
     <>
-      {/* <Nav /> */}
       <div className="loginWrapper">
         <div className="l-backgroundImage">
           <div className="l-videoOvalay"></div>
@@ -65,13 +78,11 @@ function Login() {
               </p>
             </div>
             <div className="l-sponsors">
-              {EntList.map((item, index) => {
-                return (
-                  <>
-                    <img src={item} alt="Trade wave sponsor" />
-                  </>
-                );
-              })}
+              {EntList.map((item, index) => (
+                <div key={index}>
+                  <img src={item} alt="Trade wave sponsor" />
+                </div>
+              ))}
             </div>
           </div>
 
@@ -82,11 +93,25 @@ function Login() {
 
             <div className="email">
               <label htmlFor="emailInput">Email Address</label>
-              <input type="text" className="loginInput" />
+              <input
+                type="email"
+                className="loginInput"
+                value={isUserInfo.email}
+                onChange={(e) =>
+                  setIsUserInfo({ ...isUserInfo, email: e.target.value })
+                }
+              />
             </div>
             <div className="password">
               <label htmlFor="passwordInput">Password</label>
-              <input type="text" className="loginInput" />
+              <input
+                type="password"
+                className="loginInput"
+                value={isUserInfo.password}
+                onChange={(e) =>
+                  setIsUserInfo({ ...isUserInfo, password: e.target.value })
+                }
+              />
             </div>
             <div className="loginBtnWrapper">
               <button onClick={handleLogin}>
@@ -97,7 +122,7 @@ function Login() {
             <div className="otherEntries">
               <div className="forgetPass">
                 <button onClick={handleForgotPass}>
-                  <p>Forgot password ?</p>
+                  <p>Forgot password?</p>
                 </button>
               </div>
               <div className="L-hr"></div>
