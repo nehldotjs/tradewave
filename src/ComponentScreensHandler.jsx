@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Tc from "./screens/Tc";
@@ -22,14 +22,23 @@ import OptionTrading from "./screens/OptionTrading";
 import Infrastructure from "./screens/Infrastructure";
 import DashBoard from "./DashBoard";
 
-import { useAuth } from "./Context/AuthContext";
+import { FIREBASE_AUTH } from "./Firebase";
+
+// import { useAuth } from "./Context/AuthContext";
 
 function ComponentScreensHandler() {
-  const { isAuthenticated } = useAuth();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = FIREBASE_AUTH.onAuthStateChanged((user) => {
+      setUser(() => (user ? user : null));
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <>
-      {isAuthenticated ? (
+      {user ? (
         <DashBoard />
       ) : (
         <Routes>

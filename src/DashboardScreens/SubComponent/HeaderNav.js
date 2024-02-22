@@ -6,12 +6,14 @@ import HamBurgerBtn from "./HamBurgerBtn";
 // import { PropData } from "../../Context/PropDataHandler";
 
 function HeaderNav() {
+
   const handleImageClick = () => {
     // console.log("heys");
   };
 
   return (
     <>
+      <TickerTape />
       <div className="dash-headerNav-section-wrapper">
         <h2>TradeWave </h2>
 
@@ -54,7 +56,6 @@ function HeaderNav() {
           </div>
         </div>
       </div>
-      <TickerTape />
     </>
   );
 }

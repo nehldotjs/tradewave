@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import { Country, State } from "country-state-city";
 
 import Nav from "../Components/Nav";
@@ -7,9 +8,7 @@ import "../styles/signup.css";
 
 import mainBckImg from "../assets/pamm_levels.jpg";
 
-// import { useAuth } from "../Context/AuthContext";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { FIREBASE_AUTH } from "../Firebase";
 
 function SignUp() {
@@ -56,7 +55,6 @@ function SignUp() {
   const handlePasswordChange = (e) => {
     setIsUserInfo({ ...isUserInfo, password: e.target.value });
   };
-  const history = useHistory();
 
   const handleSignUp = async () => {
     const { email, password, firstName, lastName, gender } = isUserInfo;
@@ -73,7 +71,6 @@ function SignUp() {
         displayName: firstName + " " + lastName,
         gender: gender
       });
-      history.push("/login");
     } catch (error) {
       console.error("Error signing up:", error);
     }

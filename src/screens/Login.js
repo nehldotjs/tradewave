@@ -43,7 +43,7 @@ function Login() {
         isUserInfo.password
       );
       // If login successful, set isAuthenticated to true
-      setIsAuthenticated(true);
+      setIsAuthenticated(() => (FIREBASE_AUTH.user ? true : false));
     } catch (error) {
       console.error("Error signing in:", error);
       // Handle login failure here
