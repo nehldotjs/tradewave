@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
 
 import Tc from "./screens/Tc";
 import Home from "./screens/Home";
@@ -24,17 +24,23 @@ import DashBoard from "./DashBoard";
 
 import { FIREBASE_AUTH } from "./Firebase";
 
-// import { useAuth } from "./Context/AuthContext";
-
 function ComponentScreensHandler() {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate(); // useNavigate hook to navigate
 
   useEffect(() => {
     const unsubscribe = FIREBASE_AUTH.onAuthStateChanged((user) => {
-      setUser(() => (user ? user : null));
+      setUser(user);
+      if (user) {
+        navigate("/overview"); // Navigate to '/overview' if user is logged in
+      }else{
+        navigate("/Login"); // Navigate to '/overview' if user is logged in
+
+      }
     });
+
     return () => unsubscribe();
-  }, []);
+  }, [navigate]);
 
   return (
     <>

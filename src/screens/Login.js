@@ -9,24 +9,22 @@ import Ent3 from "../assets/epicurious-sponsor.png";
 import Ent4 from "../assets/acmecorp-sponsor.png";
 import stockExchangeBckgrndVideo from "../assets/videos/stock-video.mp4";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { FIREBASE_AUTH } from "../Firebase";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { FIREBASE_AUTH, GOOGLE_PROVIDER } from "../Firebase";
 import { useAuth } from "../Context/AuthContext";
 
 import "../styles/login.css";
 
 function Login() {
   const [isUserInfo, setIsUserInfo] = useState({ email: "", password: "" });
-  const { setIsAuthenticated } = useAuth();
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
 
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
   const updateDimensions = () => {
     setScreenHeight(window.innerHeight);
     setScreenWidth(window.innerWidth);
   };
-
   useEffect(() => {
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
@@ -42,24 +40,24 @@ function Login() {
         isUserInfo.email,
         isUserInfo.password
       );
-      // If login successful, set isAuthenticated to true
-      setIsAuthenticated(() => (FIREBASE_AUTH.user ? true : false));
     } catch (error) {
       console.error("Error signing in:", error);
-      // Handle login failure here
+    }
+  };
+
+  const handleSignUpWithGoogle = async () => {
+    try {
+      await signInWithPopup(FIREBASE_AUTH, GOOGLE_PROVIDER);
+    } catch (error) {
+      console.error("Error signing in:", error);
     }
   };
 
   const handleForgotPass = () => {
-    console.log("FORGOT PASSWORD");
-  };
-
-  const handleSignUpWithGoogle = () => {
-    console.log("CONTINUE WITH GOOGLE");
+    console.log("CLICKED FORGOT PASSWORD");
   };
 
   const EntList = [Ent1, Ent2, Ent3, Ent4];
-
   return (
     <>
       <div className="loginWrapper">
