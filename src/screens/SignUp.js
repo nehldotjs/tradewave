@@ -8,19 +8,18 @@ import "../styles/signup.css";
 
 import mainBckImg from "../assets/pamm_levels.jpg";
 
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { FIREBASE_AUTH } from "../Firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { FIREBASE_AUTH, db } from "../Firebase";
 
 function SignUp() {
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
   const [isUserInfo, setIsUserInfo] = useState({
     email: "",
     password: "",
+    confirmPassword: "",
     firstName: "",
     lastName: "",
-    gender: "",
-    country: "",
-    state: ""
+    gender: ""
   });
 
   const [isChecked, setIsChecked] = useState(false);
@@ -48,32 +47,31 @@ function SignUp() {
     setIsChecked(!isChecked);
   };
 
-  const handleEmailChange = (e) => {
-    setIsUserInfo({ ...isUserInfo, email: e.target.value });
-  };
+  const handleSignUp = () => {
+    
+    // if (isUserInfo.password === isUserInfo.confirmPassword) {
+    //   try {
+    //     createUserWithEmailAndPassword(
+    //       FIREBASE_AUTH,
+    //       isUserInfo.email,
+    //       isUserInfo.password
+    //     );
+    //   } catch (error) {
+    //     console.error("Error signineg up:", error);
+    //   }
+    // } else {
+    //   alert("PASSWORD DO NOT MATCH");
+    // }
 
-  const handlePasswordChange = (e) => {
-    setIsUserInfo({ ...isUserInfo, password: e.target.value });
-  };
-
-  const handleSignUp = async () => {
-    const { email, password, firstName, lastName, gender } = isUserInfo;
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        FIREBASE_AUTH,
-        email,
-        password
-      );
-
-      // Update user profile with additional information
-      const user = userCredential.user;
-      await updateProfile(user, {
-        displayName: firstName + " " + lastName,
-        gender: gender
-      });
-    } catch (error) {
-      console.error("Error signing up:", error);
-    }
+    console.log(
+      isUserInfo.email,
+      isUserInfo.password,
+      isUserInfo.firstName,
+      isUserInfo.lastName,
+      selectedCountry,
+      isUserInfo.state,
+      isUserInfo.gender
+    );
   };
 
   return (
@@ -109,35 +107,30 @@ function SignUp() {
               <label htmlFor="email">Email</label>
               <input
                 type="email"
-                value={isUserInfo.email}
-                onChange={handleEmailChange}
+                onChange={(e) =>
+                  setIsUserInfo({ ...isUserInfo, email: e.target.value })
+                }
                 id="email"
               />
             </div>
+
             <div className="s-country">
               <label htmlFor="country">Country</label>
-              <select
-                name="country"
-                id="country"
-                value={selectedCountry}
-                onChange={(e) => setSelectedCountry(e.target.value)}>
+              <select name="country" id="country">
                 <option value="" disabled>
                   Select a country
                 </option>
                 {countries.map((country) => (
-                  <option key={country.isoCode} value={country.isoCode}>
+                  <option key={country.isoCode} value={country.name}>
                     {country.name}
                   </option>
                 ))}
               </select>
             </div>
+
             <div className="s-state">
               <label htmlFor="state">State</label>
-              <select
-                name="state"
-                id="state"
-                value={selectedState}
-                onChange={(e) => setSelectedState(e.target.value)}>
+              <select name="state" id="state">
                 <option value="" disabled>
                   Select a state
                 </option>
@@ -148,20 +141,23 @@ function SignUp() {
                 ))}
               </select>
             </div>
+
             <div className="s-password">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
-                value={isUserInfo.password}
-                onChange={handlePasswordChange}
+                onChange={(e) =>
+                  setIsUserInfo({ ...isUserInfo, password: e.target.value })
+                }
               />
             </div>
             <div className="s-confirmPassword">
               <label htmlFor="confirmPassword">Confirm Password</label>
               <input
                 type="password"
-                value={isUserInfo.password}
-                onChange={handlePasswordChange}
+                onChange={(e) =>
+                  setIsUserInfo({ ...isUserInfo, country: e.target.value })
+                }
               />
             </div>
             <div className="s-TcWrapper">

@@ -26,21 +26,13 @@ import { FIREBASE_AUTH } from "./Firebase";
 
 function ComponentScreensHandler() {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate(); // useNavigate hook to navigate
 
   useEffect(() => {
-    const unsubscribe = FIREBASE_AUTH.onAuthStateChanged((user) => {
-      setUser(user);
-      if (user) {
-        navigate("/overview"); // Navigate to '/overview' if user is logged in
-      }else{
-        navigate("/Login"); // Navigate to '/overview' if user is logged in
-
-      }
+    const unsubscribe = FIREBASE_AUTH.onAuthStateChanged((x) => {
+      setUser(x);
     });
-
     return () => unsubscribe();
-  }, [navigate]);
+  }, []);
 
   return (
     <>

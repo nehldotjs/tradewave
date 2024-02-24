@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
+import { FaUser } from "react-icons/fa";
+
 import "./style/headerNav.css";
 
 import { TickerTape } from "react-ts-tradingview-widgets";
@@ -9,16 +12,37 @@ import { FIREBASE_AUTH } from "../../Firebase";
 function HeaderNav() {
   const [stateActive, setStateActive] = useState(false);
 
-  const userPhotoUrl = FIREBASE_AUTH?.currentUser?.photoURL;
+  const [userProps, setUserProps] = useState({
+    firstName: "",
+    lastName: "",
+    userPhotoUrl: ""
+  });
+
+  useEffect(() => {
+    const currentUser = FIREBASE_AUTH.currentUser;
+
+    if (currentUser) {
+      const displayName = currentUser.displayName;
+      const firstName = displayName ? displayName.split(" ")[0] : "";
+      // const lastName = displayName ? displayName.split(" ")[1] : "";
+
+      const photoUrl = currentUser.photoURL;
+      setUserProps({
+        userPhotoUrl: photoUrl,
+        firstName: firstName
+        // lastName: lastName
+      });
+    }
+  }, []);
 
   const handleImageClick = () => {
     setStateActive(!stateActive);
   };
 
+  const navigate = useNavigate();
   const handleSignOut = async () => {
     try {
-      await FIREBASE_AUTH.signOut();
-      console.log("User signed out successfully");
+      await FIREBASE_AUTH.signOut().then(navigate("/login"));
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -54,21 +78,23 @@ function HeaderNav() {
           </div>
           <div className="hn-b-wrapper-name">
             <HamBurgerBtn />
-
-            <p className="hn-b-p-name">John</p>
-            <p className="hn-b-p-name">doe</p>
+            <div className="hn-b-p-name-container">
+              <p className="hn-b-p-name">
+                <span
+                  className="hn-b-p-welcome"
+                  style={{ display: "flex", gap: "5px" }}>
+                  Welcome
+                </span>
+                {userProps.firstName}
+              </p>
+            </div>
             <div className="hn-b-image-wrarpper">
               <button onClick={handleImageClick}>
-                {
-                  <img
-                    src={
-                      userPhotoUrl
-                        ? userPhotoUrl
-                        : "https://images.pexels.com/photos/6347705/pexels-photo-6347705.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                    }
-                    alt="profile"
-                  />
-                }
+                {userProps.userPhotoUrl ? (
+                  <img src={userProps.userPhotoUrl} alt="profile" />
+                ) : (
+                  <FaUser className="faUser-icon" />
+                )}
               </button>
             </div>
           </div>

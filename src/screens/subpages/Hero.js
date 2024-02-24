@@ -10,11 +10,7 @@ function Hero(prop) {
       <div className="heroCotainer">
         <div className="heroContent">
           <div className="heroImageWrapper">
-            <img
-              src={image}
-              alt="Stock market image"
-              className="stockMarketImage"
-            />
+            <img src={image} alt="market" className="stockMarketImage" />
             <div className="overlayDiv"></div>
           </div>
           <div className="heroWriteUp">
