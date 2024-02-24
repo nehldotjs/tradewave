@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
+import React, { useState, useEffect } from "react";
 import { Country, State } from "country-state-city";
 
+import { Link } from "react-router-dom";
 import Nav from "../Components/Nav";
 import "../styles/signup.css";
-
 import mainBckImg from "../assets/pamm_levels.jpg";
-
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { FIREBASE_AUTH, db } from "../Firebase";
 
@@ -23,12 +20,9 @@ function SignUp() {
   });
 
   const [isChecked, setIsChecked] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState("US");
+  const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedState, setSelectedState] = useState("");
-
-  const updateDimensions = () => {
-    setScreenHeight(window.innerHeight);
-  };
+  const [stateList, setStateList] = useState([]);
 
   useEffect(() => {
     updateDimensions();
@@ -38,40 +32,47 @@ function SignUp() {
     };
   }, []);
 
-  const countries = Country.getAllCountries();
-  const states = selectedCountry
-    ? State.getStatesOfCountry(selectedCountry)
-    : [];
+  useEffect(() => {
+    const countryStates = State.getStatesOfCountry(selectedCountry);
+    setStateList(countryStates);
+  }, [selectedCountry]);
+
+  const updateDimensions = () => {
+    setScreenHeight(window.innerHeight);
+  };
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
   const handleSignUp = () => {
-    
-    // if (isUserInfo.password === isUserInfo.confirmPassword) {
-    //   try {
-    //     createUserWithEmailAndPassword(
-    //       FIREBASE_AUTH,
-    //       isUserInfo.email,
-    //       isUserInfo.password
-    //     );
-    //   } catch (error) {
-    //     console.error("Error signineg up:", error);
-    //   }
-    // } else {
-    //   alert("PASSWORD DO NOT MATCH");
-    // }
+    if (isUserInfo.confirmPassword === isUserInfo.password) {
+      if (isChecked) {
+        console.log(
+          isUserInfo.firstName,
+          isUserInfo.lastName,
+          isUserInfo.email,
+          selectedCountry,
+          selectedState,
+          isUserInfo.password,
+          isUserInfo.gender
+        );
+      } else {
+        alert("MUST ACCEPT OUR TERMS & CONDITION");
+      }
+    } else alert("PASSWORD DO NOT MATCH");
+  };
 
-    console.log(
-      isUserInfo.email,
-      isUserInfo.password,
-      isUserInfo.firstName,
-      isUserInfo.lastName,
-      selectedCountry,
-      isUserInfo.state,
-      isUserInfo.gender
-    );
+  const countries = Country.getAllCountries();
+  const handleCountryChange = (event) => {
+    const countryCode = event.target.value;
+    setSelectedCountry(countryCode);
+    setSelectedState("");
+  };
+
+  const handleStateChange = (event) => {
+    const stateCode = event.target.value;
+    setSelectedState(stateCode);
   };
 
   return (
@@ -116,12 +117,15 @@ function SignUp() {
 
             <div className="s-country">
               <label htmlFor="country">Country</label>
-              <select name="country" id="country">
+              <select
+                name="country"
+                id="country"
+                onChange={handleCountryChange}>
                 <option value="" disabled>
                   Select a country
                 </option>
                 {countries.map((country) => (
-                  <option key={country.isoCode} value={country.name}>
+                  <option key={country.isoCode} value={country.isoCode}>
                     {country.name}
                   </option>
                 ))}
@@ -130,11 +134,11 @@ function SignUp() {
 
             <div className="s-state">
               <label htmlFor="state">State</label>
-              <select name="state" id="state">
+              <select name="state" id="state" onChange={handleStateChange}>
                 <option value="" disabled>
                   Select a state
                 </option>
-                {states.map((state) => (
+                {stateList.map((state) => (
                   <option key={state.isoCode} value={state.isoCode}>
                     {state.name}
                   </option>
@@ -156,7 +160,10 @@ function SignUp() {
               <input
                 type="password"
                 onChange={(e) =>
-                  setIsUserInfo({ ...isUserInfo, country: e.target.value })
+                  setIsUserInfo({
+                    ...isUserInfo,
+                    confirmPassword: e.target.value
+                  })
                 }
               />
             </div>
