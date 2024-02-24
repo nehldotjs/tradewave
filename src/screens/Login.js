@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
 import Ent1 from "../assets/focalpoint-sponsor.png";
@@ -11,16 +11,17 @@ import stockExchangeBckgrndVideo from "../assets/videos/stock-video.mp4";
 
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { FIREBASE_AUTH, GOOGLE_PROVIDER } from "../Firebase";
-import { useAuth } from "../Context/AuthContext";
 
 import "../styles/login.css";
 
 function Login() {
   const [isUserInfo, setIsUserInfo] = useState({ email: "", password: "" });
-  const { isAuthenticated, setIsAuthenticated } = useAuth();
 
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  const navigate = useNavigate();
+
   const updateDimensions = () => {
     setScreenHeight(window.innerHeight);
     setScreenWidth(window.innerWidth);
@@ -40,6 +41,7 @@ function Login() {
         isUserInfo.email,
         isUserInfo.password
       );
+      navigate("/overview");
     } catch (error) {
       console.error("Error signing in:", error);
     }
@@ -48,6 +50,7 @@ function Login() {
   const handleSignUpWithGoogle = async () => {
     try {
       await signInWithPopup(FIREBASE_AUTH, GOOGLE_PROVIDER);
+      navigate("/overview");
     } catch (error) {
       console.error("Error signing in:", error);
     }

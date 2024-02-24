@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Country, State } from "country-state-city";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Nav from "../Components/Nav";
 import "../styles/signup.css";
 import mainBckImg from "../assets/pamm_levels.jpg";
@@ -31,6 +31,8 @@ function SignUp() {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedState, setSelectedState] = useState("");
   const [stateList, setStateList] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     updateDimensions();
@@ -74,22 +76,25 @@ function SignUp() {
                     FIREBASE_AUTH,
                     isUserInfo.email,
                     isUserInfo.password
-                  ).then((cred) => {
-                    return db
-                      .collection("users")
-                      .doc(cred.user.uid)
-                      .set({
+                  )
+                    .then(
+                      db.collection("users").doc(FIREBASE_AUTH.uid).set({
                         firstname: isUserInfo.firstName,
                         lastname: isUserInfo.lastName,
                         email: isUserInfo.email,
-                        address: {
-                          country: selectedCountry,
-                          state: selectedState
-                        }
-                      });
-                  });
+                        country: selectedCountry,
+                        state: selectedState
+                      })
+                    )
+                    .catch((err) => {
+                      console.error(
+                        "Error occurred during user creation:",
+                        err
+                      );
+                    });
+                  navigate("/overview");
                 } catch (err) {
-                  console.log("ERROR don xup: " + err);
+                  console.error("Error occurred:", err);
                 }
               } else {
                 alert("MUST ACCEPT OUR TERMS & CONDITION");

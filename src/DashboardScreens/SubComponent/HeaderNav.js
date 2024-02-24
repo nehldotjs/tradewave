@@ -96,13 +96,12 @@ function HeaderNav() {
                 <span className="hn-b-p-welcome" style={{ display: "flex" }}>
                   Welcome
                 </span>
-
-                {userList.map((x, index) => {
-                  const { firstname } = x;
-                  return firstname;
-                })}
-
-                {userProps.firstName}
+                {userProps.firstName
+                  ? userProps.firstName
+                  : userList.map((x, index) => {
+                      const { firstname } = x;
+                      return firstname ? firstname : "User";
+                    })}
               </p>
             </div>
             <div className="hn-b-image-wrarpper">
