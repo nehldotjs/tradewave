@@ -18,7 +18,7 @@ function DashNav() {
   return (
     <div
       className={
-        isNavActive
+        !isNavActive
           ? "dashnav-main-wrapper isDashActive"
           : "dashnav-main-wrapper"
       }>

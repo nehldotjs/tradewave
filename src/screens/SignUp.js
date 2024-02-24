@@ -18,6 +18,14 @@ function SignUp() {
     lastName: "",
     gender: ""
   });
+  const [isInput, setIsInput] = useState({
+    email: false,
+    password: false,
+    confirmPassword: false,
+    firstName: false,
+    lastName: false,
+    gender: false
+  });
 
   const [isChecked, setIsChecked] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -46,21 +54,67 @@ function SignUp() {
   };
 
   const handleSignUp = () => {
-    if (isUserInfo.confirmPassword === isUserInfo.password) {
-      if (isChecked) {
-        console.log(
-          isUserInfo.firstName,
-          isUserInfo.lastName,
-          isUserInfo.email,
-          selectedCountry,
-          selectedState,
-          isUserInfo.password,
-          isUserInfo.gender
-        );
+    if (isUserInfo.firstName.length > 0) {
+      setIsInput((prevState) => {
+        return { ...prevState, firstname: false };
+      });
+      if (isUserInfo.lastName.length > 0) {
+        setIsInput((prevState) => {
+          return { ...prevState, lastName: false };
+        });
+        if (isUserInfo.email.length > 0) {
+          setIsInput((prevState) => {
+            return { ...prevState, email: false };
+          });
+          if (isUserInfo.password.length >= 5) {
+            if (isUserInfo.confirmPassword === isUserInfo.password) {
+              if (isChecked) {
+                try {
+                  createUserWithEmailAndPassword(
+                    FIREBASE_AUTH,
+                    isUserInfo.email,
+                    isUserInfo.password
+                  ).then((cred) => {
+                    return db
+                      .collection("users")
+                      .doc(cred.user.uid)
+                      .set({
+                        firstname: isUserInfo.firstName,
+                        lastname: isUserInfo.lastName,
+                        email: isUserInfo.email,
+                        address: {
+                          country: selectedCountry,
+                          state: selectedState
+                        }
+                      });
+                  });
+                } catch (err) {
+                  console.log("ERROR don xup: " + err);
+                }
+              } else {
+                alert("MUST ACCEPT OUR TERMS & CONDITION");
+              }
+            } else {
+              alert("PASSWORD DO NOT MATCH");
+            }
+          } else {
+            alert("PASSWORD SHOULD BE ATLEAST 6 CHARACTERS");
+          }
+        } else {
+          setIsInput((prevState) => {
+            return { ...prevState, email: true };
+          });
+        }
       } else {
-        alert("MUST ACCEPT OUR TERMS & CONDITION");
+        setIsInput((prevState) => {
+          return { ...prevState, lastName: true };
+        });
       }
-    } else alert("PASSWORD DO NOT MATCH");
+    } else {
+      setIsInput((prevState) => {
+        return { ...prevState, firstName: true };
+      });
+    }
   };
 
   const countries = Country.getAllCountries();
@@ -88,6 +142,9 @@ function SignUp() {
               <div className="s-firstName">
                 <label htmlFor="firstname">First name</label>
                 <input
+                  style={{
+                    outline: isInput.firstName ? "1px solid red" : "none"
+                  }}
                   type="text"
                   onChange={(e) =>
                     setIsUserInfo({ ...isUserInfo, firstName: e.target.value })
@@ -97,6 +154,9 @@ function SignUp() {
               <div className="s-lastName">
                 <label htmlFor="lastName">Last name</label>
                 <input
+                  style={{
+                    outline: isInput.lastName ? "1px solid red" : "none"
+                  }}
                   type="text"
                   onChange={(e) =>
                     setIsUserInfo({ ...isUserInfo, lastName: e.target.value })
@@ -107,6 +167,9 @@ function SignUp() {
             <div className="s-Email">
               <label htmlFor="email">Email</label>
               <input
+                style={{
+                  outline: isInput.email ? "1px solid red" : "none"
+                }}
                 type="email"
                 onChange={(e) =>
                   setIsUserInfo({ ...isUserInfo, email: e.target.value })
@@ -149,6 +212,9 @@ function SignUp() {
             <div className="s-password">
               <label htmlFor="password">Password</label>
               <input
+                style={{
+                  outline: isInput.password ? "1px solid red" : "none"
+                }}
                 type="password"
                 onChange={(e) =>
                   setIsUserInfo({ ...isUserInfo, password: e.target.value })
@@ -158,6 +224,9 @@ function SignUp() {
             <div className="s-confirmPassword">
               <label htmlFor="confirmPassword">Confirm Password</label>
               <input
+                style={{
+                  outline: isInput.confirmPassword ? "1px solid red" : "none"
+                }}
                 type="password"
                 onChange={(e) =>
                   setIsUserInfo({

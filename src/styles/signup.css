@@ -109,7 +109,7 @@ select {
 
 .s-tcLinkBtn {
     text-decoration: none;
-    color: red;
+    color: coral;
     font-weight: bold;
     cursor: pointer;
     transition: 350ms all ease;

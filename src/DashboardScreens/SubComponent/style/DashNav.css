@@ -75,9 +75,14 @@
         position: relative;
         color: white;
         padding: 20px 5px;
+        padding-bottom: 30px;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
         flex-direction: column;
+    }
+
+    .dashNav-section-wrapper h2 {
+        display: none;
     }
 
     .dashNavLink-Section-Wrapper {

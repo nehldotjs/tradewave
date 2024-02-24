@@ -7,30 +7,45 @@ import "./style/headerNav.css";
 import { TickerTape } from "react-ts-tradingview-widgets";
 import HamBurgerBtn from "./HamBurgerBtn";
 
-import { FIREBASE_AUTH } from "../../Firebase";
+import { FIREBASE_AUTH, db } from "../../Firebase";
+import { getDocs, collection } from "firebase/firestore";
 
 function HeaderNav() {
   const [stateActive, setStateActive] = useState(false);
-
+  const [userList, setuserList] = useState([]);
   const [userProps, setUserProps] = useState({
     firstName: "",
     lastName: "",
     userPhotoUrl: ""
   });
 
-  useEffect(() => {
-    const currentUser = FIREBASE_AUTH.currentUser;
+  const userCollectionRef = collection(db, "users");
+  const getUserInfo = async () => {
+    try {
+      const data = await getDocs(userCollectionRef);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id
+      }));
 
+      setuserList(filteredData);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getUserInfo();
+
+    const currentUser = FIREBASE_AUTH.currentUser;
     if (currentUser) {
       const displayName = currentUser.displayName;
       const firstName = displayName ? displayName.split(" ")[0] : "";
-      // const lastName = displayName ? displayName.split(" ")[1] : "";
 
       const photoUrl = currentUser.photoURL;
       setUserProps({
         userPhotoUrl: photoUrl,
         firstName: firstName
-        // lastName: lastName
       });
     }
   }, []);
@@ -50,9 +65,6 @@ function HeaderNav() {
 
   return (
     <div className="dash-headerNav-main">
-      <div className="header-tickertape-wrapper">
-        <TickerTape />
-      </div>
       <div className="dash-headerNav-section-wrapper">
         <h2>TradeWave </h2>
         <div className="dash-headerNav-section-container">
@@ -76,15 +88,20 @@ function HeaderNav() {
               </h5>
             </div>
           </div>
+
           <div className="hn-b-wrapper-name">
             <HamBurgerBtn />
             <div className="hn-b-p-name-container">
               <p className="hn-b-p-name">
-                <span
-                  className="hn-b-p-welcome"
-                  style={{ display: "flex", gap: "5px" }}>
+                <span className="hn-b-p-welcome" style={{ display: "flex" }}>
                   Welcome
                 </span>
+
+                {userList.map((x, index) => {
+                  const { firstname } = x;
+                  return firstname;
+                })}
+
                 {userProps.firstName}
               </p>
             </div>
@@ -108,6 +125,9 @@ function HeaderNav() {
             : "dashBoardSignOutWrapper"
         }>
         <button onClick={handleSignOut}>Logout</button>
+      </div>
+      <div className="header-tickertape-wrapper">
+        <TickerTape />
       </div>
     </div>
   );
