@@ -8,6 +8,8 @@ import mainBckImg from "../assets/pamm_levels.jpg";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { FIREBASE_AUTH, db } from "../Firebase";
 
+// import { addDoc, collection, getDoc } from "firebase/firestore";
+
 function SignUp() {
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
   const [isUserInfo, setIsUserInfo] = useState({
@@ -55,6 +57,37 @@ function SignUp() {
     setIsChecked(!isChecked);
   };
 
+  const handleUserData = async () => {
+    try {
+      await createUserWithEmailAndPassword(
+        FIREBASE_AUTH,
+        isUserInfo.email,
+        isUserInfo.password
+      ).then(
+        // (cred) => {
+        // const result = db.collection("users").doc(cred.user.uid).set({
+        //   firstname: isUserInfo.firstName,
+        //   lastname: isUserInfo.lastName,
+        //   email: isUserInfo.email,
+        //   country: selectedCountry,
+        //   state: selectedState
+        // }
+
+        console.log(
+          isUserInfo.firstName,
+          isUserInfo.lastName,
+          isUserInfo.email,
+          selectedCountry,
+          selectedState
+        )
+      );
+
+      navigate("/overview");
+    } catch (err) {
+      console.error("Error occurred:", err);
+    }
+  };
+
   const handleSignUp = () => {
     if (isUserInfo.firstName.length > 0) {
       setIsInput((prevState) => {
@@ -71,31 +104,7 @@ function SignUp() {
           if (isUserInfo.password.length >= 5) {
             if (isUserInfo.confirmPassword === isUserInfo.password) {
               if (isChecked) {
-                try {
-                  createUserWithEmailAndPassword(
-                    FIREBASE_AUTH,
-                    isUserInfo.email,
-                    isUserInfo.password
-                  )
-                    .then(
-                      db.collection("users").doc(FIREBASE_AUTH.uid).set({
-                        firstname: isUserInfo.firstName,
-                        lastname: isUserInfo.lastName,
-                        email: isUserInfo.email,
-                        country: selectedCountry,
-                        state: selectedState
-                      })
-                    )
-                    .catch((err) => {
-                      console.error(
-                        "Error occurred during user creation:",
-                        err
-                      );
-                    });
-                  navigate("/overview");
-                } catch (err) {
-                  console.error("Error occurred:", err);
-                }
+                handleUserData();
               } else {
                 alert("MUST ACCEPT OUR TERMS & CONDITION");
               }
