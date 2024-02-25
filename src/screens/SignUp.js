@@ -64,6 +64,7 @@ function SignUp() {
         isUserInfo.email,
         isUserInfo.password
       ).then(
+        
         // (cred) => {
         // const result = db.collection("users").doc(cred.user.uid).set({
         //   firstname: isUserInfo.firstName,
@@ -77,9 +78,10 @@ function SignUp() {
           isUserInfo.firstName,
           isUserInfo.lastName,
           isUserInfo.email,
-          selectedCountry,
+          selectedCountry,  
           selectedState
         )
+        
       );
 
       navigate("/overview");
