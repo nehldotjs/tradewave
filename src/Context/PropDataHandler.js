@@ -1,26 +1,47 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { FIREBASE_AUTH, db } from "../Firebase";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 const PropContext = createContext();
-
 function PropDataHandler({ children }) {
-  const propValues = PropValues();
   return (
-    <PropContext.Provider value={propValues}>{children}</PropContext.Provider>
+    <PropContext.Provider value={PropValues()}>{children}</PropContext.Provider>
   );
 }
 
 const PropValues = () => {
   const [isNavActive, setIsNavActive] = useState(false);
-  const x = { isNavActive, setIsNavActive };
-  return x;
+  const [userDocuments, setUserDocuments] = useState([]);
+  const name = "Prop Data";
+
+  useEffect(() => {
+    const fetchUserDocuments = async () => {
+      try {
+        const q = query(
+          collection(db, "users"),
+          where("userUid", "==", FIREBASE_AUTH.currentUser.uid)
+        );
+        const querySnapshot = await getDocs(q);
+        const documents = querySnapshot.docs.map((doc) => doc.data());
+        setUserDocuments(documents);
+      } catch (error) {
+        console.error("Error fetching user documents:", error);
+      }
+    };
+
+    fetchUserDocuments();
+  }, []);
+  const result = { name, isNavActive, setIsNavActive, userDocuments };
+  return result;
 };
 
 function PropData() {
-  const context = useContext(PropContext);
-  if (!context) {
-    throw new Error("PropData must be used within a PropDataHandler");
+  try {
+    const x = useContext(PropContext);
+    return x;
+  } catch (err) {
+    console.error(err);
   }
-  return context;
 }
 
 export { PropDataHandler, PropData };
