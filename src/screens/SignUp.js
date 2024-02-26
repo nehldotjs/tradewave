@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Country, State } from "country-state-city";
-
 import { Link, useNavigate } from "react-router-dom";
-import Nav from "../Components/Nav";
+import { Country, State } from "country-state-city";
 import "../styles/signup.css";
+import Nav from "../Components/Nav";
 import mainBckImg from "../assets/pamm_levels.jpg";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
 import { FIREBASE_AUTH, db } from "../Firebase";
 
-// import { addDoc, collection, getDoc } from "firebase/firestore";
-
 function SignUp() {
+  const [isChecked, setIsChecked] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+  const [stateList, setStateList] = useState([]);
+
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
   const [isUserInfo, setIsUserInfo] = useState({
     email: "",
@@ -29,13 +32,7 @@ function SignUp() {
     gender: false
   });
 
-  const [isChecked, setIsChecked] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState("");
-  const [selectedState, setSelectedState] = useState("");
-  const [stateList, setStateList] = useState([]);
-
   const navigate = useNavigate();
-
   useEffect(() => {
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
@@ -53,41 +50,20 @@ function SignUp() {
     setScreenHeight(window.innerHeight);
   };
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+  const countries = Country.getAllCountries();
+  const handleCountryChange = (event) => {
+    const countryCode = event.target.value;
+    setSelectedCountry(countryCode);
+    setSelectedState("");
   };
 
-  const handleUserData = async () => {
-    try {
-      await createUserWithEmailAndPassword(
-        FIREBASE_AUTH,
-        isUserInfo.email,
-        isUserInfo.password
-      ).then(
-        
-        // (cred) => {
-        // const result = db.collection("users").doc(cred.user.uid).set({
-        //   firstname: isUserInfo.firstName,
-        //   lastname: isUserInfo.lastName,
-        //   email: isUserInfo.email,
-        //   country: selectedCountry,
-        //   state: selectedState
-        // }
+  const handleStateChange = (event) => {
+    const stateCode = event.target.value;
+    setSelectedState(stateCode);
+  };
 
-        console.log(
-          isUserInfo.firstName,
-          isUserInfo.lastName,
-          isUserInfo.email,
-          selectedCountry,  
-          selectedState
-        )
-        
-      );
-
-      navigate("/overview");
-    } catch (err) {
-      console.error("Error occurred:", err);
-    }
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
   };
 
   const handleSignUp = () => {
@@ -133,16 +109,27 @@ function SignUp() {
     }
   };
 
-  const countries = Country.getAllCountries();
-  const handleCountryChange = (event) => {
-    const countryCode = event.target.value;
-    setSelectedCountry(countryCode);
-    setSelectedState("");
-  };
+  const handleUserData = async () => {
+    try {
+      await createUserWithEmailAndPassword(
+        FIREBASE_AUTH,
+        isUserInfo.email,
+        isUserInfo.password
+      );
 
-  const handleStateChange = (event) => {
-    const stateCode = event.target.value;
-    setSelectedState(stateCode);
+      await addDoc(collection(db, "users"), {
+        firstname: isUserInfo.firstName,
+        lastname: isUserInfo.lastName,
+        email: isUserInfo.email,
+        country: selectedCountry,
+        state: selectedState,
+        userUid: FIREBASE_AUTH?.currentUser?.uid
+      });
+      
+      navigate("/overview");
+    } catch (err) {
+      console.error("Error occurred:", err);
+    }
   };
 
   return (

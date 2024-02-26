@@ -37,9 +37,9 @@ function HeaderNav() {
   useEffect(() => {
     getUserInfo();
 
-    const currentUser = FIREBASE_AUTH.currentUser;
+    const currentUser = FIREBASE_AUTH?.currentUser;
     if (currentUser) {
-      const displayName = currentUser.displayName;
+      const displayName = currentUser?.displayName;
       const firstName = displayName ? displayName.split(" ")[0] : "";
 
       const photoUrl = currentUser.photoURL;
