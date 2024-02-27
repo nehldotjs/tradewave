@@ -7,48 +7,42 @@ import "./style/headerNav.css";
 import { TickerTape } from "react-ts-tradingview-widgets";
 import HamBurgerBtn from "./HamBurgerBtn";
 
-import { FIREBASE_AUTH, db } from "../../Firebase";
-import { getDocs, collection } from "firebase/firestore";
+import UserDataHandler from "../../Components/UserDataHandler";
 
+import { FIREBASE_AUTH } from "../../Firebase";
 function HeaderNav() {
   const [stateActive, setStateActive] = useState(false);
-  const [userList, setuserList] = useState([]);
+  // const [userList, setuserList] = useState([]);
   const [userProps, setUserProps] = useState({
     firstName: "",
-    lastName: "",
-    userPhotoUrl: ""
+    lastName: ""
   });
-
-  const userCollectionRef = collection(db, "users");
-  const getUserInfo = async () => {
-    try {
-      const data = await getDocs(userCollectionRef);
-      const filteredData = data.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id
-      }));
-
-      setuserList(filteredData);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const { isUserDetail } = UserDataHandler();
+  const currentUser = FIREBASE_AUTH?.currentUser;
 
   useEffect(() => {
-    getUserInfo();
-
-    const currentUser = FIREBASE_AUTH?.currentUser;
     if (currentUser) {
       const displayName = currentUser?.displayName;
-      const firstName = displayName ? displayName.split(" ")[0] : "";
+      const google_firstName = displayName ? displayName.split(" ")[0] : "";
 
       const photoUrl = currentUser.photoURL;
       setUserProps({
         userPhotoUrl: photoUrl,
-        firstName: firstName
+        firstName: google_firstName
       });
     }
   }, []);
+
+  const currentUserName = () => {
+    const google_name = isUserDetail.firstname;
+    const customUserName = userProps.firstName;
+
+    if (currentUser) {
+      return google_name ? google_name : customUserName;
+    } else {
+      return "";
+    }
+  };
 
   const handleImageClick = () => {
     setStateActive(!stateActive);
@@ -94,14 +88,9 @@ function HeaderNav() {
             <div className="hn-b-p-name-container">
               <p className="hn-b-p-name">
                 <span className="hn-b-p-welcome" style={{ display: "flex" }}>
-                  Welcome
+                  welcome
                 </span>
-                {userProps.firstName
-                  ? userProps.firstName
-                  : userList.map((x, index) => {
-                      const { firstname } = x;
-                      return firstname ? firstname : "User";
-                    })}
+                {currentUserName()}
               </p>
             </div>
             <div className="hn-b-image-wrarpper">

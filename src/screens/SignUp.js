@@ -125,7 +125,7 @@ function SignUp() {
         state: selectedState,
         userUid: FIREBASE_AUTH?.currentUser?.uid
       });
-      
+
       navigate("/overview");
     } catch (err) {
       console.error("Error occurred:", err);
@@ -191,7 +191,7 @@ function SignUp() {
                   Select a country
                 </option>
                 {countries.map((country) => (
-                  <option key={country.isoCode} value={country.isoCode}>
+                  <option key={country.isoCode} value={country.name}>
                     {country.name}
                   </option>
                 ))}
