@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FIREBASE_AUTH, db } from "../Firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 function UserDataHandler() {
   const [userDocuments, setUserDocuments] = useState([]);
-
   const [isUserDetail, setIsUserDetail] = useState({
     firstname: "",
     lastname: "",

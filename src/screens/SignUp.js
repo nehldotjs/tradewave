@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Country, State } from "country-state-city";
-import "../styles/signup.css";
-import Nav from "../Components/Nav";
+
 import mainBckImg from "../assets/pamm_levels.jpg";
+import Nav from "../Components/Nav";
+import "../styles/signup.css";
+
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import { FIREBASE_AUTH, db } from "../Firebase";
@@ -50,6 +52,10 @@ function SignUp() {
     setScreenHeight(window.innerHeight);
   };
 
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
   const countries = Country.getAllCountries();
   const handleCountryChange = (event) => {
     const countryCode = event.target.value;
@@ -60,53 +66,6 @@ function SignUp() {
   const handleStateChange = (event) => {
     const stateCode = event.target.value;
     setSelectedState(stateCode);
-  };
-
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
-
-  const handleSignUp = () => {
-    if (isUserInfo.firstName.length > 0) {
-      setIsInput((prevState) => {
-        return { ...prevState, firstname: false };
-      });
-      if (isUserInfo.lastName.length > 0) {
-        setIsInput((prevState) => {
-          return { ...prevState, lastName: false };
-        });
-        if (isUserInfo.email.length > 0) {
-          setIsInput((prevState) => {
-            return { ...prevState, email: false };
-          });
-          if (isUserInfo.password.length >= 5) {
-            if (isUserInfo.confirmPassword === isUserInfo.password) {
-              if (isChecked) {
-                handleUserData();
-              } else {
-                alert("MUST ACCEPT OUR TERMS & CONDITION");
-              }
-            } else {
-              alert("PASSWORD DO NOT MATCH");
-            }
-          } else {
-            alert("PASSWORD SHOULD BE ATLEAST 6 CHARACTERS");
-          }
-        } else {
-          setIsInput((prevState) => {
-            return { ...prevState, email: true };
-          });
-        }
-      } else {
-        setIsInput((prevState) => {
-          return { ...prevState, lastName: true };
-        });
-      }
-    } else {
-      setIsInput((prevState) => {
-        return { ...prevState, firstName: true };
-      });
-    }
   };
 
   const handleUserData = async () => {
@@ -129,6 +88,53 @@ function SignUp() {
       navigate("/overview");
     } catch (err) {
       console.error("Error occurred:", err);
+    }
+  };
+
+  const handleSignUp = () => {
+    if (isUserInfo.firstName.length > 0) {
+      setIsInput((prevState) => {
+        return { ...prevState, firstname: false };
+      });
+      if (isUserInfo.lastName.length > 0) {
+        setIsInput((prevState) => {
+          return { ...prevState, lastName: false };
+        });
+        if (isUserInfo.email.length > 0) {
+          setIsInput((prevState) => {
+            return { ...prevState, email: false };
+          });
+          if (isUserInfo.password.length >= 5) {
+            if (isUserInfo.confirmPassword === isUserInfo.password) {
+              if (isChecked) {
+                if (selectedCountry !== "") {
+                  handleUserData();
+                } else {
+                  alert("Please choose your country");
+                }
+              } else {
+                alert("Must accept our terms our terms and conditions");
+              }
+            } else {
+              alert("Password do not match");
+            }
+          } else {
+            alert("Password should be atleast six (6) characters");
+          }
+        } else {
+          setIsInput((prevState) => {
+            return { ...prevState, email: true };
+          });
+        }
+      } else {
+        setIsInput((prevState) => {
+          return { ...prevState, lastName: true };
+        });
+      }
+    } else {
+      setIsInput((prevState) => {
+        return { ...prevState, firstName: true };
+      });
     }
   };
 
@@ -187,11 +193,9 @@ function SignUp() {
                 name="country"
                 id="country"
                 onChange={handleCountryChange}>
-                <option value="" disabled>
-                  Select a country
-                </option>
+                <option value="">Select a country</option>
                 {countries.map((country) => (
-                  <option key={country.isoCode} value={country.name}>
+                  <option key={country.isoCode} value={country.isoCode}>
                     {country.name}
                   </option>
                 ))}
