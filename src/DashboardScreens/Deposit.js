@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles/deposit.css";
 import { useAuth } from "../Context/AuthContext";
 
@@ -6,33 +6,52 @@ import UserTransactionHandler from "../Components/UserTransactionHandler";
 import UserDataHandler from "../Components/UserDataHandler";
 
 function Deposit() {
+  const [isWallet, setIsWallet] = useState({
+    walletState: false,
+    selectedWallet: null
+  });
+
   const { note } = UserTransactionHandler();
   // const { isUserDetail } = UserDataHandler();
   // const { text } = useAuth();
 
   const cryptoType = [
     { id: 1, name: "Bitcoin", rate: 400 },
-    { id: 1, name: "Ethereum", rate: 400 },
-    { id: 1, name: "Solana", rate: 400 }
+    { id: 2, name: "Ethereum", rate: 400 },
+    { id: 3, name: "Solana", rate: 400 },
+    { id: 4, name: "Binance", rate: 400 }
   ];
+
+  const handleTransferInput = () => {
+    return <div className="transfer-input-wrapper">hello</div>;
+  };
+
   function handleTransactionType() {
-    const result = cryptoType.map((x) => {
-      const { id, name, rate } = x;
+    const result = cryptoType.map((item) => {
+      const { id, name, rate } = item;
+      
+      function handleWallet() {
+        console.log("hello world");
+      }
       return (
-        <div className="transaction-cointype-wrapper" key={id}>
-          <h1>{name}</h1>
-        </div>
+        <button onClick={handleWallet} key={id}>
+          <div className="transaction-cointype-wrapper">
+            <p>{name}</p>
+            <p>{rate}</p>
+          </div>
+        </button>
       );
     });
     return result;
   }
+
   return (
     <div className="deposit-main-wrapper">
       <div className="deposit-section-container">
         <p>Choose your wallet :</p>
-
         <div className="deposit-section-crypto-types">
           {handleTransactionType()}
+          {handleTransferInput()}
         </div>
 
         <hr />

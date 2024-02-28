@@ -78,6 +78,16 @@
     background-color: orangered;
 }
 
+.deposit-section-crypto-types button {
+    display: flex;
+    height: auto;
+    width: auto;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
 .transaction-cointype-wrapper {
     display: flex;
     height: 200px;
@@ -85,4 +95,10 @@
     background-color: yellow;
     justify-content: center;
     align-items: center;
+}
+
+.transfer-input-wrapper {
+    display: flex;
+    width: 70%;
+    background-color: aqua;
 }
