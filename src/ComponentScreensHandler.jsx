@@ -25,7 +25,7 @@ import DashBoard from "./DashBoard";
 import { FIREBASE_AUTH } from "./Firebase";
 
 function ComponentScreensHandler() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);  
 
   useEffect(() => {
     const unsubscribe = FIREBASE_AUTH.onAuthStateChanged((x) => {

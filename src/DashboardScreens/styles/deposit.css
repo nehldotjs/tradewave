@@ -75,30 +75,58 @@
     height: 100%;
     width: 100%;
     gap: 10px;
-    background-color: orangered;
+    background-color: aquamarine;
 }
 
-.deposit-section-crypto-types button {
-    display: flex;
-    height: auto;
-    width: auto;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 10px;
-}
 
-.transaction-cointype-wrapper {
-    display: flex;
+.deposit-section-crypto-types .transaction-cointype-wrapper {
     height: 200px;
     width: 200px;
-    background-color: yellow;
-    justify-content: center;
+    gap: 20px;
+    border: none;
+    display: flex;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
     align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+
+.transact-wallet-button-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.transact-wallet-button-wrapper .transact-page-button-navigator {
+    background-color: transparent;
+    border-radius: unset;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    display: flex;
+    color: gray;
 }
 
 .transfer-input-wrapper {
     display: flex;
-    width: 70%;
-    background-color: aqua;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.transact-wallet-input-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }

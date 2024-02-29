@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import "./styles/deposit.css";
 import { useAuth } from "../Context/AuthContext";
-
 import UserTransactionHandler from "../Components/UserTransactionHandler";
 import UserDataHandler from "../Components/UserDataHandler";
 
 function Deposit() {
   const [isWallet, setIsWallet] = useState({
-    walletState: false,
+    walletState: true,
     selectedWallet: null
   });
 
-  const { note } = UserTransactionHandler();
+  // const { note } = UserTransactionHandler();
   // const { isUserDetail } = UserDataHandler();
   // const { text } = useAuth();
 
@@ -22,23 +21,51 @@ function Deposit() {
     { id: 4, name: "Binance", rate: 400 }
   ];
 
-  const handleTransferInput = () => {
-    return <div className="transfer-input-wrapper">hello</div>;
+  const handleTransacPage = () => {
+    setIsWallet((prevState) => ({
+      ...prevState,
+      walletState: !prevState.walletState
+    }));
+
+    console.log("back btn clicked");
+  };
+
+  const handleWallet = (item) => {
+    setIsWallet((prevState) => ({
+      ...prevState,
+      walletState: !prevState.walletState,
+      selectedWallet: item
+    }));
+  };
+
+  const handleTransferInput = (item) => {
+    return (
+      <div className="transfer-input-wrapper">
+        <div className="transact-wallet-button-wrapper">
+          <button
+            className="transact-page-button-navigator"
+            onClick={() => {
+              handleTransacPage();
+            }}>
+           Cancel
+          </button>
+        </div>
+        <div className="transact-wallet-input-wrapper">{item.name}</div>
+      </div>
+    );
   };
 
   function handleTransactionType() {
     const result = cryptoType.map((item) => {
       const { id, name, rate } = item;
-      
-      function handleWallet() {
-        console.log("hello world");
-      }
+
       return (
-        <button onClick={handleWallet} key={id}>
-          <div className="transaction-cointype-wrapper">
-            <p>{name}</p>
-            <p>{rate}</p>
-          </div>
+        <button
+          onClick={() => handleWallet(item)}
+          key={id}
+          className="transaction-cointype-wrapper">
+          <p>{name}</p>
+          <p>{rate}</p>
         </button>
       );
     });
@@ -50,8 +77,9 @@ function Deposit() {
       <div className="deposit-section-container">
         <p>Choose your wallet :</p>
         <div className="deposit-section-crypto-types">
-          {handleTransactionType()}
-          {handleTransferInput()}
+          {isWallet.walletState
+            ? handleTransactionType()
+            : handleTransferInput(isWallet.selectedWallet)}
         </div>
 
         <hr />
@@ -62,7 +90,7 @@ function Deposit() {
             <ol>
               <li>
                 Minimum Transaction Amount: The minimum transaction amount is
-                $50 . You can initiate a transaction with at least $50 in one
+                $50. You can initiate a transaction with at least $50 in one
                 transaction.
               </li>
               <li>
