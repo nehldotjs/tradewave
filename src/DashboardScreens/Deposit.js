@@ -47,10 +47,14 @@ function Deposit() {
             onClick={() => {
               handleTransacPage();
             }}>
-           Cancel
+            Cancel
           </button>
         </div>
-        <div className="transact-wallet-input-wrapper">{item.name}</div>
+        <div className="transact-wallet-input-wrapper">
+          {" "}
+          <p> hello world</p>
+          {item.name}
+        </div>
       </div>
     );
   };
