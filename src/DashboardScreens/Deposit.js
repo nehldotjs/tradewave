@@ -42,18 +42,23 @@ function Deposit() {
     return (
       <div className="transfer-input-wrapper">
         <div className="transact-wallet-button-wrapper">
+          <div className="coin-type-wrapper">
+            <h4> {item.name}</h4>
+          </div>
+
           <button
             className="transact-page-button-navigator"
             onClick={() => {
               handleTransacPage();
             }}>
-            Cancel
+            <p>Cancel</p>
           </button>
         </div>
+
         <div className="transact-wallet-input-wrapper">
-          {" "}
-          <p> hello world</p>
-          {item.name}
+          <h3>$</h3>
+          <input type="number" placeholder="Enter Amount" />
+          <button>submit</button>
         </div>
       </div>
     );
