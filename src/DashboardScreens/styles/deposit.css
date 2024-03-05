@@ -74,20 +74,20 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    gap: 10px;
+    gap: 20px;
     /* background-color: orangered; */
 }
 
 
 .deposit-section-crypto-types .transaction-cointype-wrapper {
-    height: 200px;
-    width: 200px;
-    /* gap: 20px; */
+    height: 150px;
+    width: 150px;
+    gap: 20px;
     border: none;
     display: flex;
     cursor: pointer;
     overflow: hidden;
-    position: relative; 
+    position: relative;
     align-items: center;
     flex-direction: column;
     justify-content: center;
@@ -102,7 +102,8 @@
     display: flex;
     object-fit: cover;
     position: absolute;
-    margin: auto;border: none;
+    margin: auto;
+    border: none;
 }
 
 .transact-wallet-button-wrapper {
@@ -230,7 +231,7 @@
 .transaction-receipt-container {
     display: flex;
     width: 100%;
-    background-color: aqua;
+    background-color: red;
     height: 100%;
     padding: 30px;
     justify-content: center;

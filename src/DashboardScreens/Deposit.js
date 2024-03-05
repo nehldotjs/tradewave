@@ -34,10 +34,30 @@ function Deposit() {
   // const { text } = useAuth();
 
   const cryptoType = [
-    { id: 1, name: "Bitcoin", img: { bitcoinImg }, rate: 400 },
-    { id: 2, name: "Bitcoin Cash", img: { bitcoinCashImg }, rate: 400 },
-    { id: 3, name: "Ethereum", img: { EthImg }, rate: 400 },
-    { id: 4, name: "USDT Tr20", img: { usdtTr20 }, rate: 400 },
+    {
+      id: 1,
+      name: "Bitcoin",
+      img: "https://drettcapitals.com/dash/images/widgets/BTC.svg",
+      rate: 400
+    },
+    {
+      id: 2,
+      name: "Bitcoin Cash",
+      img: "https://drettcapitals.com/dash/images/widgets/BCH.svg",
+      rate: 400
+    },
+    {
+      id: 3,
+      name: "Ethereum",
+      img: "https://drettcapitals.com/dash/images/widgets/ETH.svg",
+      rate: 400
+    },
+    {
+      id: 4,
+      name: "USDT Tr20",
+      img: "https://drettcapitals.com/dash/images/widgets/usdtTr20.svg",
+      rate: 400
+    },
     {
       id: 5,
       name: "USDT Er20",
@@ -131,14 +151,21 @@ function Deposit() {
   return (
     <div className="deposit-main-wrapper">
       <div className="deposit-section-container">
-        <p>Choose your wallet :</p>
+        <p>Select wallet :</p>
         <div className="deposit-section-crypto-types">
           {isWallet.walletState
             ? handleTransactionType()
             : handleTransferInput(isWallet.selectedWallet)}
         </div>
 
-        <hr />
+        <hr
+          style={{
+            border: "none",
+            height: "1px",
+            backgroundColor: "gray",
+            opacity: ".4"
+          }}
+        />
 
         <div className="deposit-instruction-wrapper">
           <h4>Note:</h4>
