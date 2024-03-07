@@ -245,3 +245,20 @@
     height: auto;
     gap: 20px;
 }
+
+.transact-receipt-crypto-image-wrapper {
+    background-color: pink;
+    border-radius: 10px;
+    display: flex;
+    width: 100%;
+    padding: 10px 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.transact-receipt-crypto-image-wrapper p {
+    text-align: center;
+    display: flex;
+    background-color: aliceblue;
+
+}
