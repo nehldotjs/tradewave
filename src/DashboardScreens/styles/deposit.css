@@ -230,12 +230,13 @@
 
 .transaction-receipt-container {
     display: flex;
+    flex-direction: column;
     width: 100%;
-    background-color: red;
     height: 100%;
-    padding: 30px;
+    padding: 10px 20px;
     justify-content: center;
     align-items: center;
+    background-color: orangered;
 }
 
 .transaction-receipt-container-rate {
@@ -247,18 +248,19 @@
 }
 
 .transact-receipt-crypto-image-wrapper {
-    background-color: pink;
-    border-radius: 10px;
+    background-color: blue;
     display: flex;
     width: 100%;
-    padding: 10px 20px;
     justify-content: center;
     align-items: center;
+
 }
 
-.transact-receipt-crypto-image-wrapper p {
+.transaction-receipt-container p {
     text-align: center;
     display: flex;
-    background-color: aliceblue;
+    width: 100%;
+    padding: 5px;
+    background-color: white;
 
 }

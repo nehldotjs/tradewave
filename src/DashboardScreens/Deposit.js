@@ -120,16 +120,13 @@ function Deposit() {
           </div>
         ) : (
           <div className="transaction-receipt-container">
-            <div className="transaction-receipt-container-rate">
-              <div className="transact-receipt-crypto-image-wrapper">
-                <p>
-                  Add funds using your generated wallet address After your
-                  wallet address have been generated, copy the wallet and fund
-                  your account through our secure payment vendor prompt
-                </p>
-              </div>
-              <h1>Hello World</h1>
-            </div>
+            <div className="transaction-receipt-container-rate"></div>
+            <div className="transact-receipt-crypto-image-wrapper"></div>
+            <p>
+              Add funds using your generated wallet address After your wallet
+              address have been generated, copy the wallet and fund your account
+              through our secure payment vendor prompt
+            </p>
           </div>
         )}
       </div>
