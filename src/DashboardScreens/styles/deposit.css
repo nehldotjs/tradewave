@@ -236,15 +236,32 @@
     padding: 10px 20px;
     justify-content: center;
     align-items: center;
-    background-color: orangered;
+    gap: 20px;
 }
 
 .transaction-receipt-container-rate {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     width: 100%;
     height: auto;
     gap: 20px;
+    padding: 0px;
+}
+
+.transact-wallet-address-barcode {
+    height: auto;
+    width: auto;
+    display: flex;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.transact-wallet-address-barcode img {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    object-fit: cover;
 }
 
 .transact-receipt-crypto-image-wrapper {
@@ -254,6 +271,13 @@
     justify-content: center;
     align-items: center;
 
+}
+
+.transaction-receipt-container hr {
+    border: none;
+    height: 1px;
+    width: 100%;
+    display: flex;
 }
 
 .transaction-receipt-container p {

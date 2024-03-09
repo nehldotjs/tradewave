@@ -3,6 +3,10 @@ import "./styles/deposit.css";
 
 // ____________________________________________________
 
+import qrCode from "./../assets/qr-code-barcode-scanners-image-scanner-q-41bdbfbd944b13bdd9028b69fed03730.png";
+
+// ____________________________________________________
+
 import bitcoinImg from "../assets/coin/BTC.svg";
 import bitcoinCashImg from "../assets/cargo.jpg";
 import EthImg from "../assets/coin/ETH.svg";
@@ -120,8 +124,13 @@ function Deposit() {
           </div>
         ) : (
           <div className="transaction-receipt-container">
-            <div className="transaction-receipt-container-rate"></div>
+            <div className="transaction-receipt-container-rate">
+              <div className="transact-wallet-address-barcode">
+                <img src={qrCode} alt="" />
+              </div>
+            </div>
             <div className="transact-receipt-crypto-image-wrapper"></div>
+            <hr />
             <p>
               Add funds using your generated wallet address After your wallet
               address have been generated, copy the wallet and fund your account
