@@ -138,12 +138,6 @@ function Deposit() {
           </div>
         ) : (
           <div className="transaction-receipt-container">
-            <p>
-              Add funds using your generated wallet address. After your wallet
-              address have been generated, copy the wallet and fund your account
-              through our secure payment vendor prompt
-            </p>
-            
             <div className="transaction-receipt-container-rate">
               <div className="transact-wallet-address-barcode">
                 <img src={qrCode} alt="" />
@@ -158,8 +152,44 @@ function Deposit() {
                 </button>
               </div>
             </div>
-            <hr />
-            <div className="transact-receipt-crypto-image-wrapper"></div>
+
+            <p className="transact-note">
+              Add funds using your generated wallet address. After your wallet
+              address have been generated, copy the wallet and fund your account
+              through our secure payment vendor prompt
+            </p>
+
+            {/* <hr /> */}
+
+            <div className="transact-receipt-crypto-destails-wrapper">
+              <h4>Deposit Confirmation</h4>
+              <hr />
+              <div className="cancel-deposit  reciept-info-section">
+                <p></p>
+                <p>Available with 10% fee (After min - 24 hours)</p>
+              </div>
+              <hr />
+              <div className="debit-amount reciept-info-section">
+                <p>Debit Amount </p>
+                <p>200</p>{" "}
+              </div>
+              <hr />
+              <div className="btc-value reciept-info-section">
+                <p>BTC Value</p>
+                <p>0.00202555644585</p>
+              </div>
+            </div>
+
+            {/* <div className="tansac-reciept-footer">
+              <p>Please send exact amount in cryptocurrencies or more.</p>
+              <p>
+                Please do not use ETH Contact addresses as payment. Only regular
+                ETH wallets.
+              </p>
+              <p>
+                DEPOSIT BTC AMOUNT <span>0.00202555644585</span>
+              </p>
+            </div> */}
           </div>
         )}
       </div>
