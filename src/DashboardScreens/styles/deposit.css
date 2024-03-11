@@ -79,18 +79,18 @@
 
 
 .deposit-section-crypto-types .transaction-cointype-wrapper {
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
     gap: 20px;
     border: none;
     display: flex;
     cursor: pointer;
     overflow: hidden;
+    border-radius: 50%;
     position: relative;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    border-radius: 50%;
     background: transparent;
 
 }
@@ -100,7 +100,7 @@
     width: 100%;
     display: flex;
     object-fit: cover;
-    position: absolute;
+    position: relative;
     margin: auto;
     border: none;
 }
@@ -242,7 +242,7 @@
 
 .transaction-receipt-container-rate {
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: column;
     flex-wrap: wrap;
     width: 100%;
     height: auto;
@@ -311,7 +311,7 @@
 .transaction-receipt-container .transact-note {
     text-align: center;
     display: flex;
-    width: 100%;
+    width: auto ;
     padding: 5px 10px;
     background-color: rgb(255, 255, 255);
     color: rgb(54, 173, 252);
@@ -324,6 +324,7 @@
     justify-content: center;
 
 }
+
 
 .transaction-receipt-container hr {
     border: none;

@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/deposit.css";
 
 // ____________________________________________________
 
+import axios from "axios";
+
 import qrCode from "./../assets/qr-code-barcode-scanners-image-scanner-q-41bdbfbd944b13bdd9028b69fed03730.png";
+import CoinRateProvider from "../Components/CoinRateProvider";
 
 // ____________________________________________________
 
@@ -37,42 +40,17 @@ function Deposit() {
     isAmount: 0
   });
 
+  // _________________________________________________
+
+  const { cryptoValues, coinPrice } = CoinRateProvider();
+
+  console.log(cryptoValues, coinPrice);
+
+  // _________________________________________________
+
   // const { isUserDetail } = UserDataHandler();
   // const { note } = UserTransactionHandler();
   // const { text } = useAuth();
-
-  const cryptoType = [
-    {
-      id: 1,
-      name: "Bitcoin",
-      img: "https://drettcapitals.com/dash/images/widgets/BTC.svg",
-      rate: 400
-    },
-    {
-      id: 2,
-      name: "Bitcoin Cash",
-      img: "https://drettcapitals.com/dash/images/widgets/BCH.svg",
-      rate: 400
-    },
-    {
-      id: 3,
-      name: "Ethereum",
-      img: "https://drettcapitals.com/dash/images/widgets/ETH.svg",
-      rate: 400
-    },
-    {
-      id: 4,
-      name: "USDT Tr20",
-      img: "https://drettcapitals.com/dash/images/widgets/usdtTr20.svg",
-      rate: 400
-    },
-    {
-      id: 5,
-      name: "USDT Er20",
-      img: "https://drettcapitals.com/dash/images/widgets/usdtEr20.svg",
-      rate: 400
-    }
-  ];
 
   const handleCopy = (e) => {
     if (!address.isCopy) {
@@ -89,8 +67,6 @@ function Deposit() {
       ...prevState,
       walletState: !prevState.walletState
     }));
-
-    console.log("back btn clicked");
   };
 
   const handleWallet = (item) => {
@@ -101,17 +77,13 @@ function Deposit() {
     }));
   };
 
-  const handleTransactionRate = async () => {
-    console.log("HELLO WORLD");
-  };
-
   const handleTransferInput = (item) => {
     return (
       <div className="transfer-input-wrapper">
         <div className="transact-wallet-button-wrapper">
           <div className="coin-type-wrapper">
             <div className="coin-type-image-wrapper">
-              <img src={item.img} alt={item.name} />
+              <img src={item.image} alt={item.name} />
             </div>
             <h4> {item.name}</h4>
           </div>
@@ -159,24 +131,22 @@ function Deposit() {
               through our secure payment vendor prompt
             </p>
 
-            {/* <hr /> */}
-
             <div className="transact-receipt-crypto-destails-wrapper">
               <h4>Deposit Confirmation</h4>
               <hr />
               <div className="cancel-deposit  reciept-info-section">
                 <p></p>
-                <p>Available with 10% fee (After min - 24 hours)</p>
+                <p>Available with 10% fee - After min 24 hours </p>
               </div>
               <hr />
               <div className="debit-amount reciept-info-section">
                 <p>Debit Amount </p>
-                <p>200</p>{" "}
+                <p>${" " + 200}</p>{" "}
               </div>
               <hr />
               <div className="btc-value reciept-info-section">
                 <p>BTC Value</p>
-                <p>0.00202555644585</p>
+                <p>{1 / item.current_price}</p>
               </div>
             </div>
 
@@ -197,17 +167,22 @@ function Deposit() {
   };
 
   function handleTransactionType() {
-    const result = cryptoType.map((item) => {
-      const { id, name, img, rate } = item;
+    const result = cryptoValues.map((item) => {
+      const {
+        market_cap_rank,
+        image,
+        name,
+        atl_change_percentage,
+        current_price,
+        symbol
+      } = item;
 
       return (
         <button
           onClick={() => handleWallet(item)}
-          key={id}
-          className="transaction-cointype-wrapper">
-          <img src={img} alt="" />
-          <p>{name}</p>
-          <p>{rate}</p>
+          className="transaction-cointype-wrapper"
+          key={market_cap_rank}>
+          <img src={image} alt={name} />
         </button>
       );
     });
@@ -223,7 +198,7 @@ function Deposit() {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                width: "100%",
+                market_cap_rankth: "100%",
                 flex: "1",
                 gap: "20px"
               }}>
