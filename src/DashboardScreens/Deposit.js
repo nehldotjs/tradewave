@@ -7,21 +7,25 @@ import qrCode from "./../assets/qr-code-barcode-scanners-image-scanner-q-41bdbfb
 
 // ____________________________________________________
 
-import bitcoinImg from "../assets/coin/BTC.svg";
-import bitcoinCashImg from "../assets/cargo.jpg";
-import EthImg from "../assets/coin/ETH.svg";
-import usdtTr20 from "../assets/dollar.jpg";
-import usdter20 from "../assets/coin/usdtEr20.svg";
+// import bitcoinImg from "../assets/coin/BTC.svg";
+// import bitcoinCashImg from "../assets/cargo.jpg";
+// import EthImg from "../assets/coin/ETH.svg";
+// import usdtTr20 from "../assets/dollar.jpg";
+// import usdter20 from "../assets/coin/usdtEr20.svg";
 
 // ______________________________________________________
 
-import { useAuth } from "../Context/AuthContext";
-import UserTransactionHandler from "../Components/UserTransactionHandler";
-import UserDataHandler from "../Components/UserDataHandler";
+// import { useAuth } from "../Context/AuthContext";
+// import UserTransactionHandler from "../Components/UserTransactionHandler";
+// import UserDataHandler from "../Components/UserDataHandler";
 
 // ____________________________________________________
 
 function Deposit() {
+  const [address, setAdress] = useState({
+    walletAdress: "bsbbubsjyujbshu748hiukhdsugdufbidsfbi",
+    isCopy: false
+  });
   const [isWallet, setIsWallet] = useState({
     walletState: true,
     selectedWallet: null,
@@ -69,6 +73,16 @@ function Deposit() {
       rate: 400
     }
   ];
+
+  const handleCopy = (e) => {
+    if (!address.isCopy) {
+      navigator.clipboard.writeText(address.walletAdress);
+      setAdress((prev) => ({ ...prev, isCopy: true }));
+      setTimeout(() => {
+        setAdress((prev) => ({ ...prev, isCopy: false }));
+      }, 1500);
+    }
+  };
 
   const handleTransacPage = () => {
     setIsWallet((prevState) => ({
@@ -124,18 +138,28 @@ function Deposit() {
           </div>
         ) : (
           <div className="transaction-receipt-container">
+            <p>
+              Add funds using your generated wallet address. After your wallet
+              address have been generated, copy the wallet and fund your account
+              through our secure payment vendor prompt
+            </p>
+            
             <div className="transaction-receipt-container-rate">
               <div className="transact-wallet-address-barcode">
                 <img src={qrCode} alt="" />
               </div>
+
+              <div className="transac-address-wrapper">
+                <h4 className="transac-address-wrapper-link">
+                  {address.walletAdress}
+                </h4>
+                <button onClick={handleCopy}>
+                  {address.isCopy ? "Copied!" : "Copy"}
+                </button>
+              </div>
             </div>
-            <div className="transact-receipt-crypto-image-wrapper"></div>
             <hr />
-            <p>
-              Add funds using your generated wallet address After your wallet
-              address have been generated, copy the wallet and fund your account
-              through our secure payment vendor prompt
-            </p>
+            <div className="transact-receipt-crypto-image-wrapper"></div>
           </div>
         )}
       </div>
@@ -163,11 +187,32 @@ function Deposit() {
   return (
     <div className="deposit-main-wrapper">
       <div className="deposit-section-container">
-        <p>Select wallet :</p>
         <div className="deposit-section-crypto-types">
-          {isWallet.walletState
-            ? handleTransactionType()
-            : handleTransferInput(isWallet.selectedWallet)}
+          {isWallet.walletState ? (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                flex: "1",
+                gap: "20px"
+              }}>
+              <p>Select wallet :</p>
+              <div
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "space-evenly",
+                  alignItems: "center",
+                  display: "flex",
+                  flexWrap: "wrap"
+                }}>
+                {handleTransactionType()}
+              </div>
+            </div>
+          ) : (
+            handleTransferInput(isWallet.selectedWallet)
+          )}
         </div>
 
         <hr
@@ -183,6 +228,11 @@ function Deposit() {
           <h4>Note:</h4>
           <div className="deposiit-rule-list-wrapper">
             <ol>
+              <li>Send exact amount in cryptocurrencies or more.</li>
+              <li>
+                Do not use ETH Contract address as payment. Only regular ETH
+                Wallet
+              </li>
               <li>
                 Minimum Transaction Amount: The minimum transaction amount is
                 $50. You can initiate a transaction with at least $50 in one

@@ -236,16 +236,59 @@
     padding: 10px 20px;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .transaction-receipt-container-rate {
     display: flex;
+    /* flex-direction: column; */
     flex-wrap: wrap;
     width: 100%;
     height: auto;
     gap: 20px;
     padding: 0px;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+}
+
+.transac-address-wrapper {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.transac-address-wrapper-link {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 5px 20px;
+    justify-items: center;
+    align-items: center;
+    margin: auto;
+    color: teal;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+.transac-address-wrapper button {
+    transition: all 500ms easae;
+    width: 70px;
+    height: 100%;
+    border: none;
+    display: flex;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 
 .transact-wallet-address-barcode {
@@ -265,11 +308,12 @@
 }
 
 .transact-receipt-crypto-image-wrapper {
-    background-color: blue;
+    background-color: pink;
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
+    padding: 2px;
 
 }
 
@@ -286,5 +330,12 @@
     width: 100%;
     padding: 5px;
     background-color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 
 }
