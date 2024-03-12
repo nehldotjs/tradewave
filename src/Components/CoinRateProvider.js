@@ -4,6 +4,9 @@ import axios from "axios";
 function CoinRateProvider() {
   const [coinPrice, setCoinPrice] = useState(null);
 
+  // const apiKey =
+  //   "473d50b831ff6267b90c2dfe85336361ccb2eb556d877f19e182724432b81bcd";
+
   useEffect(() => {
     const fetchCoinPrice = async () => {
       try {
@@ -17,7 +20,8 @@ function CoinRateProvider() {
     };
     fetchCoinPrice();
 
-    const intervalId = setInterval(fetchCoinPrice, 60000);
+    const newLocal = setInterval(fetchCoinPrice, 43200000);
+    const intervalId = newLocal;
 
     return () => {
       clearInterval(intervalId);
@@ -31,10 +35,10 @@ function CoinRateProvider() {
   const ethereum = coinPrice
     ? coinPrice.find((x) => x.id === "ethereum")
     : null;
-    
+
   const cryptoValues = [].concat(bitcoin, ethereum, bitcoinCash);
 
-  return { cryptoValues };
+  return { cryptoValues, coinPrice };
 }
 
 export default CoinRateProvider;

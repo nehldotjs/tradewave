@@ -311,7 +311,7 @@
 .transaction-receipt-container .transact-note {
     text-align: center;
     display: flex;
-    width: auto ;
+    width: auto;
     padding: 5px 10px;
     background-color: rgb(255, 255, 255);
     color: rgb(54, 173, 252);
@@ -362,4 +362,10 @@
 .reciept-info-section p {
     display: flex;
     font-size: 13px;
+}
+
+.tansac-reciept-footer p {
+    display: flex;
+    width: 1;
+    text-transform: uppercase;
 }

@@ -1,63 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./styles/deposit.css";
-
-// ____________________________________________________
-
-import axios from "axios";
 
 import qrCode from "./../assets/qr-code-barcode-scanners-image-scanner-q-41bdbfbd944b13bdd9028b69fed03730.png";
 import CoinRateProvider from "../Components/CoinRateProvider";
 
-// ____________________________________________________
-
-// import bitcoinImg from "../assets/coin/BTC.svg";
-// import bitcoinCashImg from "../assets/cargo.jpg";
-// import EthImg from "../assets/coin/ETH.svg";
-// import usdtTr20 from "../assets/dollar.jpg";
-// import usdter20 from "../assets/coin/usdtEr20.svg";
-
-// ______________________________________________________
-
-// import { useAuth } from "../Context/AuthContext";
-// import UserTransactionHandler from "../Components/UserTransactionHandler";
-// import UserDataHandler from "../Components/UserDataHandler";
-
-// ____________________________________________________
-
 function Deposit() {
-  const [address, setAdress] = useState({
-    walletAdress: "bsbbubsjyujbshu748hiukhdsugdufbidsfbi",
+  const [address, setAddress] = useState({
+    walletAddress: "bsbbubsjyujbshu748hiukhdsugdufbidsfbi",
     isCopy: false
   });
   const [isWallet, setIsWallet] = useState({
     walletState: true,
     selectedWallet: null,
-
-    // _________________________________________________
-
     isDeposit: false,
     isRate: 0,
     isAmount: 0
   });
 
-  // _________________________________________________
+  const { cryptoValues } = CoinRateProvider();
 
-  const { cryptoValues, coinPrice } = CoinRateProvider();
+  const [isDebitAmount, setIsDebitAmount] = useState(0);
 
-  console.log(cryptoValues, coinPrice);
-
-  // _________________________________________________
-
-  // const { isUserDetail } = UserDataHandler();
-  // const { note } = UserTransactionHandler();
-  // const { text } = useAuth();
-
-  const handleCopy = (e) => {
+  const handleCopy = () => {
     if (!address.isCopy) {
-      navigator.clipboard.writeText(address.walletAdress);
-      setAdress((prev) => ({ ...prev, isCopy: true }));
+      navigator.clipboard.writeText(address.walletAddress);
+      setAddress((prev) => ({ ...prev, isCopy: true }));
       setTimeout(() => {
-        setAdress((prev) => ({ ...prev, isCopy: false }));
+        setAddress((prev) => ({ ...prev, isCopy: false }));
       }, 1500);
     }
   };
@@ -77,7 +46,24 @@ function Deposit() {
     }));
   };
 
+  function handleTransactionType() {
+    const result = cryptoValues.map((item) => {
+      return (
+        <button
+          onClick={() => handleWallet(item)}
+          className="transaction-cointype-wrapper"
+          key={item.market_cap_rank}>
+          <img src={item.image} alt={item.name} />
+        </button>
+      );
+    });
+    return result;
+  }
+
   const handleTransferInput = (item) => {
+    if (!item) return null;
+    const btcValue = 1 / item.current_price;
+
     return (
       <div className="transfer-input-wrapper">
         <div className="transact-wallet-button-wrapper">
@@ -90,9 +76,7 @@ function Deposit() {
 
           <button
             className="transact-page-button-navigator"
-            onClick={() => {
-              handleTransacPage();
-            }}>
+            onClick={handleTransacPage}>
             <p>Cancel</p>
           </button>
         </div>
@@ -100,7 +84,13 @@ function Deposit() {
         {!isWallet.isDeposit ? (
           <div className="transact-wallet-input-wrapper">
             <h3>$</h3>
-            <input type="number" placeholder="Enter Amount" />
+            <input
+              type="number"
+              placeholder="Enter Amount"
+              onChange={(e) => {
+                setIsDebitAmount(e.target.value);
+              }}
+            />
             <button
               onClick={() =>
                 setIsWallet((prevState) => ({ ...prevState, isDeposit: true }))
@@ -117,7 +107,7 @@ function Deposit() {
 
               <div className="transac-address-wrapper">
                 <h4 className="transac-address-wrapper-link">
-                  {address.walletAdress}
+                  {address.walletAddress}
                 </h4>
                 <button onClick={handleCopy}>
                   {address.isCopy ? "Copied!" : "Copy"}
@@ -127,7 +117,7 @@ function Deposit() {
 
             <p className="transact-note">
               Add funds using your generated wallet address. After your wallet
-              address have been generated, copy the wallet and fund your account
+              address has been generated, copy the wallet and fund your account
               through our secure payment vendor prompt
             </p>
 
@@ -141,53 +131,26 @@ function Deposit() {
               <hr />
               <div className="debit-amount reciept-info-section">
                 <p>Debit Amount </p>
-                <p>${" " + 200}</p>{" "}
+                <p>${isDebitAmount}</p>{" "}
               </div>
               <hr />
               <div className="btc-value reciept-info-section">
                 <p>BTC Value</p>
-                <p>{1 / item.current_price}</p>
+                <p>{btcValue}</p>
               </div>
             </div>
 
-            {/* <div className="tansac-reciept-footer">
-              <p>Please send exact amount in cryptocurrencies or more.</p>
+            <div className="tansac-reciept-footer">
               <p>
-                Please do not use ETH Contact addresses as payment. Only regular
-                ETH wallets.
+                DEPOSIT {item.symbol} AMOUNT
+                <span>{btcValue * isDebitAmount}</span>
               </p>
-              <p>
-                DEPOSIT BTC AMOUNT <span>0.00202555644585</span>
-              </p>
-            </div> */}
+            </div>
           </div>
         )}
       </div>
     );
   };
-
-  function handleTransactionType() {
-    const result = cryptoValues.map((item) => {
-      const {
-        market_cap_rank,
-        image,
-        name,
-        atl_change_percentage,
-        current_price,
-        symbol
-      } = item;
-
-      return (
-        <button
-          onClick={() => handleWallet(item)}
-          className="transaction-cointype-wrapper"
-          key={market_cap_rank}>
-          <img src={image} alt={name} />
-        </button>
-      );
-    });
-    return result;
-  }
 
   return (
     <div className="deposit-main-wrapper">
@@ -233,7 +196,7 @@ function Deposit() {
           <h4>Note:</h4>
           <div className="deposiit-rule-list-wrapper">
             <ol>
-              <li>Send exact amount in cryptocurrencies or more.</li>
+              <li>Send the exact amount in cryptocurrencies or more.</li>
               <li>
                 Do not use ETH Contract address as payment. Only regular ETH
                 Wallet
