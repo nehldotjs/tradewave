@@ -4,14 +4,13 @@ import axios from "axios";
 function CoinRateProvider() {
   const [coinPrice, setCoinPrice] = useState(null);
 
-  // const apiKey =
-  //   "473d50b831ff6267b90c2dfe85336361ccb2eb556d877f19e182724432b81bcd";
-
   useEffect(() => {
     const fetchCoinPrice = async () => {
       try {
         const response = await axios.get(
-          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+          // "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+
+          "https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest?CMC_PRO_API_KEY=c53ef023-b0d8-4e1d-8f79-feace571fa3d"
         );
         setCoinPrice(response.data);
       } catch (error) {
@@ -29,9 +28,11 @@ function CoinRateProvider() {
   }, []);
 
   const bitcoin = coinPrice ? coinPrice.find((x) => x.id === "bitcoin") : null;
+
   const bitcoinCash = coinPrice
     ? coinPrice.find((x) => x.id === "bitcoin-cash")
     : null;
+
   const ethereum = coinPrice
     ? coinPrice.find((x) => x.id === "ethereum")
     : null;

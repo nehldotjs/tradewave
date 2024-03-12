@@ -9,6 +9,7 @@ function Deposit() {
     walletAddress: "bsbbubsjyujbshu748hiukhdsugdufbidsfbi",
     isCopy: false
   });
+
   const [isWallet, setIsWallet] = useState({
     walletState: true,
     selectedWallet: null,
@@ -17,9 +18,9 @@ function Deposit() {
     isAmount: 0
   });
 
-  const { cryptoValues } = CoinRateProvider();
-
   const [isDebitAmount, setIsDebitAmount] = useState(0);
+  const { cryptoValues, coinPrice } = CoinRateProvider();
+  console.log(coinPrice);
 
   const handleCopy = () => {
     if (!address.isCopy) {
@@ -34,7 +35,8 @@ function Deposit() {
   const handleTransacPage = () => {
     setIsWallet((prevState) => ({
       ...prevState,
-      walletState: !prevState.walletState
+      walletState: !prevState.walletState,
+      isDeposit: false
     }));
   };
 
@@ -52,7 +54,7 @@ function Deposit() {
         <button
           onClick={() => handleWallet(item)}
           className="transaction-cointype-wrapper"
-          key={item.market_cap_rank}>
+          key={item.id}>
           <img src={item.image} alt={item.name} />
         </button>
       );
@@ -61,7 +63,6 @@ function Deposit() {
   }
 
   const handleTransferInput = (item) => {
-    if (!item) return null;
     const btcValue = 1 / item.current_price;
 
     return (
@@ -69,7 +70,7 @@ function Deposit() {
         <div className="transact-wallet-button-wrapper">
           <div className="coin-type-wrapper">
             <div className="coin-type-image-wrapper">
-              <img src={item.image} alt={item.name} />
+              <img src={item.image} alt="crypto" />
             </div>
             <h4> {item.name}</h4>
           </div>
@@ -131,7 +132,7 @@ function Deposit() {
               <hr />
               <div className="debit-amount reciept-info-section">
                 <p>Debit Amount </p>
-                <p>${isDebitAmount}</p>{" "}
+                <p>${isDebitAmount}</p>
               </div>
               <hr />
               <div className="btc-value reciept-info-section">
