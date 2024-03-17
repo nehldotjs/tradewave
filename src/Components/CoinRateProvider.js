@@ -3,15 +3,13 @@ import axios from "axios";
 
 function CoinRateProvider() {
   const [coinPrice, setCoinPrice] = useState(null);
+  const url =
+    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false";
 
   useEffect(() => {
     const fetchCoinPrice = async () => {
       try {
-        const response = await axios.get(
-          // "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
-
-          "https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest?CMC_PRO_API_KEY=c53ef023-b0d8-4e1d-8f79-feace571fa3d"
-        );
+        const response = await axios.get(url);
         setCoinPrice(response.data);
       } catch (error) {
         console.error("Error fetching coin prices:", error);

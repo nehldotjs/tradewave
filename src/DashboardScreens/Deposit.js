@@ -51,12 +51,20 @@ function Deposit() {
   function handleTransactionType() {
     const result = cryptoValues.map((item) => {
       return (
-        <button
-          onClick={() => handleWallet(item)}
-          className="transaction-cointype-wrapper"
-          key={item.id}>
-          <img src={item.image} alt={item.name} />
-        </button>
+        <div className="transaction__type">
+          <button
+            onClick={() => handleWallet(item)}
+            className="transaction-cointype-wrapper">
+            <img
+              src={
+                item.image
+                  ? item.image
+                  : "https://www.pexels.com/photo/red-and-blue-pelikan-br-40-eraser-on-white-surface-35202/"
+              }
+              alt={item.name ? item.name : "Not Found"}
+            />
+          </button>
+        </div>
       );
     });
     return result;
@@ -143,7 +151,8 @@ function Deposit() {
 
             <div className="tansac-reciept-footer">
               <p>
-                DEPOSIT {item.symbol} AMOUNT
+                DEPOSIT <span className="coin-symbol">{item.symbol}</span>{" "}
+                AMOUNT:
                 <span>{btcValue * isDebitAmount}</span>
               </p>
             </div>
