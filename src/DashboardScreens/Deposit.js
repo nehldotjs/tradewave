@@ -57,11 +57,11 @@ function Deposit() {
             className="transaction-cointype-wrapper">
             <img
               src={
-                item.image
+                item.image != null
                   ? item.image
                   : "https://www.pexels.com/photo/red-and-blue-pelikan-br-40-eraser-on-white-surface-35202/"
               }
-              alt={item.name ? item.name : "Not Found"}
+              alt={item.name != null ? item.name : "Not Found"}
             />
           </button>
         </div>
