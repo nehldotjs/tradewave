@@ -374,14 +374,12 @@
 }
 
 .tansac-reciept-footer p span {
-    font-size: 30px;
-    padding-left: 10px;
+    font-size: 20px;padding: 0px 10px;
 }
 
 .coin-symbol {
-    padding: unset;
     font-weight: bold;
     color: teal;
-    font-size: unset;
+    font-size: 100px;
 
 }

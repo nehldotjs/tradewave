@@ -18,6 +18,8 @@ function Deposit() {
     isAmount: 0
   });
 
+  const [isSymbol, setIsSymbol] = useState("ETH");
+
   const [isDebitAmount, setIsDebitAmount] = useState(0);
   const { cryptoValues, coinPrice } = CoinRateProvider();
   console.log(coinPrice);
@@ -57,7 +59,7 @@ function Deposit() {
             className="transaction-cointype-wrapper">
             <img
               src={
-                item.image != null
+                item.image !== null
                   ? item.image
                   : "https://www.pexels.com/photo/red-and-blue-pelikan-br-40-eraser-on-white-surface-35202/"
               }
@@ -125,7 +127,7 @@ function Deposit() {
             </div>
 
             <p className="transact-note">
-              Add funds using your generated wallet address. After your wallet
+              Add funds to your generated wallet address. After your wallet
               address has been generated, copy the wallet and fund your account
               through our secure payment vendor prompt
             </p>
@@ -151,9 +153,9 @@ function Deposit() {
 
             <div className="tansac-reciept-footer">
               <p>
-                DEPOSIT <span className="coin-symbol">{item.symbol}</span>{" "}
+                DEPOSIT <span className="coin-symbol">{item.symbol + " "}</span>
                 AMOUNT:
-                <span>{btcValue * isDebitAmount}</span>
+                <span>{" " + btcValue * isDebitAmount}</span>
               </p>
             </div>
           </div>
