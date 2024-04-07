@@ -18,8 +18,6 @@ function Deposit() {
     isAmount: 0
   });
 
-  const [isSymbol, setIsSymbol] = useState("ETH");
-
   const [isDebitAmount, setIsDebitAmount] = useState(0);
   const { cryptoValues, coinPrice } = CoinRateProvider();
   console.log(coinPrice);
@@ -59,11 +57,10 @@ function Deposit() {
             className="transaction-cointype-wrapper">
             <img
               src={
-                item.image !== null
-                  ? item.image
-                  : "https://www.pexels.com/photo/red-and-blue-pelikan-br-40-eraser-on-white-surface-35202/"
+                item.image ||
+                "https://www.pexels.com/photo/red-and-blue-pelikan-br-40-eraser-on-white-surface-35202/"
               }
-              alt={item.name != null ? item.name : "Not Found"}
+              alt={item.name || "Not Found"}
             />
           </button>
         </div>
@@ -146,7 +143,7 @@ function Deposit() {
               </div>
               <hr />
               <div className="btc-value reciept-info-section">
-                <p>BTC Value</p>
+                <p>"BTC to USD Conversion</p>
                 <p>{btcValue}</p>
               </div>
             </div>
@@ -157,6 +154,9 @@ function Deposit() {
                 AMOUNT:
                 <span>{" " + btcValue * isDebitAmount}</span>
               </p>
+            </div>
+            <div className="completPaymentBtn">
+              <button>Complete Payment</button>
             </div>
           </div>
         )}
