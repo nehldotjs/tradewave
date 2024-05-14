@@ -46,13 +46,13 @@ function Footer() {
 
               <div className="linkWrapper">
                 <FaMapPin className="dot" color="#fff" size={"10px"} />
-                <Link to="/" className="footerLink">
+                <Link to="tradewave.github.io/" className="footerLink">
                   23 Valley Lane, Austin
                 </Link>
               </div>
               <div className="linkWrapper">
                 <FaPhoneAlt className="dot" color="#fff" size={"10px"} />
-                <Link to="/" className="footerLink">
+                <Link to="tradewave.github.io/" className="footerLink">
                   +1 354 443 8447
                 </Link>
               </div>
@@ -125,28 +125,28 @@ function Footer() {
         </div>
         <div className="subFooter">
           <div className="footerSocials">
-            <Link to="/">
+            <Link to="tradewave.github.io/">
               <FaXTwitter
                 color={"white"}
                 className="footerSocialLinks"
                 size={"15"}
               />
             </Link>
-            <Link to="/">
+            <Link to="tradewave.github.io/">
               <FaTelegramPlane
                 color={"white"}
                 className="footerSocialLinks"
                 size={"15"}
               />
             </Link>
-            <Link to="/">
+            <Link to="tradewave.github.io/">
               <FaFacebookF
                 color={"white"}
                 className="footerSocialLinks"
                 size={"15"}
               />
             </Link>
-            <Link to="/">
+            <Link to="tradewave.github.io/">
               <FaDiscord
                 color={"white"}
                 className="footerSocialLinks"

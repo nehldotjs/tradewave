@@ -25,7 +25,7 @@ import DashBoard from "./DashBoard";
 import { FIREBASE_AUTH } from "./Firebase";
 
 function ComponentScreensHandler() {
-  const [user, setUser] = useState(null);  
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const unsubscribe = FIREBASE_AUTH.onAuthStateChanged((x) => {
@@ -40,7 +40,7 @@ function ComponentScreensHandler() {
         <DashBoard />
       ) : (
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/tradewave.github.io/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/About" element={<About />} />
           <Route path="/Assets" element={<Assets />} />

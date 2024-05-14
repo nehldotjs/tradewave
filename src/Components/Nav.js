@@ -41,7 +41,7 @@ function Nav() {
     { id: 4, name: "INFRASTRUCTURE", link: "/Infrastructure" },
     { id: 5, name: "FOREX TRADING", link: "/forex-trading" },
     { id: 6, name: " CRYPTO ASSETS", link: "/crypto-assets" },
-    { id: 7, name: " FIXED INCOME", link: "/fixed-income" },
+    { id: 7, name: " FIXED INCOME", link: "/fixed-income" }
   ];
   const handleNav = () => {
     setIsBurgerMenu(() => (isBurgerMenu ? false : true));
@@ -52,8 +52,7 @@ function Nav() {
 
       <div className="nav-burgerBtn">
         <>
-          
-          <Link to="/" className="Mobile-logoWrapper">
+          <Link to="tradewave.github.io/" className="Mobile-logoWrapper">
             <img src={logo} alt="trade wave logo Image" className="logo" />
             <h2 className="logoHeader">TradeWave</h2>
           </Link>
@@ -61,50 +60,49 @@ function Nav() {
             className={!isBurgerMenu ? "burgerBtn" : "burgerBtnAni"}
             onClick={handleNav}></button>
         </>
-
       </div>
-        <div
-          style={{
-            transform: isBurgerMenu ? "translateX(0px)" : "translateX(100%)"
-          }}
-          className="nav-mobile-Wrapper">
-          <div className="nav-mobile-links-container">
-            <div className="mobileLinkWrapper">
-              {/* <Link className="mobile-aboutLink" to="/">
+      <div
+        style={{
+          transform: isBurgerMenu ? "translateX(0px)" : "translateX(100%)"
+        }}
+        className="nav-mobile-Wrapper">
+        <div className="nav-mobile-links-container">
+          <div className="mobileLinkWrapper">
+            {/* <Link className="mobile-aboutLink" to="/">
               Home
             </Link> */}
-              <Link className="mobile-aboutLink" to="/About">
-                About
-              </Link>
+            <Link className="mobile-aboutLink" to="/About">
+              About
+            </Link>
 
-              {planSubLink.map((x) => {
-                const { id, name, link } = x;
-                return (
-                  <Link className="nav-sub-Link" to={link} key={id}>
-                    {name}
-                  </Link>
-                );
-              })}
+            {planSubLink.map((x) => {
+              const { id, name, link } = x;
+              return (
+                <Link className="nav-sub-Link" to={link} key={id}>
+                  {name}
+                </Link>
+              );
+            })}
 
-              {investmentSubLinks.map((x) => {
-                const { id, name, link } = x;
-                return (
-                  <Link className="nav-sub-Link" to={link} key={id}>
-                    {name}
-                  </Link>
-                );
-              })}
+            {investmentSubLinks.map((x) => {
+              const { id, name, link } = x;
+              return (
+                <Link className="nav-sub-Link" to={link} key={id}>
+                  {name}
+                </Link>
+              );
+            })}
 
-              <Link to="/insights" className="mobile-insightLink">
-                INSIGHTS
-              </Link>
-            </div>
+            <Link to="/insights" className="mobile-insightLink">
+              INSIGHTS
+            </Link>
           </div>
         </div>
+      </div>
 
       {/* WEB NAV VERSION  */}
       <div className="navWrapper">
-        <Link to="/" className="logoWrapper">
+        <Link to="tradewave.github.io/" className="logoWrapper">
           <img src={logo} alt="trade wave logo Image" className="logo" />
           <h2 className="logoHeader">TradeWave</h2>
         </Link>

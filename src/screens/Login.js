@@ -89,7 +89,7 @@ function Login() {
           </div>
 
           <div className="l-formWrapper">
-            <Link to={"/"} className="loginHeader">
+            <Link to="tradewave.github.io/" className="loginHeader">
               <h1>TRADEWAVE</h1>
             </Link>
 
