@@ -55,13 +55,15 @@ function Deposit() {
           <button
             onClick={() => handleWallet(item)}
             className="transaction-cointype-wrapper">
-            <img
+            {/* <img
               src={
                 item.image ||
                 "https://www.pexels.com/photo/red-and-blue-pelikan-br-40-eraser-on-white-surface-35202/"
               }
               alt={item.name || "Not Found"}
-            />
+            /> */}
+
+            <h1>{item.name}</h1>
           </button>
         </div>
       );

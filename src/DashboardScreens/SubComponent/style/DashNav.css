@@ -3,7 +3,7 @@
     width: auto;
     position: relative;
     height: 100%;
-}
+ }
 
 .dashNav-section-wrapper {
     display: flex;
@@ -17,7 +17,7 @@
     align-items: center;
     background-color: rgb(27, 38, 58);
     justify-content: space-between;
-    flex-direction: column;
+    flex-direction: column;  
 }
 
 .dashnav-main-wrapper h2 {

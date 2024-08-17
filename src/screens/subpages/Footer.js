@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   FaFacebookF,
@@ -12,7 +12,22 @@ import { GoDotFill } from "react-icons/go";
 import "./subStyles/footer.css";
 import logo from "../../assets/favicon.png";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 function Footer() {
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      delay: 100,
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+      mirror: false
+    });
+    AOS.refresh();
+  }, []);
+
   const planSubLink = [
     { id: 1, name: "PLANNING SERVICES", link: "/financial-planning" },
     { id: 2, name: "ASSETS MANAGEMENT", link: "/Assets" },
@@ -37,50 +52,98 @@ function Footer() {
       <div className="footerWrapper">
         <>
           <div className="footerlogoWrapper">
-            <img src={logo} className="footerLogo" alt="company logo" />
-            <h3 className="foterLogoHeader">TradeWave</h3>
+            <img
+              src={logo}
+              className="footerLogo"
+              alt="company logo"
+              data-aos="zoom-in-up"
+            />
+            <h3 className="foterLogoHeader" data-aos="zoom-in-up">
+              TradeWave
+            </h3>
           </div>
           <div className="footerSection">
             <div className="address section">
-              <h4 className="footerHeader">HQ</h4>
+              <h4 className="footerHeader" data-aos="zoom-in-up">
+                HQ
+              </h4>
 
               <div className="linkWrapper">
-                <FaMapPin className="dot" color="#fff" size={"10px"} />
-                <Link to="tradewave.github.io/" className="footerLink">
+                <FaMapPin
+                  className="dot"
+                  color="#fff"
+                  size={"10px"}
+                  data-aos="zoom-in-up"
+                />
+                <Link
+                  to="/tradewave.github.io/"
+                  className="footerLink"
+                  data-aos="zoom-in-up">
                   23 Valley Lane, Austin
                 </Link>
               </div>
               <div className="linkWrapper">
-                <FaPhoneAlt className="dot" color="#fff" size={"10px"} />
-                <Link to="tradewave.github.io/" className="footerLink">
+                <FaPhoneAlt
+                  className="dot"
+                  color="#fff"
+                  size={"10px"}
+                  data-aos="zoom-in-up"
+                />
+                <Link
+                  to="/tradewave.github.io/"
+                  className="footerLink"
+                  data-aos="zoom-in-up">
                   +1 354 443 8447
                 </Link>
               </div>
             </div>
             <div className="support section">
-              <h4 className="footerHeader">Customer Support</h4>
+              <h4 className="footerHeader" data-aos="zoom-in-up">
+                Customer Support
+              </h4>
 
               <div className="linkWrapper">
-                <GoDotFill className="dot" color="#fff" size={"5px"} />
-                <Link to="/user-policy" className="footerLink">
+                <GoDotFill
+                  className="dot"
+                  color="#fff"
+                  size={"5px"}
+                  data-aos="zoom-in-up"
+                />
+                <Link
+                  to="/user-policy"
+                  className="footerLink"
+                  data-aos="zoom-in-up">
                   Privacy Policy
                 </Link>
               </div>
               <div className="linkWrapper">
-                <GoDotFill className="dot" color="#fff" size={"5px"} />
-                <Link to="/Terms-and-condition" className="footerLink">
+                <GoDotFill
+                  className="dot"
+                  color="#fff"
+                  size={"5px"}
+                  data-aos="zoom-in-up"
+                />
+                <Link
+                  to="/Terms-and-condition"
+                  className="footerLink"
+                  data-aos="zoom-in-up">
                   Terms & Condition
                 </Link>
               </div>
             </div>
 
             <div className="planning section">
-              <h4 className="footerHeader">Planning Service</h4>
+              <h4 className="footerHeader" data-aos="zoom-in-up">
+                Planning Service
+              </h4>
 
               {planSubLink.map((item, index) => {
                 const { id, name, link } = item;
                 return (
-                  <div className="linkWrapper" key={index}>
+                  <div
+                    className="linkWrapper"
+                    key={index}
+                    data-aos="zoom-in-up">
                     <GoDotFill className="dot" color="#fff" size={"5px"} />
                     <Link to={link} id={id} className="footerLink">
                       {name}
@@ -91,12 +154,17 @@ function Footer() {
             </div>
 
             <div className="investment section">
-              <h4 className="footerHeader">Inverstment Service</h4>
+              <h4 className="footerHeader" data-aos="zoom-in-up">
+                Inverstment Service
+              </h4>
 
               {investmentSubLinks.map((item, index) => {
                 const { id, name, link } = item;
                 return (
-                  <div className="linkWrapper" key={index}>
+                  <div
+                    className="linkWrapper"
+                    key={index}
+                    data-aos="zoom-in-up">
                     <GoDotFill className="dot" color="#fff" size={"5px"} />
                     <Link to={link} id={id} className="footerLink">
                       {name}
@@ -106,10 +174,10 @@ function Footer() {
               })}
             </div>
           </div>
-          <div className="hr"></div>
+          <div className="hr" data-aos="zoom-in-up"></div>
         </>
-        <div className="footerDisclaimer">
-          <p>
+        <div className="footerDisclaimer" data-aos="zoom-in-up">
+          <p data-aos="zoom-in-up">
             IMPORTANT NOTICE: Engaging in the trading of stocks, stock options,
             cryptocurrencies, and their derivatives carries a significant level
             of risk and may not be suitable for all investors. It's important to
@@ -125,28 +193,28 @@ function Footer() {
         </div>
         <div className="subFooter">
           <div className="footerSocials">
-            <Link to="tradewave.github.io/">
+            <Link to="/tradewave.github.io/" data-aos="zoom-in-up">
               <FaXTwitter
                 color={"white"}
                 className="footerSocialLinks"
                 size={"15"}
               />
             </Link>
-            <Link to="tradewave.github.io/">
+            <Link to="/tradewave.github.io/" data-aos="zoom-in-up">
               <FaTelegramPlane
                 color={"white"}
                 className="footerSocialLinks"
                 size={"15"}
               />
             </Link>
-            <Link to="tradewave.github.io/">
+            <Link to="/tradewave.github.io/" data-aos="zoom-in-up">
               <FaFacebookF
                 color={"white"}
                 className="footerSocialLinks"
                 size={"15"}
               />
             </Link>
-            <Link to="tradewave.github.io/">
+            <Link to="/tradewave.github.io/" data-aos="zoom-in-up">
               <FaDiscord
                 color={"white"}
                 className="footerSocialLinks"
@@ -155,7 +223,7 @@ function Footer() {
             </Link>
           </div>
           <div className="footerrights">
-            <h3> &copy; 2024 - All Rights Reserved</h3>
+            <h3 data-aos="zoom-in-up"> &copy; 2024 - All Rights Reserved</h3>
           </div>
         </div>
       </div>

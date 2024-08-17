@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./style/table.css";
 
 import { FaSadCry } from "react-icons/fa";

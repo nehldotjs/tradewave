@@ -1,15 +1,22 @@
 import React, { useEffect, useRef, memo } from "react";
 import "./style/tcw.css";
+
 function TradeCustomWidget() {
   const container = useRef();
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
-    script.type = "text/javascript";
-    script.async = true;
-    script.innerHTML = `
+    try {
+      // Check if the script is already added to avoid adding it multiple times
+      if (container.current.querySelector("script")) {
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src =
+        "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+      script.type = "text/javascript";
+      script.async = true;
+      script.innerHTML = `
         {
           "autosize": true,
           "symbol": "BITSTAMP:BTCUSD",
@@ -27,7 +34,17 @@ function TradeCustomWidget() {
           "calendar": true,
           "support_host": "https://www.tradingview.com"
         }`;
-    container.current.appendChild(script);
+      script.onerror = (e) => {
+        console.error("Script load error:", e);
+      };
+      container.current.appendChild(script);
+      // Cleanup function to remove the script if the component unmounts
+      return () => {
+        container.current.removeChild(script);
+      };
+    } catch (error) {
+      console.error("Error adding script:", error);
+    }
   }, []);
 
   return (
@@ -37,7 +54,7 @@ function TradeCustomWidget() {
       style={{ height: "100%", width: "100%" }}>
       <div
         className="tradingview-widget-container__widget"
-        style={{ height: "calc(100% - 32px)", width: "100%" }}></div>
+        style={{ width: "100%" }}></div>
     </div>
   );
 }

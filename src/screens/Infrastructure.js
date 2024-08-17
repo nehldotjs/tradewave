@@ -3,7 +3,7 @@ import "../styles/infrastructure.css";
 import infImg from "../assets/infrastructure.jpg";
 import mapImg from "../assets/sv.png";
 
-import { Screener, TickerTape } from "react-ts-tradingview-widgets";
+import { TickerTape } from "react-ts-tradingview-widgets";
 
 import Nav from "../Components/Nav";
 import SubHeaders from "./subpages/SubHeaders";

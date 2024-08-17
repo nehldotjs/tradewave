@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./subStyles/responsible.css";
 import resImage from "../../assets/conference.jpg";
 import resbckImage from "../../assets/80493.jpg";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 function Responsible() {
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      delay: 100,
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+      mirror: false
+    });
+    AOS.refresh();
+  }, []);
+
   return (
     <div className="resWrapper">
       <div className="rebackImgWrapper">
-        <img src={resbckImage} alt="" />
+        <img src={resbckImage} alt="" data-aos="zoom-in-up" />
       </div>
       <div className="resWriteUp">
-        <h1>Sustainable Investing</h1>
+        <h1 data-aos="zoom-in-up">Sustainable Investing</h1>
         <div className="resContent">
-          <p>
+          <p data-aos="zoom-in-up">
             At <span>TRADEWAVE</span> Finance, we integrate environmental,
             social, and governance (ESG) considerations across the entire
             investment decision-making process and life cycle. We hold the
@@ -30,7 +45,11 @@ function Responsible() {
             its alignment with current best practices.
           </p>
           <div className="resImageWrapper">
-            <img src={resImage} alt="Conference Meeting" />
+            <img
+              src={resImage}
+              alt="Conference Meeting"
+              data-aos="zoom-in-up"
+            />
           </div>
         </div>
       </div>

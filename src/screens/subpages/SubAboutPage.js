@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./subStyles/subaboutpage.css";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 import bckimg from "../../assets/mac2.png";
 import bckimg1 from "../../assets/rmac2.png";
 
 function SubAboutPage() {
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      delay: 100,
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+      mirror: false
+    });
+    AOS.refresh();
+  }, []);
+
   return (
     <div className="subaboutwrapper">
-      <div className="subwriteup">
-        <h2>
-          At TradeWave, we recognize the transformative h2otential of
+      <div className="subwriteup" data-aos="zoom-in-up">
+        <h2 data-aos="zoom-in-up">
+          At TradeWave, we recognize the transformable h2otential of
           decentralized cryptocurrencies like Bitcoin and Ethereum, poised to
           redefine the global perception and utilization of currency. As
           pioneers in this dynamic landscape, we are at the forefront of
@@ -32,13 +47,13 @@ function SubAboutPage() {
           professional and profitable financial experience.
         </h2>
         <div className="getStarted">
-          <Link to="/sign-up" className="getStartedBtn">
+          <Link data-aos="zoom-in-up" to="/sign-up" className="getStartedBtn">
             <h3> Get Started</h3>
           </Link>
         </div>
       </div>
 
-      <div className="backgroundtradewallpaer">
+      <div className="backgroundtradewallpaer" data-aos="zoom-in-up">
         <img src={bckimg} alt="" className="wb-subabout" />
         <img src={bckimg1} className="mb-subabout" alt="" />
       </div>

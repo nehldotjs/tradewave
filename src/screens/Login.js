@@ -17,22 +17,22 @@ import "../styles/login.css";
 function Login() {
   const [isUserInfo, setIsUserInfo] = useState({ email: "", password: "" });
 
-  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  // const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+  // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const navigate = useNavigate();
 
-  const updateDimensions = () => {
-    setScreenHeight(window.innerHeight);
-    setScreenWidth(window.innerWidth);
-  };
-  useEffect(() => {
-    updateDimensions();
-    window.addEventListener("resize", updateDimensions);
-    return () => {
-      window.removeEventListener("resize", updateDimensions);
-    };
-  }, []);
+  // const updateDimensions = () => {
+  //   setScreenHeight(window.innerHeight);
+  //   setScreenWidth(window.innerWidth);
+  // };
+  // useEffect(() => {
+  //   updateDimensions();
+  //   window.addEventListener("resize", updateDimensions);
+  //   return () => {
+  //     window.removeEventListener("resize", updateDimensions);
+  //   };
+  // }, []);
 
   const handleLogin = async () => {
     try {
@@ -89,7 +89,7 @@ function Login() {
           </div>
 
           <div className="l-formWrapper">
-            <Link to="tradewave.github.io/" className="loginHeader">
+            <Link to="/tradewave.github.io/" className="loginHeader">
               <h1>TRADEWAVE</h1>
             </Link>
 

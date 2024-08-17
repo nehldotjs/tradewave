@@ -1,8 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./subStyles/subplan.css";
 import { GoDotFill } from "react-icons/go";
 import { Link } from "react-router-dom";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 function SubscriptionPlan() {
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      delay: 100,
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+      mirror: false
+    });
+    AOS.refresh();
+  }, []);
+
   const [active, setActive] = useState("Standard");
   const paymentTypes = [
     {
@@ -192,6 +208,7 @@ function SubscriptionPlan() {
       ]
     }
   ];
+
   const handleClick = (tag) => {
     setActive(tag);
   };
@@ -205,6 +222,7 @@ function SubscriptionPlan() {
       <div className="planTypeBtn">
         {paymentTypes.map(({ id, tag }) => (
           <button
+            data-aos="zoom-in-up"
             type="button"
             className={`planBtn ${active === tag ? "active" : ""}`}
             key={id}
@@ -216,13 +234,13 @@ function SubscriptionPlan() {
       <div className="paymentCards">
         {getDetailsByTag().map((detail, index) => (
           <div className="paymentCard" key={index}>
-            <h1>{detail.header}</h1>
+            <h1 data-aos="zoom-in-up">{detail.header}</h1>
             <div className="pips">
-              <h2>{detail.pips}</h2>
+              <h2 data-aos="zoom-in-up">{detail.pips}</h2>
             </div>
             <div className="pricing">
               {detail.planPrice.map((price, i) => (
-                <p key={i}>
+                <p key={i} data-aos="zoom-in-up">
                   {" "}
                   <GoDotFill
                     color={"black"}
@@ -233,7 +251,7 @@ function SubscriptionPlan() {
                 </p>
               ))}
             </div>
-            <Link className="gh3" to={"/sign-up"}>
+            <Link data-aos="zoom-in-up" className="gh3" to={"/sign-up"}>
               <h3 className="p-gh3">Get Started</h3>
             </Link>
           </div>

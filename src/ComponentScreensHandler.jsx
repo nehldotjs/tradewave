@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
+import { Routes, Route } from "react-router-dom"; // Import useNavigate instead of useHistory
 
 import Tc from "./screens/Tc";
 import Home from "./screens/Home";

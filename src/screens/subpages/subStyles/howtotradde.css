@@ -10,21 +10,49 @@
 .exHeader {
     display: flex;
     flex-direction: column;
-    flex: 1;
     gap: 20px;
+    width: 50%;
 }
 
 .examples {
     display: flex;
-    gap: 30px;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+
+
+    background-color: green;
+}
+
+.exImage {
+    flex: 1;
+    display: none;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    overflow: hidden;
+    margin: auto;
+
+    height: 100%;
+    background-color: yellow;
+    padding: 5px;
+}
+
+
+.exImage img {
+    height: auto;
+    width: 100%;
+    display: none;
+    margin: auto;
+    object-fit: contain;
 }
 
 .exCards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     gap: 20px;
 }
@@ -42,10 +70,13 @@
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.479);
 }
 
+.exCard P {
+    font-size: 15px;
+}
+
 .gettingStarted {
-    width: 50%;
-    margin: auto;
     display: flex;
+    width: 50%;
     overflow: hidden;
     align-items: flex-start;
     border: 1px solid black;
@@ -80,25 +111,6 @@
     padding: 10px 20px;
     margin: auto;
     z-index: 1;
-}
-
-.exImage {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    margin: auto;
-    height: auto;
-}
-
-
-.exImage img {
-    height: auto;
-    width: 100%;
-    display: flex;
-    margin: auto;
-    object-fit: contain;
 }
 
 .exminicards {

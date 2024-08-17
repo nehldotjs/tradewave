@@ -10,8 +10,7 @@ import c2 from "../assets/civil-2.jpg";
 import Nav from "../Components/Nav";
 import Footer from "./subpages/Footer";
 import SubHeaders from "./subpages/SubHeaders";
-import Carousel from "./subpages/Carousel";
-import { TickerTape } from "react-ts-tradingview-widgets";
+ import { TickerTape } from "react-ts-tradingview-widgets";
 
 function Alternatives() {
   const infConcepts = [

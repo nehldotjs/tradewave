@@ -8,7 +8,7 @@ import { PropDataHandler } from "./Context/PropDataHandler";
 
 const App = () => {
   return (
-    <div style={{ backgroundColor: "#F7F7F7" }}>
+    <div style={{ backgroundColor: "white" }}>
       <AuthContextProvider>
         <PropDataHandler>
           <Router>

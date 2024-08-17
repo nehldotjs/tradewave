@@ -52,8 +52,8 @@ function Nav() {
 
       <div className="nav-burgerBtn">
         <>
-          <Link to="tradewave.github.io/" className="Mobile-logoWrapper">
-            <img src={logo} alt="trade wave logo Image" className="logo" />
+          <Link to="/tradewave.github.io/" className="Mobile-logoWrapper">
+            <img src={logo} alt="trade wave logo" className="logo" />
             <h2 className="logoHeader">TradeWave</h2>
           </Link>
           <button
@@ -102,8 +102,8 @@ function Nav() {
 
       {/* WEB NAV VERSION  */}
       <div className="navWrapper">
-        <Link to="tradewave.github.io/" className="logoWrapper">
-          <img src={logo} alt="trade wave logo Image" className="logo" />
+        <Link to="/tradewave.github.io/" className="logoWrapper">
+          <img src={logo} alt="trade wave logo" className="logo" />
           <h2 className="logoHeader">TradeWave</h2>
         </Link>
 

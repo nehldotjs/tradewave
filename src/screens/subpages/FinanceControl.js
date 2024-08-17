@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./subStyles/financeControl.css";
 
@@ -10,7 +10,22 @@ import svg4 from "../../assets/svg/undraw_investment_data_re_sh9x.svg";
 import svg5 from "../../assets/svg/undraw_all_the_data_re_hh4w.svg";
 import svg6 from "../../assets/svg/undraw_statistic_chart_re_w0pk.svg";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 function FinanceControl() {
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      delay: 100,
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+      mirror: false
+    });
+    AOS.refresh();
+  }, []);
+
   const financeCard = [
     {
       id: 1,
@@ -49,9 +64,10 @@ function FinanceControl() {
       Text: "Options represent a type of derivative contract affording contract buyers (option holders) the right, though not the obligation, to buy or sell a security at a predetermined price at a future date. Option purchasers pay a fee known as a premium to the sellers for this granted right."
     }
   ];
+
   return (
     <div className="finacePageWrapper">
-      <div className="financeHeaderSection">
+      <div className="financeHeaderSection" data-aos="zoom-in-up">
         <div className="financeHeaderWriteUp">
           <h1>
             Gain Total <span>Financial Control</span>
@@ -62,7 +78,7 @@ function FinanceControl() {
           </p>
         </div>
         <div className="finceLearnMoreButton">
-          <Link className="financeBtn" to="/">
+          <Link className="financeBtn" to="/tradewave.github.io/">
             <h3>Learn More</h3>
           </Link>
         </div>
@@ -72,7 +88,7 @@ function FinanceControl() {
         {financeCard.map((item) => {
           const { id, Text, svgImage, header } = item;
           return (
-            <div className="financeCard" key={id}>
+            <div className="financeCard" key={id} data-aos="zoom-in-up">
               <div className="svgWrapper">
                 <img src={svgImage} alt="board illustration" />
               </div>

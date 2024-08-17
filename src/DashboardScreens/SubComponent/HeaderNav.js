@@ -25,7 +25,7 @@ function HeaderNav() {
       const displayName = currentUser?.displayName;
       const google_firstName = displayName ? displayName.split(" ")[0] : "";
 
-      const photoUrl = currentUser.photoURL;
+      const photoUrl = currentUser?.photoURL;
       setUserProps({
         userPhotoUrl: photoUrl,
         firstName: google_firstName

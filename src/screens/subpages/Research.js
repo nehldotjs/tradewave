@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import rimge1 from "../../assets/research.jpg";
 import rimge2 from "../../assets/cargo.jpg";
 import rbckImg from "../../assets/80493.jpg";
 import "./subStyles/research.css";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Research() {
   const card1 = [
@@ -41,16 +44,29 @@ function Research() {
       text: "Our culture actively encourages diverse perspectives. Through open exchanges of ideas, our teams refine their investment theses, bringing us closer to identifying the most promising investment ideas."
     }
   ];
+
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      delay: 100,
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+      mirror: false
+    });
+    AOS.refresh();
+  }, []);
+
   return (
     <div className="researchWrapper">
       <div className="r-section-1">
         <div className="r-writeup">
           <div className="r-writeupBckImageWrapper">
-            <img src={rbckImg} alt="" />
+            <img src={rbckImg} alt="" data-aos="zoom-in-up" />
           </div>
           <div className="r-writeUpWrapper">
-            <h1>Driven by Research</h1>
-            <p>
+            <h1 data-aos="zoom-in-up">Driven by Research</h1>
+            <p data-aos="zoom-in-up">
               In an uncertain environment, the significance of independent,
               bottom-up research and analysis in the investment process becomes
               increasingly crucial. Our organizational structure cultivates a
@@ -59,16 +75,16 @@ function Research() {
             </p>
           </div>
           <div className="r-writeupImageWrapper">
-            <img src={rimge1} alt="" />
+            <img src={rimge1} alt="" data-aos="zoom-in-up" />
           </div>
         </div>
         <div className="r-cards">
           {card1.map((item) => {
             const { id, Headers, text } = item;
             return (
-              <div className="cards" key={id}>
-                <h3>{Headers}</h3>
-                <p>{text}</p>
+              <div className="cards" key={id} data-aos="zoom-in-up">
+                <h3 data-aos="zoom-in-up">{Headers}</h3>
+                <p data-aos="zoom-in-up">{text}</p>
               </div>
             );
           })}
@@ -77,11 +93,11 @@ function Research() {
       <div className="r-section-2">
         <div className="r-writeup">
           <div className="r-writeupBckImageWrapper">
-            <img src={rbckImg} alt="" />
+            <img src={rbckImg} alt="" data-aos="zoom-in-up" />
           </div>
           <div className="r-writeUpWrapper">
-            <h1>Comprehensive Risk Management</h1>
-            <p>
+            <h1 data-aos="zoom-in-up">Comprehensive Risk Management</h1>
+            <p data-aos="zoom-in-up">
               <span>TRADEWAVE</span> risk management is at the heart of
               everything we do. It starts with clearly defined and transparently
               communicated investment processes, includes formal ESG analysis
@@ -92,14 +108,14 @@ function Research() {
             </p>
           </div>
           <div className="r-writeupImageWrapper">
-            <img src={rimge2} alt="" />
+            <img src={rimge2} alt="" data-aos="zoom-in-up" />
           </div>
         </div>
         <div className="r-cards">
           {card2.map((item) => {
             const { id, Headers, text } = item;
             return (
-              <div className="cards" key={id}>
+              <div className="cards" key={id} data-aos="zoom-in-up">
                 <h3>{Headers}</h3>
                 <p>{text}</p>
               </div>

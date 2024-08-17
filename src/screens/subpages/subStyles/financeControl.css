@@ -24,7 +24,6 @@
     flex: 1;
     gap: 20px;
     height: 100%;
-    /* background-color: blueviolet; */
 }
 
 .financeHeaderWriteUp h1 {
@@ -102,13 +101,13 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 10px;
+    gap: 5px;
     height: 100%;
-    padding: 20px;
+    padding: 10px;
     width: auto;
-    border-radius: 10px;
+    border-radius: 0px;
     background-color: white;
-    box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.384);
+    box-shadow: 0px 5px 10px 1px rgba(121, 179, 218, 0.24);
     cursor: pointer;
     transition: 500ms all ease;
 }
@@ -119,7 +118,7 @@
 }
 
 .svgWrapper {
-    height: 150px;
+    height: 100px;
     width: 100%;
 
     justify-content: flex-end;
@@ -132,6 +131,15 @@
     width: auto;
     object-fit: contain;
     display: flex;
+}
+
+.financeCard h2 {
+    font-size: 12px;
+}
+
+.financeCard p {
+    font-size: 12px;
+
 }
 
 @media screen and (max-width: 900px) {
@@ -164,9 +172,19 @@
         position: relative;
     }
 
+    .svgWrapper {
+        height: 50px;
+        width: 100%;
 
+        justify-content: flex-end;
+        align-items: center;
+        display: flex;
+    }
 
-
-
-
+    .svgWrapper img {
+        height: 100%;
+        width: auto;
+        object-fit: contain;
+        display: flex;
+    }
 }

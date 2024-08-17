@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./subStyles/expert.css";
 import ExpImg from "../../assets/mac1.png";
 import ExpImg1 from "../../assets/rmac1.png";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 function Expertise() {
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      delay: 100,
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+      mirror: false
+    });
+    AOS.refresh();
+  }, []);
+
   const ExprtCrdDetails = [
     {
       id: 1,
@@ -23,23 +39,32 @@ function Expertise() {
   return (
     <div className="expertWrapper">
       <div className="expertBackgroundImage">
-        <img src={ExpImg} className="exprt-web" alt="trade-wave-background-image" />
+        <img
+          src={ExpImg}
+          className="exprt web"
+          alt="trade wave background image"
+        />
         <img
           src={ExpImg1}
-          className="exprt-mobile"
-          alt="mobile-trade-wave-background-image"
+          className="exprt mobile"
+          alt="mobile trade wave background image"
         />
       </div>
 
       <div className="expertWriteUp">
-        <h1>All the Expertise You Anticipate from a Trading Professional</h1>
+        <h1 data-aos="zoom-in-up">
+          All the Expertise You Anticipate from a Trading Professional
+        </h1>
 
-        <div className="experCardWrapper">
+        <div className="experCardWrapper" data-aos="zoom-in-up">
           {ExprtCrdDetails.map((item) => {
             const { id, header, text } = item;
             return (
-              <div className="expertCardContainer" key={id}>
-                <h3>{header}</h3>
+              <div
+                className="expertCardContainer"
+                key={id}
+                data-aos="zoom-in-up">
+                <h2>{header}</h2>
                 <div className="hr"></div>
                 <p>{text}</p>
               </div>

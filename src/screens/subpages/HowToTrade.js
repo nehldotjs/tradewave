@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./subStyles/howtotradde.css";
 import conference from "../../assets/group.jpg";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import { GoDotFill } from "react-icons/go";
 
 function HowToTrade() {
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      delay: 100,
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+      mirror: false
+    });
+    AOS.refresh();
+  }, []);
+
   const traddingCards = [
     {
       id: 1,
@@ -66,10 +81,10 @@ function HowToTrade() {
                   record.
                 </p>
               </div>
+              <Link className="gettingStarted" to={"sign-up"}>
+                <h3>Get Startd</h3>
+              </Link>
             </div>
-            <Link className="gettingStarted" to={"sign-up"}>
-              <h3>Get Startd</h3>
-            </Link>
           </div>
           <div className="exImage">
             <img src={conference} alt="" />
