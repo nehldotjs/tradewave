@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tradewave.github.io/static/css/main.eaeb1844.css",
-    "main.js": "/tradewave.github.io/static/js/main.8c73c3e9.js",
+    "main.css": "/tradewave.github.io/static/css/main.15848af7.css",
+    "main.js": "/tradewave.github.io/static/js/main.fe19a5a6.js",
     "static/media/foreign-exchange.jpg": "/tradewave.github.io/static/media/foreign-exchange.4f77ad4e373eb4db7155.jpg",
     "static/media/finance-meeting.jpg": "/tradewave.github.io/static/media/finance-meeting.9c338c86b5122f19b978.jpg",
     "static/media/fastexXalchemy.png": "/tradewave.github.io/static/media/fastexXalchemy.7faf6c6b32c708b24a73.png",
@@ -41,11 +41,11 @@
     "static/media/undraw_goals_re_lu76.svg": "/tradewave.github.io/static/media/undraw_goals_re_lu76.dd7a2780f22f02c759edc8be6355ba72.svg",
     "static/media/undraw_investing_re_bov7.svg": "/tradewave.github.io/static/media/undraw_investing_re_bov7.1b9c4faa0cf5ab061032695f56c6f642.svg",
     "index.html": "/tradewave.github.io/index.html",
-    "main.eaeb1844.css.map": "/tradewave.github.io/static/css/main.eaeb1844.css.map",
-    "main.8c73c3e9.js.map": "/tradewave.github.io/static/js/main.8c73c3e9.js.map"
+    "main.15848af7.css.map": "/tradewave.github.io/static/css/main.15848af7.css.map",
+    "main.fe19a5a6.js.map": "/tradewave.github.io/static/js/main.fe19a5a6.js.map"
   },
   "entrypoints": [
-    "static/css/main.eaeb1844.css",
-    "static/js/main.8c73c3e9.js"
+    "static/css/main.15848af7.css",
+    "static/js/main.fe19a5a6.js"
   ]
 }
