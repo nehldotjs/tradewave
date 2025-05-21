@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tradewave.github.io/static/css/main.15848af7.css",
-    "main.js": "/tradewave.github.io/static/js/main.fe19a5a6.js",
+    "main.css": "/tradewave.github.io/static/css/main.b840f55e.css",
+    "main.js": "/tradewave.github.io/static/js/main.34705aca.js",
     "static/media/foreign-exchange.jpg": "/tradewave.github.io/static/media/foreign-exchange.4f77ad4e373eb4db7155.jpg",
     "static/media/finance-meeting.jpg": "/tradewave.github.io/static/media/finance-meeting.9c338c86b5122f19b978.jpg",
     "static/media/fastexXalchemy.png": "/tradewave.github.io/static/media/fastexXalchemy.7faf6c6b32c708b24a73.png",
@@ -20,10 +20,6 @@
     "static/media/infrastructure.jpg": "/tradewave.github.io/static/media/infrastructure.75c981d6926f2cf5f444.jpg",
     "static/media/cargo.jpg": "/tradewave.github.io/static/media/cargo.756eb784f1069dfee765.jpg",
     "static/media/crypto-managemeent.jpg": "/tradewave.github.io/static/media/crypto-managemeent.8a7a4148bd3fa61f3fad.jpg",
-    "static/media/rmac1.png": "/tradewave.github.io/static/media/rmac1.70ffa6a686f458ef95aa.png",
-    "static/media/mac1.png": "/tradewave.github.io/static/media/mac1.cde004fe629a948d3033.png",
-    "static/media/rmac2.png": "/tradewave.github.io/static/media/rmac2.427e20aa2919a16ce002.png",
-    "static/media/mac2.png": "/tradewave.github.io/static/media/mac2.d106b3f530f6502be474.png",
     "static/media/pamm_levels.jpg": "/tradewave.github.io/static/media/pamm_levels.5d5bdac4ee275a283136.jpg",
     "static/media/conference.jpg": "/tradewave.github.io/static/media/conference.6f341da1a0f95df8b724.jpg",
     "static/media/stock.jpg": "/tradewave.github.io/static/media/stock.c0d6d42759c30d7c883f.jpg",
@@ -40,12 +36,16 @@
     "static/media/undraw_all_the_data_re_hh4w.svg": "/tradewave.github.io/static/media/undraw_all_the_data_re_hh4w.76172a756e5908f89f303938afd9895f.svg",
     "static/media/undraw_goals_re_lu76.svg": "/tradewave.github.io/static/media/undraw_goals_re_lu76.dd7a2780f22f02c759edc8be6355ba72.svg",
     "static/media/undraw_investing_re_bov7.svg": "/tradewave.github.io/static/media/undraw_investing_re_bov7.1b9c4faa0cf5ab061032695f56c6f642.svg",
+    "static/media/slick.svg": "/tradewave.github.io/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/tradewave.github.io/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/tradewave.github.io/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/tradewave.github.io/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/tradewave.github.io/index.html",
-    "main.15848af7.css.map": "/tradewave.github.io/static/css/main.15848af7.css.map",
-    "main.fe19a5a6.js.map": "/tradewave.github.io/static/js/main.fe19a5a6.js.map"
+    "main.b840f55e.css.map": "/tradewave.github.io/static/css/main.b840f55e.css.map",
+    "main.34705aca.js.map": "/tradewave.github.io/static/js/main.34705aca.js.map"
   },
   "entrypoints": [
-    "static/css/main.15848af7.css",
-    "static/js/main.fe19a5a6.js"
+    "static/css/main.b840f55e.css",
+    "static/js/main.34705aca.js"
   ]
 }
