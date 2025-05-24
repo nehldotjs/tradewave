@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/tradewave.github.io/static/css/main.29caafb9.css",
-    "main.js": "/tradewave.github.io/static/js/main.5ed480d6.js",
+    "main.js": "/tradewave.github.io/static/js/main.f4633fad.js",
     "static/media/foreign-exchange.jpg": "/tradewave.github.io/static/media/foreign-exchange.4f77ad4e373eb4db7155.jpg",
     "static/media/finance-meeting.jpg": "/tradewave.github.io/static/media/finance-meeting.9c338c86b5122f19b978.jpg",
     "static/media/fastexXalchemy.png": "/tradewave.github.io/static/media/fastexXalchemy.7faf6c6b32c708b24a73.png",
@@ -42,10 +42,10 @@
     "static/media/slick.woff": "/tradewave.github.io/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/tradewave.github.io/index.html",
     "main.29caafb9.css.map": "/tradewave.github.io/static/css/main.29caafb9.css.map",
-    "main.5ed480d6.js.map": "/tradewave.github.io/static/js/main.5ed480d6.js.map"
+    "main.f4633fad.js.map": "/tradewave.github.io/static/js/main.f4633fad.js.map"
   },
   "entrypoints": [
     "static/css/main.29caafb9.css",
-    "static/js/main.5ed480d6.js"
+    "static/js/main.f4633fad.js"
   ]
 }
