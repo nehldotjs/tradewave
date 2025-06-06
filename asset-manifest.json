@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tradewave.github.io/static/css/main.491158ae.css",
-    "main.js": "/tradewave.github.io/static/js/main.f6f34372.js",
+    "main.css": "/tradewave.github.io/static/css/main.d6f41958.css",
+    "main.js": "/tradewave.github.io/static/js/main.e5c540b7.js",
     "static/media/foreign-exchange.jpg": "/tradewave.github.io/static/media/foreign-exchange.4f77ad4e373eb4db7155.jpg",
     "static/media/finance-meeting.jpg": "/tradewave.github.io/static/media/finance-meeting.9c338c86b5122f19b978.jpg",
     "static/media/fastexXalchemy.png": "/tradewave.github.io/static/media/fastexXalchemy.7faf6c6b32c708b24a73.png",
@@ -41,11 +41,11 @@
     "static/media/slick.ttf": "/tradewave.github.io/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/tradewave.github.io/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/tradewave.github.io/index.html",
-    "main.491158ae.css.map": "/tradewave.github.io/static/css/main.491158ae.css.map",
-    "main.f6f34372.js.map": "/tradewave.github.io/static/js/main.f6f34372.js.map"
+    "main.d6f41958.css.map": "/tradewave.github.io/static/css/main.d6f41958.css.map",
+    "main.e5c540b7.js.map": "/tradewave.github.io/static/js/main.e5c540b7.js.map"
   },
   "entrypoints": [
-    "static/css/main.491158ae.css",
-    "static/js/main.f6f34372.js"
+    "static/css/main.d6f41958.css",
+    "static/js/main.e5c540b7.js"
   ]
 }
