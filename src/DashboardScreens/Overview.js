@@ -1,36 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./styles/overview.css";
-import TradeCustomWidget from "./SubComponent/TradeCustomWidget";
 
 function Overview() {
+  useEffect(() => {
+    new window.TradingView.widget({
+      container_id: "tradingview_widget", // Matches the div ID
+      width: "100%",
+      height: "100%",
+      symbol: "NASDAQ:AAPL", // Replace with your desired symbol
+      interval: "D",
+      timezone: "Etc/UTC",
+      theme: "dark", // Options: "light" or "dark"
+      style: "1",
+      locale: "en",
+      toolbar_bg: "#f1f3f6",
+      enable_publishing: false,
+      allow_symbol_change: true
+    });
+  }, []);
+
   return (
     <div className="overview-main-container">
       <div className="overview-content-wrapper">
         <div className="overview-widget-wrapper">
           <div className="overview-widget">
-            <TradeCustomWidget />
+            <div className="tradingChart"
+              id="tradingview_widget"
+              style={{ flex: 1, margin: "auto" }}></div>
           </div>
         </div>
-
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-          culpa similique, ratione expedita provident aut dicta molestias
-          debitis fuga praesentium soluta, quam cupiditate quos maxime eligendi
-          voluptas sit eum accusamus sapiente tempora error? Fugiat laborum
-          numquam molestiae dolorum, debitis, cum odit, suscipit enim qui vero
-          reprehenderit porro! Voluptates nesciunt est sit harum! Praesentium ab
-          commodi unde aspernatur. Doloribus officia dolore libero numquam,
-          repellendus enim impedit officiis necessitatibus ex possimus nobis
-          facilis harum, unde deserunt veniam maxime exercitationem rem, ipsam
-          in aperiam illo architecto. Veritatis tempore, sunt fuga fugit
-          laudantium alias deleniti earum unde sequi ea rem architecto
-          asperiores non dolore reprehenderit similique perspiciatis hic. Sequi
-          nulla autem qui adipisci voluptas ipsa commodi doloremque
-          necessitatibus error soluta sit iste facere corporis eaque consequatur
-          ea minima blanditiis ducimus, dolores velit? Mollitia porro eaque,
-          maxime omnis corrupti repellendus. Mollitia, facilis eveniet! Natus
-          asperiores cumque qui at, ut tempore? Enim culpa optio natus corporis.
-        </p>
       </div>
     </div>
   );

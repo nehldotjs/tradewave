@@ -34,7 +34,7 @@ function SubPlans() {
               <div className="sp-card" key={id}>
                 <h2>{header} </h2>
                 <p>{text}</p>
-              </div>
+              </div> 
             );
           })}
         </div>

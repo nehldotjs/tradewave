@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom"; // Import useNavigate instead of useHistory
+import { Routes, Route } from "react-router-dom";
+import { FIREBASE_AUTH } from "./Firebase";
+import DashBoard from "./DashBoard";
 
+// Screens
 import Tc from "./screens/Tc";
 import Home from "./screens/Home";
 import Plan from "./screens/Plan";
@@ -20,48 +23,45 @@ import Retirements from "./screens/Retirements";
 import Alternatives from "./screens/Alternatives";
 import OptionTrading from "./screens/OptionTrading";
 import Infrastructure from "./screens/Infrastructure";
-import DashBoard from "./DashBoard";
 
-import { FIREBASE_AUTH } from "./Firebase";
+const publicRoutes = [
+  { path: "/tradewave.github.io/", element: <Home /> },
+  { path: "/login", element: <Login /> },
+  { path: "/about", element: <About /> },
+  { path: "/assets", element: <Assets /> },
+  { path: "/sign-up", element: <SignUp /> },
+  { path: "/insights", element: <Insigth /> },
+  { path: "/real-estate", element: <Estate /> },
+  { path: "/fixed-income", element: <Fixed /> },
+  { path: "/stock-market", element: <Stock /> },
+  { path: "/user-policy", element: <Policy /> },
+  { path: "/forex-trading", element: <Forex /> },
+  { path: "/crypto-assets", element: <Crypto /> },
+  { path: "/terms-and-condition", element: <Tc /> },
+  { path: "/private-wealth", element: <Private /> },
+  { path: "/retirements", element: <Retirements /> },
+  { path: "/financial-planning", element: <Plan /> },
+  { path: "/alternatives", element: <Alternatives /> },
+  { path: "/option-trading", element: <OptionTrading /> },
+  { path: "/infrastructure", element: <Infrastructure /> }
+];
 
 function ComponentScreensHandler() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = FIREBASE_AUTH.onAuthStateChanged((x) => {
-      setUser(x);
-    });
-    return () => unsubscribe();
+    const unsubscribe = FIREBASE_AUTH.onAuthStateChanged(setUser);
+    return unsubscribe;
   }, []);
 
-  return (
-    <>
-      {user ? (
-        <DashBoard />
-      ) : (
-        <Routes>
-          <Route path="/tradewave.github.io/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/Assets" element={<Assets />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/insights" element={<Insigth />} />
-          <Route path="/real-estate" element={<Estate />} />
-          <Route path="/fixed-income" element={<Fixed />} />
-          <Route path="/stock-market" element={<Stock />} />
-          <Route path="/user-policy" element={<Policy />} />
-          <Route path="/forex-trading" element={<Forex />} />
-          <Route path="/crypto-assets" element={<Crypto />} />
-          <Route path="/Terms-and-condition" element={<Tc />} />
-          <Route path="/Private-wealth" element={<Private />} />
-          <Route path="/Retirements" element={<Retirements />} />
-          <Route path="/financial-planning" element={<Plan />} />
-          <Route path="/Alternatives" element={<Alternatives />} />
-          <Route path="/option-trading" element={<OptionTrading />} />
-          <Route path="/Infrastructure" element={<Infrastructure />} />
-        </Routes>
-      )}
-    </>
+  return user ? (
+    <DashBoard />
+  ) : (
+    <Routes>
+      {publicRoutes.map(({ path, element }) => (
+        <Route key={path} path={path} element={element} />
+      ))}
+    </Routes>
   );
 }
 

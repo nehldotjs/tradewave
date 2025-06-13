@@ -41,18 +41,18 @@
 }
 
 .deposit-instruction-wrapper h4 {
-    color: rgb(46, 46, 46);
+    color: #7c5dc9;
     font-weight: normal;
 }
 
-.deposiit-rule-list-wrapper {
+.deposit-rule-list-wrapper {
     display: flex;
     flex-direction: column;
     padding-left: 30px;
     width: 80%;
 }
 
-.deposiit-rule-list-wrapper ol {
+.deposit-rule-list-wrapper ol {
     flex-direction: column;
     display: flex;
     gap: 5px;
@@ -60,7 +60,7 @@
     color: rgb(80, 80, 80);
 }
 
-.deposiit-rule-list-wrapper ol li {
+.deposit-rule-list-wrapper ol li {
     font-size: 12px;
 }
 
@@ -74,7 +74,6 @@
     height: 100%;
     width: 100%;
     gap: 20px;
-    /* background-color: orangered; */
 }
 
 
@@ -82,18 +81,19 @@
     height: 200px;
     width: 200px;
     gap: 20px;
-    border: none;
     display: flex;
     cursor: pointer;
     overflow: hidden;
     border-radius: 50%;
     position: relative;
     align-items: center;
-    flex-direction: column;
     justify-content: center;
+    flex-direction: column;
     background: transparent;
 
+
 }
+
 
 .deposit-section-crypto-types .transaction-cointype-wrapper img {
     height: 100%;
@@ -101,8 +101,15 @@
     display: flex;
     object-fit: cover;
     position: relative;
-    margin: auto;
-    border: none;
+
+}
+
+.deposit-section-crypto-types .transaction-cointype-wrapper .imageError {
+    height: 100%;
+    width: 100%;
+    display: none;
+    object-fit: cover;
+    position: relative;
 }
 
 .transact-wallet-button-wrapper {
@@ -116,7 +123,6 @@
     background-color: transparent;
     border-radius: unset;
     /* font-weight: bold; */
-    border-bottom: 1px solid black;
     font-size: 15px;
     cursor: pointer;
     padding: 10px;
@@ -141,12 +147,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    background-color: white;
 
     border: 1px solid;
-    border-image: linear-gradient(to right, teal, rgb(35, 121, 17));
+    border-image: linear-gradient(to right, teal, #7c5dc9);
     border-image-slice: 1;
+}
+
+.border {
+    border: 1px solid;
+    border-image: linear-gradient(to right, orange, red);
+    border-image-slice: 1;
+
 }
 
 .transact-wallet-input-wrapper h3 {
@@ -154,47 +165,50 @@
     display: flex;
     margin: auto;
     height: auto;
-    color: gray;
+    color: #fff;
     font-size: 15px;
     align-items: center;
 }
 
+.transact-wallet-input-wrapper input::placeholder {
+    color: #fff;
+}
+
 .transact-wallet-input-wrapper input {
-    display: flex;
-    font-size: 15px;
     border-radius: 0px;
+    padding-left: 10px;
+    display: flex;
     outline: 0px;
     border: none;
     padding: 5px;
-    padding-left: 10px;
-    height: 50px;
-    color: gray;
     width: 100%;
+    height: 60px;
+    flex: 1;
+    color: #fff;
     font-size: 20px;
     font-weight: bold;
     align-items: center;
+    background: transparent;
     justify-content: flex-start;
 }
 
 .transact-wallet-input-wrapper button {
+    font-weight: bold;
     border: none;
-    flex: 1;
-    width: 100%;
-    height: 100%;
+    height: 60px;
     display: flex;
     cursor: pointer;
-    padding: 0px 20px;
+    padding: 10px 20px;
     align-items: center;
     justify-content: center;
     text-transform: capitalize;
-    transition: all ease 350ms;
-    background: transparent;
+    background-color: #7c5dc9;
 }
 
 .transact-wallet-input-wrapper button:hover {
-    background-color: rgb(100, 100, 100);
-    color: white;
-    height: 100%;
+    transition: all ease 350ms;
+    color: #7c5dc9;
+    background-color: white;
 }
 
 .coin-type-wrapper {
@@ -259,67 +273,48 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
-    background-color: white;
-    border-radius: 5px;
-    overflow: hidden;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.171);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+
+    box-shadow: 1px 0px 5px 2px #7c5dc9;
 }
 
 .transac-address-wrapper-link {
     display: flex;
     width: 100%;
     height: 100%;
-    padding: 5px 20px;
     justify-items: center;
     align-items: center;
     margin: auto;
-    color: teal;
+    color: #fff;
     font-weight: bold;
     letter-spacing: 0.1em;
 }
 
-.transac-address-wrapper button {
-    transition: all 500ms easae;
-    width: 70px;
-    height: 100%;
-    border: none;
+.copyBtnWrapper {
     display: flex;
-    background-color: transparent;
+    width: 120px;
+    height: 50px;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.transact-wallet-address-barcode {
-    height: auto;
-    width: auto;
-    display: flex;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color: white;
-}
-
-.transact-wallet-address-barcode img {
-    height: 150px;
-    width: 150px;
-    display: flex;
-    object-fit: cover;
 }
 
 .transaction-receipt-container .transact-note {
     text-align: center;
     display: flex;
     width: auto;
-    padding: 5px 10px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(54, 173, 252);
-    font-size: 12px;
-    font-weight: 500;
-    border-radius: 3px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.418);
+
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+
     text-align: center;
-    width: 100%;
     align-items: center;
     justify-content: center;
 
@@ -364,17 +359,38 @@
     font-size: 13px;
 }
 
-.tansac-reciept-footer p {
+.tansact-reciept-footer {
+    background-color: black;
+    border-radius: 10px;
+}
+
+.tansact-reciept-footer p {
     text-transform: uppercase;
     justify-content: flex-end;
     align-items: flex-end;
     display: flex;
     height: 100%;
     width: 100%;
+
 }
 
-.tansac-reciept-footer p span {
-    font-size: 20px;padding: 0px 10px;
+.tansact-reciept-footer p {
+
+    /* background-color: black; */
+    justify-content: center;
+    align-items: flex-end;
+    display: flex;
+    height: auto;
+    width: 100%;
+    gap: 10px;
+    padding: 20px;
+
+    cursor: pointer;
+}
+
+.tansact-reciept-footer p span {
+    font-size: 20px;
+    padding: 0px 10px;
 }
 
 .coin-symbol {
@@ -382,4 +398,111 @@
     color: teal;
     font-size: 100px;
 
+}
+
+.depositValue {
+    font-weight: bold;
+    color: #7c5dc9;
+    font-size: 40px;
+    line-height: normal;
+    position: relative;
+}
+
+
+.completPaymentBtn {
+    display: flex;
+    padding: 20px;
+    margin: 30px 0px;
+}
+
+.completPaymentBtn button {
+    font-size: 1rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif 'Courier New', Courier, monospace;
+    padding: .8rem 2rem;
+    border: none;
+    outline: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    text-transform: none;
+    background-color: rgb(14, 14, 26);
+    color: rgb(234, 234, 234);
+    transition: 0.6s;
+    box-shadow: 0px 10px 50px rgb(158, 236, 1);
+    -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.4));
+}
+
+
+.completPaymentBtn button:active {
+    scale: 0.92;
+}
+
+
+.completPaymentBtn button:hover {
+    background: rgb(2, 29, 78);
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+    color: rgb(4, 4, 38);
+}
+
+@media screen and (max-width:900px) {
+    .deposit-section-crypto-types .transaction-cointype-wrapper {
+        height: 80px;
+        width: 80px;
+        gap: 10px;
+    }
+
+
+    .transact-wallet-input-wrapper {
+        width: 100%;
+
+    }
+
+    .deposit-rule-list-wrapper {
+        width: 100%;
+    }
+
+    .transaction-receipt-container {
+        padding: 0px 5px;
+    }
+
+    .transaction-receipt-container-rate {
+
+        background-color: transparent;
+    }
+
+    .transac-address-wrapper {
+        margin-bottom: 10px;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .transac-address-wrapper-link {
+        letter-spacing: 0px;
+        text-align: center;
+    }
+
+    .tansact-reciept-footer p {
+
+        background-color: black;
+        display: flex;
+        height: auto;
+        width: 100%;
+        gap: 5px;
+        padding: 10px;
+
+        cursor: pointer;
+    }
+
+    .tansact-reciept-footer p span {
+        font-size: 20px;
+        padding: 0px 10px;
+        flex-direction: column;
+    }
+
+    .depositValue {
+        font-weight: bold;
+        color: #7c5dc9;
+        font-size: 30px;
+        line-height: normal;
+        position: relative;
+    }
 }

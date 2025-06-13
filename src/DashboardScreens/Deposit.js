@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import "./styles/deposit.css";
 
-import qrCode from "./../assets/qr-code-barcode-scanners-image-scanner-q-41bdbfbd944b13bdd9028b69fed03730.png";
 import CoinRateProvider from "../Components/CoinRateProvider";
 
 function Deposit() {
   const [address, setAddress] = useState({
-    walletAddress: "bsbbubsjyujbshu748hiukhdsugdufbidsfbi",
-    isCopy: false
+    walletAddress: "bsbbubsjyujbshu748hiukhdsugdufbidsfbi"
   });
 
   const [isWallet, setIsWallet] = useState({
@@ -15,59 +13,62 @@ function Deposit() {
     selectedWallet: null,
     isDeposit: false,
     isRate: 0,
-    isAmount: 0
+    isAmount: false
   });
 
   const [isDebitAmount, setIsDebitAmount] = useState(0);
-  const { cryptoValues, coinPrice } = CoinRateProvider();
-  console.log(coinPrice);
+  const { cryptoValues } = CoinRateProvider();
 
-  const handleCopy = () => {
+  const handleCopy = (item) => {
     if (!address.isCopy) {
-      navigator.clipboard.writeText(address.walletAddress);
-      setAddress((prev) => ({ ...prev, isCopy: true }));
-      setTimeout(() => {
-        setAddress((prev) => ({ ...prev, isCopy: false }));
-      }, 1500);
+      if (document.hasFocus()) {
+        navigator.clipboard
+          .writeText(item)
+          .then(() => {
+            setAddress((prev) => ({ ...prev, isCopy: true }));
+            setTimeout(() => {
+              setAddress((prev) => ({ ...prev, isCopy: false }));
+            }, 1500);
+          })
+          .catch((error) => {
+            console.error("Clipboard write failed:", error);
+            // Optionally, show a fallback or error message to the user
+          });
+      } else {
+        console.warn("Document is not focused. Unable to copy.");
+      }
     }
   };
 
-  const handleTransacPage = () => {
+  const handleTransactPage = () => {
     setIsWallet((prevState) => ({
       ...prevState,
-      walletState: !prevState.walletState,
-      isDeposit: false
+      walletState: true,
+      isDeposit: false,
+      isAmount: !prevState.isAmount
     }));
+
+    setIsDebitAmount(0);
   };
 
   const handleWallet = (item) => {
     setIsWallet((prevState) => ({
       ...prevState,
-      walletState: !prevState.walletState,
+      walletState: false,
       selectedWallet: item
     }));
   };
 
   function handleTransactionType() {
-    const result = cryptoValues.map((item) => {
-      return (
-        <div className="transaction__type">
-          <button
-            onClick={() => handleWallet(item)}
-            className="transaction-cointype-wrapper">
-            {/* <img
-              src={
-                item.image ||
-                "https://www.pexels.com/photo/red-and-blue-pelikan-br-40-eraser-on-white-surface-35202/"
-              }
-              alt={item.name || "Not Found"}
-            /> */}
-
-            <h1>{item.name}</h1>
-          </button>
-        </div>
-      );
-    });
+    const result = cryptoValues?.map((prop, index) => (
+      <div className="transaction__type" key={prop.id || index}>
+        <button
+          onClick={() => handleWallet(prop)}
+          className="transaction-cointype-wrapper">
+          <img src={prop.image} alt={"Coin Image"} />
+        </button>
+      </div>
+    ));
     return result;
   }
 
@@ -86,49 +87,68 @@ function Deposit() {
 
           <button
             className="transact-page-button-navigator"
-            onClick={handleTransacPage}>
+            onClick={handleTransactPage}>
             <p>Cancel</p>
           </button>
         </div>
 
         {!isWallet.isDeposit ? (
-          <div className="transact-wallet-input-wrapper">
+          <div
+            className={
+              !isWallet.isAmount
+                ? "transact-wallet-input-wrapper"
+                : "transact-wallet-input-wrapper border"
+            }>
             <h3>$</h3>
             <input
               type="number"
               placeholder="Enter Amount"
+              onMouseEnter={() => {
+                setIsWallet((prevState) => ({
+                  ...prevState,
+                  isAmount: false
+                }));
+              }}
               onChange={(e) => {
                 setIsDebitAmount(e.target.value);
               }}
             />
             <button
-              onClick={() =>
-                setIsWallet((prevState) => ({ ...prevState, isDeposit: true }))
-              }>
+              onClick={() => {
+                if (isDebitAmount <= 0) {
+                  setIsWallet((prevState) => ({
+                    ...prevState,
+                    isAmount: true
+                  }));
+                } else {
+                  setIsWallet((prevState) => ({
+                    ...prevState,
+                    isDeposit: true
+                  }));
+                }
+              }}>
               Submit
             </button>
           </div>
         ) : (
           <div className="transaction-receipt-container">
             <div className="transaction-receipt-container-rate">
-              <div className="transact-wallet-address-barcode">
-                <img src={qrCode} alt="" />
-              </div>
-
               <div className="transac-address-wrapper">
-                <h4 className="transac-address-wrapper-link">
+                <h4
+                  className="transac-address-wrapper-link"
+                  onClick={async () => {
+                    await handleCopy(address.walletAddress);
+                    alert("Copied!");
+                  }}>
                   {address.walletAddress}
                 </h4>
-                <button onClick={handleCopy}>
-                  {address.isCopy ? "Copied!" : "Copy"}
-                </button>
               </div>
             </div>
 
             <p className="transact-note">
-              Add funds to your generated wallet address. After your wallet
-              address has been generated, copy the wallet and fund your account
-              through our secure payment vendor prompt
+              Fund your account by sending funds to your generated wallet
+              address. Once your wallet address is created, simply copy it and
+              complete the payment using our secure vendor prompt.
             </p>
 
             <div className="transact-receipt-crypto-destails-wrapper">
@@ -136,29 +156,32 @@ function Deposit() {
               <hr />
               <div className="cancel-deposit  reciept-info-section">
                 <p></p>
-                <p>Available with 10% fee - After min 24 hours </p>
+                <p>
+                  Please note that your payment is being processed and will
+                  reflect in your account within a few minutes.{" "}
+                </p>
               </div>
               <hr />
               <div className="debit-amount reciept-info-section">
-                <p>Debit Amount </p>
-                <p>${isDebitAmount}</p>
+                <p> Amount </p>
+                <p>$ {isDebitAmount}</p>
               </div>
               <hr />
               <div className="btc-value reciept-info-section">
-                <p>"BTC to USD Conversion</p>
-                <p>{btcValue}</p>
+                <p>{`"${item.symbol} "`} to USD Conversion Rate</p>
+                <p>{btcValue} </p>
               </div>
             </div>
 
-            <div className="tansac-reciept-footer">
-              <p>
+            <div className="tansact-reciept-footer">
+              <p onClick={() => handleCopy(isDebitAmount * btcValue)}>
                 DEPOSIT <span className="coin-symbol">{item.symbol + " "}</span>
                 AMOUNT:
-                <span>{" " + btcValue * isDebitAmount}</span>
               </p>
+              <p className="depositValue">{" " + isDebitAmount * btcValue}</p>
             </div>
             <div className="completPaymentBtn">
-              <button>Complete Payment</button>
+              <button>Payment Completed</button>
             </div>
           </div>
         )}
@@ -197,18 +220,9 @@ function Deposit() {
           )}
         </div>
 
-        <hr
-          style={{
-            border: "none",
-            height: "1px",
-            backgroundColor: "gray",
-            opacity: ".4"
-          }}
-        />
-
         <div className="deposit-instruction-wrapper">
           <h4>Note:</h4>
-          <div className="deposiit-rule-list-wrapper">
+          <div className="deposit-rule-list-wrapper">
             <ol>
               <li>Send the exact amount in cryptocurrencies or more.</li>
               <li>
@@ -221,8 +235,8 @@ function Deposit() {
                 transaction.
               </li>
               <li>
-                Maximum Transaction Limit: The maximum transaction limit is
-                $300. You can transact up to $300 in one transaction.
+                Maximum Transaction Limit: You can deposit up to $1 million in a
+                single transaction.
               </li>
               <li>
                 Secure Storage of Private Keys: Your private keys, which grant

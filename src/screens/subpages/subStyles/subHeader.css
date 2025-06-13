@@ -4,15 +4,13 @@
     justify-content: flex-start;
     display: flex;
     height: 55vh;
-    border-radius: 0px 0px 50px 50px;
+    border-radius: 0px 0px 100px 100px;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(to bottom right,
-            rgb(73, 223, 73), rgb(76, 201, 250));
+    background: #7c5dc9;
 }
 
 .sh-writeUp {
-    color: white;
     gap: 10px;
     display: flex;
     flex-direction: column;
@@ -22,10 +20,13 @@
 }
 
 .sh-writeUp h4 {
+    color: white;
     font-size: 30px;
+
 }
 
 .sh-writeUp h1 {
+    color: white;
     font-size: 50px;
 }
 
@@ -36,7 +37,7 @@
     align-items: flex-end;
     height: 100%;
     width: 100%;
-    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.575), rgba(0, 0, 0, 0.692));
+    /* background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.575), rgba(0, 0, 0, 0.692)); */
 }
 
 .sp-overlay {
@@ -64,11 +65,10 @@
         justify-content: flex-start;
         display: flex;
         height: 30vh;
-        border-radius: 0px 0px 20px 20px;
+        border-radius: 0px 0px 50px 50px;
         position: relative;
         overflow: hidden;
-        background: linear-gradient(to bottom right,
-                rgb(73, 223, 73), rgb(76, 201, 250));
+        background-color:#7c5dc9;
     }
 
     .sh-writeUp {

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./subStyles/subplan.css";
-import { GoDotFill } from "react-icons/go";
+import { FaCheck } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+
+import AnimatedBtn from "../../DashboardScreens/SubComponent/AnimatedBtn";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { PropData } from "../../Context/PropDataHandler";
 
 function SubscriptionPlan() {
   useEffect(() => {
@@ -19,7 +22,8 @@ function SubscriptionPlan() {
     AOS.refresh();
   }, []);
 
-  const [active, setActive] = useState("Standard");
+  const { active } = PropData();
+
   const paymentTypes = [
     {
       id: 1,
@@ -209,9 +213,6 @@ function SubscriptionPlan() {
     }
   ];
 
-  const handleClick = (tag) => {
-    setActive(tag);
-  };
   const getDetailsByTag = () => {
     const selectedType = paymentTypes.find((type) => type.tag === active);
     return selectedType ? selectedType.details : [];
@@ -221,37 +222,25 @@ function SubscriptionPlan() {
     <div className="suplanWrapper">
       <div className="planTypeBtn">
         {paymentTypes.map(({ id, tag }) => (
-          <button
-            data-aos="zoom-in-up"
-            type="button"
-            className={`planBtn ${active === tag ? "active" : ""}`}
-            key={id}
-            onClick={() => handleClick(tag)}>
-            {tag}
-          </button>
+          <AnimatedBtn item={tag} key={id} />
         ))}
       </div>
       <div className="paymentCards">
         {getDetailsByTag().map((detail, index) => (
-          <div className="paymentCard" key={index}>
-            <h1 data-aos="zoom-in-up">{detail.header}</h1>
+          <div className="paymentCard" key={index} data-aos="zoom-in-up">
+            <h1>{detail.header}</h1>
             <div className="pips">
-              <h2 data-aos="zoom-in-up">{detail.pips}</h2>
+              <h2>{detail.pips}</h2>
             </div>
             <div className="pricing">
               {detail.planPrice.map((price, i) => (
-                <p key={i} data-aos="zoom-in-up">
-                  {" "}
-                  <GoDotFill
-                    color={"black"}
-                    size={"12px"}
-                    style={{ paddingRight: "5px" }}
-                  />
+                <p key={i}>
+                   <FaCheck size={"12px"} style={{ paddingRight: "5px" }} />
                   {price}
                 </p>
               ))}
             </div>
-            <Link data-aos="zoom-in-up" className="gh3" to={"/sign-up"}>
+            <Link className="gh3" to={"/sign-up"}>
               <h3 className="p-gh3">Get Started</h3>
             </Link>
           </div>

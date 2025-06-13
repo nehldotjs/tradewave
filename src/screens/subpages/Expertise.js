@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./subStyles/expert.css";
-import ExpImg from "../../assets/mac1.png";
-import ExpImg1 from "../../assets/rmac1.png";
+
+import sampleVideo from "../../assets/videos/stock-video.mp4";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -19,7 +19,7 @@ function Expertise() {
     AOS.refresh();
   }, []);
 
-  const ExprtCrdDetails = [
+  const ExpertCrdDetails = [
     {
       id: 1,
       header: "Transparent Investment",
@@ -38,39 +38,38 @@ function Expertise() {
   ];
   return (
     <div className="expertWrapper">
-      <div className="expertBackgroundImage">
-        <img
-          src={ExpImg}
-          className="exprt web"
-          alt="trade wave background image"
-        />
-        <img
-          src={ExpImg1}
-          className="exprt mobile"
-          alt="mobile trade wave background image"
-        />
-      </div>
-
       <div className="expertWriteUp">
-        <h1 data-aos="zoom-in-up">
-          All the Expertise You Anticipate from a Trading Professional
+        <h1 data-aos="zoom-in-up" className="expert-header">
+          Trusted Expertise in Trading{" "}
         </h1>
 
-        <div className="experCardWrapper" data-aos="zoom-in-up">
-          {ExprtCrdDetails.map((item) => {
+        <div className="expertCardWrapper" data-aos="zoom-in-up">
+          {ExpertCrdDetails.map((item) => {
             const { id, header, text } = item;
             return (
               <div
                 className="expertCardContainer"
                 key={id}
                 data-aos="zoom-in-up">
-                <h2>{header}</h2>
+                <h1>{header}</h1>
                 <div className="hr"></div>
                 <p>{text}</p>
               </div>
             );
           })}
         </div>
+      </div>
+      <div
+        className="video-wrapper">
+        <video
+          src={sampleVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          width="100%"
+          height="100%"
+        />
       </div>
     </div>
   );

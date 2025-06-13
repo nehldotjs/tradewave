@@ -1,30 +1,33 @@
-.dash-headerNav-main {
-    position: relative;
+.header-tickertape-wrapper {
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    background-color: aliceblue;
+
+}
+
+.dash-headerNav-main {
+    display: flex;
+    position: relative;
+    justify-content: center;
     align-items: flex-end;
-    justify-content: flex-end;
+    flex-direction: column;
+
+    z-index: 3;
+    align-items: flex-end;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.header-tickertape-wrapper {
-    z-index: 1;
-    display: flex;
-    width: 100%;
-    background-color: aliceblue  ;
-}
 
 .dash-headerNav-section-wrapper {
-    background: linear-gradient(to bottom right, rgb(53, 82, 82), rgb(15, 20, 48));
     display: flex;
     margin: auto;
     height: 80px;
     width: 100%;
-    align-items: center;
-    justify-content: center;
     z-index: 1;
     position: relative;
-
+    align-items: center;
+    justify-content: center;
+    background-color: #0b1120;
 }
 
 .dash-headerNav-section-container {
@@ -46,18 +49,16 @@
 
 .hn-b-wrapper {
     display: flex;
-    background-color: white;
     justify-content: center;
     align-items: center;
     gap: 20px;
     padding: 3px 10px;
-    border-radius: 5px;
 }
 
 .hn-b-wrapper p {
     text-transform: capitalize;
     font-weight: 500;
-    color: teal;
+    color: #7c5dc9;
 }
 
 .hn-b-wrapper h5 {
@@ -96,7 +97,6 @@ span {
 
 .hn-b-wrapper-name p {
     color: white;
-    font-weight: bold;
     text-transform: capitalize;
 }
 
@@ -104,7 +104,6 @@ span {
     height: 50px;
     width: 50px;
     display: flex;
-    background-color: gray;
     border-radius: 50%;
     justify-content: center;
     align-items: center;
@@ -113,9 +112,14 @@ span {
 
 .hn-b-image-wrarpper button {
     height: 100%;
-    width: auto;
+    width: 100%;
     display: flex;
     border: none;
+
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    cursor: pointer;
 }
 
 .hn-b-image-wrarpper img {
@@ -127,46 +131,63 @@ span {
     cursor: pointer;
 }
 
+.userIcon {
+    background-color: #7c5dc9;
+    height: 100%;
+    width: 100%;
+    padding-top: 10px
+}
+
 .dash-headerNav-section-wrapper h2 {
     display: none;
 }
 
 .dashBoardSignOutWrapper {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    height: auto;
-    width: auto;
-    position: absolute;
-    right: 0px;
-    padding: 10px 20px;
-    transition: 500ms all ease;
-    bottom: 0px;
-    top: 0px;
-}
+    background-color: #7c5dc9;
+    background: transparent;
 
-.inactive {
-    top: 100%;
-    bottom: unset;
-}
-
-.dashBoardSignOutWrapper button {
     border: none;
     display: flex;
+
+    height: 0px;
     width: 100%;
-    padding: 5px 20px;
+
+    z-index: 2;
+    position: relative;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+.dash-logout-btn {
+    transition: 500ms all ease;
+    background-color: #7c5dc9;
+    position: absolute;
+    display: flex;
+    height: 60px;
+    width: 100px;
+    top: 0px;
+    border: none;
+    margin-right: 30px;
     cursor: pointer;
+
+    overflow: hidden;
+
+
     justify-content: center;
     align-items: center;
-    font-weight: bold;
-    z-index: 1;
 }
+
+
+.inactive {
+    overflow: hidden;
+    height: 0px;
+}
+
 
 @media screen and (max-width:900px) {
     .dash-headerNav-section-wrapper {
-        background: linear-gradient(to bottom right, rgb(53, 82, 82), rgb(15, 20, 48));
+        background: linear-gradient(to bottom right, #7c5dc9, rgb(15, 20, 48));
         display: flex;
         flex-direction: column;
         margin: auto;
@@ -179,6 +200,7 @@ span {
         padding: 10px;
 
     }
+
 
     .dash-headerNav-section-container {
         height: 100%;
@@ -201,7 +223,6 @@ span {
 
     .hn-b-wrapper {
         display: flex;
-        background-color: white;
         justify-content: center;
         align-items: center;
         gap: 20px;
@@ -216,15 +237,16 @@ span {
         align-items: center;
         gap: 20px;
         width: 100%;
-        /* flex: 1; */
     }
 
 
     .dash-headerNav-section-wrapper h2 {
-        background: linear-gradient(to right, lightgreen, teal);
+        background: linear-gradient(to right, skyblue, #7c5dc9);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         display: flex;
+
+        font-size: 40px;
     }
 }

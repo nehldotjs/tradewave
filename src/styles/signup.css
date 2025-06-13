@@ -1,255 +1,431 @@
-.signupWrapper {
-    height: 100%;
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: flex-start;
-    background-color: rgba(0, 0, 0, 0.685);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+ .signupWrapper {
+     height: 100vh;
+     display: flex;
+     position: relative;
+     align-items: center;
+     justify-content: flex-start;
+     background-color: rgba(0, 0, 0, 0.685);
+     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+ }
 
-.s-backgrounmainimage {
-    height: 100%;
-    width: "100%";
-    display: flex;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-}
+ .s-backgrounmainimage {
+     height: 100%;
+     width: "100%";
+     display: flex;
+     position: absolute;
+     align-items: center;
+     justify-content: center;
+ }
 
-.s-backgrounmainimage img {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    object-fit: cover;
-    background-color: black;
-}
+ .s-backgrounmainimage img {
+     width: 100%;
+     height: 100%;
+     display: flex;
+     object-fit: cover;
+     background-color: black;
+ }
 
-.faUser-icon {
-    color: rgb(168, 168, 168);
-    background-color: white;
-    padding-top: 15%;
-    display: flex;
-    margin: auto;
-    height: 100%;
-    width: 100%;
-}
+ .faUser-icon {
+     color: rgb(168, 168, 168);
+     background-color: white;
+     padding-top: 15%;
+     display: flex;
+     margin: auto;
+     height: 100%;
+     width: 100%;
+ }
 
-.formWrapper {
-    justify-content: space-evenly;
-    align-items: center;
-    color: white;
-    display: flex;
-    height: 100%;
-    z-index: 1;
-    gap: 10px;
-    flex: 1;
-}
+ .s-formWrapper {
+     justify-content: center;
+     align-items: center;
+     padding-bottom: 30px;
+     color: white;
+     display: flex;
+     height: 100vh;
+     z-index: 1;
+     gap: 10px;
+     flex: 1;
+     position: relative;
 
-.formContainer {
-    gap: 10px;
-    padding: 10%;
-    display: flex;
-    border-radius: 10px;
-    flex-direction: column;
-    backdrop-filter: blur(5px);
-    background-color: #00000044;
-    box-shadow: 2px 5px 5px 2px rgba(0, 0, 0, 0.555);
-}
+ 
+ }
 
-.userNames {
-    display: flex;
-    gap: 10px;
-}
+ .s-formContainer {
+     padding: 5px 10px;
+     height: auto;
+     gap: 10px;
+     width: 90%;
+gap: 15px;
+     align-items: center;
+     justify-content: space-evenly;
 
-.s-firstName,
-.s-lastName,
-.s-Email,
-.s-country,
-.s-state,
-.s-password,
-.s-confirmPassword {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    z-index: 1;
-}
+     display: flex;
+     border-radius: 10px;
+     flex-direction: column;
+     backdrop-filter: blur(5px);
+     background-color: #00000044;
+     box-shadow: 2px 5px 5px 2px rgba(0, 0, 0, 0.555);
+     position: absolute;
 
-label {
-    font-weight: bold;
-    font-size: 12px;
-}
 
-input {
-    padding: 10px;
-    border-radius: 5px;
-    outline: none;
-    border: 1px solid black;
-}
+     margin: auto;
+  }
 
-select {
-    padding: 5px;
-    border-radius: 5px;
-}
+ .userNames {
+     gap: 5px;
+     width: 100%;
+     height: auto;
+     display: flex;
+ }
 
-.s-TcWrapper {
-    display: flex;
-    gap: 20px;
-    font-weight: 500;
-    font-size: 12px;
-}
+ .s-firstName,
+ .s-lastName,
+ .s-Email,
+ .s-country,
+ .s-state,
+ .s-password,
+ .s-confirmPassword {
+     display: flex;
+     flex-direction: column;
+     gap: 2px;
+     z-index: 1;
+     width: 100%;
+     flex: 1;
 
-.s-TcWrapper span {
-    background: linear-gradient(to right, lightgreen, teal);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: bold;
-}
+     background: transparent;
+     color: white;
 
-.s-tcLinkBtn {
-    text-decoration: none;
-    color: coral;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 350ms all ease;
-    padding: 5px;
-}
+ }
 
-.s-tcLinkBtn:hover {
-    color: aqua;
-}
+ .s-firstName input,
+ .s-lastName input,
+ .s-Email input {
+     background-color: transparent;
+     border: 1px solid white;
+     outline: none;
+     border-radius: 5px;
+     height: 30px;
+ }
 
-.s-SignUpBtn {
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    display: flex;
-    padding: 10px;
-}
+ .s-location {
+     display: flex;
+     margin: auto;
+     width: 100%;
+     gap: 5px;
+ }
 
-.s-SignUpBtn button {
-    padding: 10px;
-    font-weight: bold;
-    transition: 500ms all ease;
+ .s-country select {
+     background-color: transparent;
+     color: white;
+     border: 1px solid white;
+ }
 
-    background-color: transparent;
-    border-width: 3px;
-    border-style: solid;
-    border-image: linear-gradient(to right, lightgreen, teal);
-    border-image-slice: 1;
-    cursor: pointer;
-}
+ .s-country select option {
+     background-color: transparent;
+     color: black;
+ }
 
-.s-SignUpBtn button:hover {
-    background-color: rgb(28, 53, 49);
-}
+ .s-state select {
+     background-color: transparent;
+     color: white;
+     border: 1px solid white;
+ }
 
-.s-SignUpBtn button h3 {
-    background: linear-gradient(to right,
-            teal, lightgreen);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
+ .s-state select option {
+     background-color: transparent;
+     color: black;
+ }
 
-.s-LoginWrapper {
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    display: flex;
-    font-size: 12px;
-}
+ .s-password-wrapper {
+     display: flex;
+     margin: auto;
+     width: 100%;
+     gap: 5px;
+ }
 
-.s-tcLoginBtn {
-    color: aquamarine;
-    padding: 5px;
-}
+ .passwordWrapper {
+     border: 1px solid white;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border-radius: 5px;
 
-.s-dashWriteUp {
-    z-index: 1;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding: 5%;
-    color: white;
-    display: flex;
-    width: 50%;
-    /* background-color: red; */
-}
+     height: 30px;
+ }
 
-.s-dashWriteUp span {
-    background: linear-gradient(to right, lightgreen, teal);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
+ .s-password input,
+ .s-confirmPassword input {
+     border: none;
+     outline: none;
+     border-radius: 0px;
+     width: 100%;
+     padding: 5px 10px;
+     outline: none;
+     color: white;
+     background-color: transparent;
 
-@media screen and (max-width:900px) {
-    .signupWrapper {
-        background-color: rgba(0, 0, 0, 0.685);
-        display: flex;
-        height: 100%;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        position: relative;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
+ }
 
-    .s-dashWriteUp {
-        z-index: 1;
-        height: auto;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 15px;
-        color: white;
-        display: flex;
-        width: 100%;
-    }
+ .passwordView {
+     width: 10%;
+     height: 100%;
+     cursor: pointer;
+     justify-content: center;
+     align-items: center;
+     display: flex;
+ }
 
-    .s-dashWriteUp h1 {
-        width: 100%;
-        height: auto;
-        display: flex;
-        font-size: 25px;
-        text-align: center;
-        margin: auto;
-    }
+ .passwordIcon {
+     flex: 1;
+     width: 100%;
+     margin: auto;
+     display: flex;
+ }
 
-    .formWrapper {
-        z-index: 1;
-        height: auto;
-        width: 100%;
-        flex: 1;
-        gap: 5px;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        color: white;
-    }
+ label {
+     font-weight: bold;
+     font-size: 12px;
+ }
 
-    .formContainer {
-        border-radius: 10px;
-        gap: 10px;
-        display: flex;
-        flex-direction: column;
-        padding: 5%;
-        width: 90%;
-        background-color: #00000044;
-        backdrop-filter: blur(2px);
-        backdrop-filter: unset;
-        box-shadow: 2px 5px 5px 2px rgba(0, 0, 0, 0.555);
-    }
+ select {
+     padding: 5px;
+     border-radius: 5px;
+ }
 
-    .userNames {
-        display: flex;
-        gap: 10px;
-        flex-direction: column;
-    }
+ .s-TcWrapper {
+     display: flex;
+     gap: 20px;
+     font-weight: 500;
+     font-size: 12px;
+ }
 
-}
+ .s-TcWrapper span {
+     background: linear-gradient(to right, lightgreen, teal);
+     -webkit-background-clip: text;
+     background-clip: text;
+     color: transparent;
+     font-weight: bold;
+ }
+
+ .s-tcLinkBtn {
+     text-decoration: none;
+     /* color: coral; */
+     font-weight: bold;
+     cursor: pointer;
+     transition: 350ms all ease;
+     padding: 5px;
+ }
+
+
+ .s-SignUpBtn {
+     align-items: center;
+     justify-content: center;
+     width: 100%;
+     display: flex;
+     /* padding: 10px; */
+ }
+
+ .s-SignUpBtn button {
+     padding: 10px;
+     font-weight: bold;
+     transition: 500ms all ease;
+
+     background-color: transparent;
+     border-width: 3px;
+     border-style: solid;
+     border-image: linear-gradient(to right, #7c5dc9, teal);
+     border-image-slice: 1;
+     cursor: pointer;
+ }
+
+ .s-SignUpBtn button h3 {
+     background: linear-gradient(to right,
+             teal, #7c5dc9);
+     -webkit-background-clip: text;
+     background-clip: text;
+     color: transparent;
+
+     height: 100%;
+     width: 100%;
+     display: flex;
+
+ }
+
+ .s-SignUpBtn button h3:hover {
+     background: unset;
+     -webkit-background-clip: unset;
+     background-clip: unset;
+     color: white;
+
+
+ }
+
+ .s-SignUpBtn button:hover {
+     color: white;
+     background: linear-gradient(to right, #7c5dc9, teal);
+ }
+
+ .s-LoginWrapper {
+     width: 100%;
+     height: 50px;
+     justify-content: center;
+     align-items: center;
+     margin: auto;
+     display: flex;
+     font-size: 12px;
+ }
+
+ .s-tcLoginBtn {
+     text-decoration: none;
+     font-size: 12px;
+     font-weight: bold;
+     color: #fff;
+     display: flex;
+     gap: 5px;
+     cursor: pointer;
+ }
+
+ .s-tcLoginBtn span {
+     color: #7c5dc9;
+     text-decoration: underline;
+ }
+
+ .s-dashWriteUp {
+     z-index: 1;
+     height: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: flex-end;
+     padding: 5%;
+     color: white;
+     display: flex;
+     width: 5 0%;
+ }
+
+ .s-dashWriteUp span {
+     background: linear-gradient(to right, #7c5dc9, teal);
+     -webkit-background-clip: text;
+     background-clip: text;
+     color: transparent;
+ }
+
+
+
+ .signUpUsingGoogle {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .signUpUsingGoogle {
+     width: 100%;
+     z-index: 1;
+ }
+
+
+ @media screen and (max-width:900px) {
+     .signupWrapper {
+         background-color: rgba(0, 0, 0, 0.685);
+         display: flex;
+         height: 100%;
+         flex-direction: column;
+         justify-content: flex-start;
+         align-items: center;
+         position: relative;
+         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+     }
+
+     .s-dashWriteUp {
+         z-index: 1;
+         height: auto;
+         width: 100%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         padding: 15px;
+         color: white;
+         display: flex;
+         width: 100%;
+     }
+
+     .s-dashWriteUp h1 {
+         width: 100%;
+         height: auto;
+         display: flex;
+         font-size: 25px;
+         text-align: center;
+         margin: auto;
+     }
+
+     .s-formWrapper {
+         z-index: 1;
+         height: auto;
+         width: 100%;
+         flex: 1;
+         display: flex;
+         justify-content: space-evenly;
+         align-items: center;
+         color: white;
+     }
+
+     .s-formContainer {
+         border-radius: 10px;
+         gap: 10px;
+         display: flex;
+         flex-direction: column;
+         padding: 30px 10px;
+         width: 90%;
+         height: 90%;
+         align-items: center;
+         justify-content: space-evenly;
+         background-color: #00000044;
+         backdrop-filter: blur(2px);
+         backdrop-filter: unset;
+         box-shadow: 2px 5px 5px 2px rgba(0, 0, 0, 0.555);
+
+      }
+
+     .s-firstName,
+     .s-lastName,
+     .s-Email,
+     .s-country,
+     .s-state,
+     .s-password,
+     .s-confirmPassword {
+         display: flex;
+         flex-direction: column;
+         gap: 2px;
+         z-index: 1;
+         width: 100%;
+         flex: unset;
+
+         height: auto;
+         background: transparent;
+         color: white;
+     }
+
+     .s-location {
+         display: flex;
+         flex-direction: column;
+         margin: auto;
+         width: 100%;
+         height: auto;
+         gap: unset;
+
+      }
+
+     .s-password-wrapper {
+         display: flex;
+         flex-direction: column;
+         margin: auto;
+         width: 100%;
+         gap: 5px;
+     }
+
+     .userNames {
+         display: flex;
+         gap: 10px;
+         flex-direction: column;
+     }
+ }

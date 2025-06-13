@@ -1,0 +1,202 @@
+.ref-wrapper {
+    display: flex;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.ref-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    padding-top: 10px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    flex: 1;
+
+}
+
+
+.ref-link-wrapper {
+    display: flex;
+    width: 100%;
+    height: 150px;
+    justify-content: flex-end;
+    align-items: center;
+    right: 0px;
+}
+
+.ref-link-image-wrapper {
+    overflow: hidden;
+    border-radius: 20px;
+    display: flex;
+    width: 50%;
+    height: 100%;
+    position: relative;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.ref-link-image-wrapper img {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    object-fit: cover;
+}
+
+.ref-link-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(0, 0, 255, 0.267);
+    height: 100%;
+    width: 100%;
+
+    padding: 20px;
+}
+
+.ref-link-container h3 {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.ref-link-container p {
+    font-size: 10px;
+    text-align: center;
+}
+
+.ref-link-image-wrapper button {
+    position: relative;
+    display: flex;
+    margin: auto;
+
+    padding: 10px 20px;
+    margin: auto;
+    border: none;
+    border-radius: 20px;
+    background: transparent;
+    cursor: pointer;
+    text-transform: capitalize;
+    background-color: rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(5px);
+}
+
+.ref-earning {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.ref-earning h3 {
+    font-size: 12px;
+    color: black;
+    margin: 20px;
+
+}
+
+
+.ref-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+    border-radius: 20px;
+    overflow-y: scroll;
+}
+
+.ref-table th,
+.ref-table td {
+    padding: 12px 15px;
+    text-align: left;
+    background-color: white;
+
+}
+
+.ref-table thead {
+    background-color: white;
+}
+
+.ref-table tr {
+    font-size: 12px;
+    text-transform: capitalize;
+    border: none;
+    border-bottom: 1px solid #2d2d2d49;
+}
+
+.ref-table tr:nth-child(odd) {
+    font-size: 12px;
+    text-transform: capitalize;
+    border: none;
+    border-bottom: 1px solid #2d2d2d49;
+}
+
+.ref-table tr:last-child {
+    border: none;
+}
+
+.ref-table tr:hover {
+    background-color: #d1d1d1;
+}
+
+/* Responsive for mobile */
+@media screen and (max-width: 900px) {
+    .ref-container {
+        padding: 10px;
+        padding-top: 10px;
+        position: absolute;
+
+        flex: 1;
+        overflow-y: scroll;
+    }
+
+    .ref-link-wrapper {
+        display: flex;
+        width: 100%;
+        height: 150px;
+        justify-content: flex-end;
+        align-items: center;
+        right: 0px;
+    }
+
+    .ref-link-image-wrapper {
+        border-radius: 10px;
+        width: 100%;
+    }
+
+    .ref-earning {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        border-radius: 0px;
+        padding: 0px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        overflow: scroll;
+    }
+
+    .ref-table {
+        display: flex;
+        overflow-x: scroll;
+    }
+
+    .ref-table table {
+        width: 100%;
+        height: 100%;
+        border-collapse: collapse;
+        border: none;
+        border-radius: 20px;
+    }
+
+
+}

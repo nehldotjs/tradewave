@@ -58,7 +58,7 @@
 }
 
 .estate-section2 p {
-    color: rgb(73, 73, 73);
+    color: white;
 }
 
 .estate-sections-wrapper h5 {
@@ -79,12 +79,13 @@
         height: 200px;
         border-radius: 20px;
     }
-.estate-section2 {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 90%;
-}
- 
+
+    .estate-section2 {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 90%;
+    }
+
 }

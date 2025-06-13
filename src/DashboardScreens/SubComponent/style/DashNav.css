@@ -3,7 +3,7 @@
     width: auto;
     position: relative;
     height: 100%;
- }
+}
 
 .dashNav-section-wrapper {
     display: flex;
@@ -15,13 +15,13 @@
     color: white;
     padding: 20px 10px;
     align-items: center;
-    background-color: rgb(27, 38, 58);
+    background-color: #070b15;
     justify-content: space-between;
-    flex-direction: column;  
+    flex-direction: column;
 }
 
 .dashnav-main-wrapper h2 {
-    background: linear-gradient(to right, lightgreen, teal);
+    background: linear-gradient(to bottom right, #b8a4eb, #7c5dc9);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -43,7 +43,8 @@
 }
 
 .dashnav-main-wrapper p {
-    font-size: 12px;
+    font-size: 10px;
+    text-align: center;
 }
 
 .dashNav-state {
@@ -59,11 +60,8 @@
         margin: auto;
         display: flex;
         transition: all 500ms ease;
-        z-index: 1;
-    }
 
-    .isDashActive {
-        transform: translateX(-100%);
+        z-index: 2;
     }
 
     .dashNav-section-wrapper {
@@ -77,8 +75,10 @@
         padding: 20px 5px;
         padding-bottom: 30px;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: center;
         flex-direction: column;
+
+
     }
 
     .dashNav-section-wrapper h2 {
@@ -89,7 +89,9 @@
         display: flex;
         flex-direction: column;
         width: auto;
-        height: auto;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
     }
 
     .dashNavLink-Section-Wrapper .dn-link {
@@ -101,5 +103,18 @@
         width: 100%;
         justify-content: flex-start;
         align-items: center;
+    }
+
+    .dashNav-section-wrapper p {
+        bottom: 0px;
+        display: flex;
+        flex: 1;
+        padding: 10px;
+        flex-wrap: wrap;
+    }
+
+
+    .isDashActive {
+        transform: translateX(-100%);
     }
 }

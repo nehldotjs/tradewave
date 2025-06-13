@@ -19,13 +19,13 @@
 .tc-wracpper p {
     padding: 5%;
     height: auto;
-    background-color: white;
+    background-color: transparent;
     display: block;
 }
 
 .tc-wracpper span {
-    background: linear-gradient(to right,
-            rgb(77, 214, 77), teal);
+    background: linear-gradient(to right, #7c5dc9,
+            teal);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

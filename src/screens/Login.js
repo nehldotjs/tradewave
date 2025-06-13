@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
@@ -13,26 +12,12 @@ import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { FIREBASE_AUTH, GOOGLE_PROVIDER } from "../Firebase";
 
 import "../styles/login.css";
+import { HiEye, HiEyeOff } from "react-icons/hi";
 
 function Login() {
   const [isUserInfo, setIsUserInfo] = useState({ email: "", password: "" });
-
-  // const [screenHeight, setScreenHeight] = useState(window.innerHeight);
-  // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
+  const [isPass, setIsPass] = useState(false);
   const navigate = useNavigate();
-
-  // const updateDimensions = () => {
-  //   setScreenHeight(window.innerHeight);
-  //   setScreenWidth(window.innerWidth);
-  // };
-  // useEffect(() => {
-  //   updateDimensions();
-  //   window.addEventListener("resize", updateDimensions);
-  //   return () => {
-  //     window.removeEventListener("resize", updateDimensions);
-  //   };
-  // }, []);
 
   const handleLogin = async () => {
     try {
@@ -41,7 +26,7 @@ function Login() {
         isUserInfo.email,
         isUserInfo.password
       );
-      navigate("/overview");
+      navigate("/tradewave.github.io/");
     } catch (error) {
       console.error("Error signing in:", error);
     }
@@ -50,7 +35,7 @@ function Login() {
   const handleSignUpWithGoogle = async () => {
     try {
       await signInWithPopup(FIREBASE_AUTH, GOOGLE_PROVIDER);
-      navigate("/overview");
+      navigate("/tradewave.github.io/");
     } catch (error) {
       console.error("Error signing in:", error);
     }
@@ -61,6 +46,7 @@ function Login() {
   };
 
   const EntList = [Ent1, Ent2, Ent3, Ent4];
+
   return (
     <>
       <div className="loginWrapper">
@@ -97,7 +83,7 @@ function Login() {
               <label htmlFor="emailInput">Email Address</label>
               <input
                 type="email"
-                className="loginInput"
+                className="email-loginInput"
                 value={isUserInfo.email}
                 onChange={(e) =>
                   setIsUserInfo({ ...isUserInfo, email: e.target.value })
@@ -107,14 +93,23 @@ function Login() {
 
             <div className="password">
               <label htmlFor="passwordInput">Password</label>
-              <input
-                type="password"
-                className="loginInput"
-                value={isUserInfo.password}
-                onChange={(e) =>
-                  setIsUserInfo({ ...isUserInfo, password: e.target.value })
-                }
-              />
+              <div className="l-password-input-wrapper">
+                <input
+                  type={isPass ? "text" : "password"}
+                  className="loginInput"
+                  value={isUserInfo.password}
+                  onChange={(e) =>
+                    setIsUserInfo({ ...isUserInfo, password: e.target.value })
+                  }
+                />
+                <button onClick={() => setIsPass(!isPass)}>
+                  {!isPass ? (
+                    <HiEyeOff className="l-passwordIcon" />
+                  ) : (
+                    <HiEye className="l-passwordIcon" />
+                  )}
+                </button>
+              </div>
             </div>
 
             <div className="loginBtnWrapper">
@@ -130,12 +125,6 @@ function Login() {
                 </button>
               </div>
               <div className="L-hr"></div>
-              <div className="googleAuth">
-                <button onClick={handleSignUpWithGoogle}>
-                  <FcGoogle size={20} color={"orangered"} /> Continue with
-                  Google
-                </button>
-              </div>
 
               <div className="createAcct">
                 <Link className="createAcctBtn" to={"/sign-up"}>

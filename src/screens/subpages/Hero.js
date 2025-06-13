@@ -2,6 +2,7 @@ import React from "react";
 
 import "./subStyles/hero.css";
 import { Link } from "react-router-dom";
+import AuthButton from "../../PropAssets/AuthBtn1";
 
 function Hero(prop) {
   const { image } = prop;
@@ -14,23 +15,13 @@ function Hero(prop) {
             <div className="overlayDiv"></div>
           </div>
           <div className="heroWriteUp">
-            <h2>
-              Navigating the Market Seas with a Strategy Anchored in Risk
-              Management and Profit Potential.
-            </h2>
             <p>
-              We view portfolio management as an art beyond mere stock and bond
-              acquisitions, devoid of mere speculation. Our approach melds a
-              proven 'top-down' investment strategy with personalized planning
-              to craft a portfolio uniquely aligned with your enduring financial
-              objectives.
+              "Navigating the Market Seas with a Strategy Anchored in Risk
+              Management and Profit Potential."
             </p>
             <div className="heroAuthButton">
-              <Link className="heroAuthBtn herologinBtn" to="/login">
-                <h3>Login</h3>
-              </Link>
-              <Link className="heroAuthBtn herosignUpBtn" to="/sign-up">
-                <h3>Register</h3>
+              <Link to="/login" className="heroAuthBtn">
+                <AuthButton name="Get Started" />
               </Link>
             </div>
           </div>

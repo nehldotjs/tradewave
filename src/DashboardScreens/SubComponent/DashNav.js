@@ -11,10 +11,21 @@ import { FaUsers } from "react-icons/fa";
 
 import { PropData } from "../../Context/PropDataHandler";
 
-import { GoHome } from "react-icons/go";
-
 function DashNav() {
   const { isNavActive } = PropData();
+  const navLinks = [
+    {
+      path: "/tradewave.github.io/",
+      icon: <SlGraph />,
+      label: "Chart"
+    },
+    { path: "/deposit", icon: <TbBrandCashapp />, label: "Deposit" },
+    { path: "/withdraw", icon: <BiMoneyWithdraw />, label: "Withdraw" },
+    { path: "/referal", icon: <FaUsers />, label: "Referrals" },
+    { path: "/history", icon: <BiHistory />, label: "Transactions" },
+    { path: "/settings", icon: <VscSettings />, label: "Settings" }
+  ];
+
   return (
     <div
       className={
@@ -23,45 +34,15 @@ function DashNav() {
           : "dashnav-main-wrapper"
       }>
       <div className="dashNav-section-wrapper">
-        <h2>TradeWave </h2>
+        <h2>TradeWave</h2>
         <div className="dashNavLink-Section-Wrapper">
-          <Link className="dn-link" to={"/overview"}>
-            <GoHome />
-            <h5> Dashboard</h5>
-          </Link>
-
-          <div className="hr"></div>
-
-          <Link className="dn-link" to={"/interface"}>
-            <SlGraph /> <h5> Trading Interface</h5>
-          </Link>
-          <Link className="dn-link" to={"/history"}>
-            <BiHistory /> <h5> Transaction history</h5>
-          </Link>
-
-          <div className="hr"></div>
-
-          <Link className="dn-link" to={"/deposit"}>
-            <TbBrandCashapp /> <h5> Deposit</h5>
-          </Link>
-          <Link className="dn-link" to={"/withdraw"}>
-            <BiMoneyWithdraw /> <h5> Withdraw</h5>
-          </Link>
-
-          <div className="hr"></div>
-
-          {/* <Link className="dn-link" to={"/2fa"}>
-            <FiShield /> <h5> 2FA</h5>
-          </Link> */}
-
-          <Link className="dn-link" to={"/referal"}>
-            <FaUsers /> <h5> Referrals</h5>
-          </Link>
-          <Link className="dn-link" to={"/settings"}>
-            <VscSettings /> <h5> Settings</h5>
-          </Link>
+          {navLinks.map(({ path, icon, label }, index) => (
+            <Link key={index} className="dn-link" to={path}>
+              {icon} <h5>{label}</h5>
+            </Link>
+          ))}
         </div>
-        <p> &copy; 2024 -TradeWave All rights Reserved</p>
+        <p> &copy; 2006 - TradeWave All rights Reserved</p>
       </div>
     </div>
   );

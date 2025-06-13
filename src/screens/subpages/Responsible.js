@@ -19,14 +19,14 @@ function Responsible() {
   }, []);
 
   return (
-    <div className="resWrapper">
+    <div className="resWrapper" data-aos="zoom-in-up">
       <div className="rebackImgWrapper">
-        <img src={resbckImage} alt="" data-aos="zoom-in-up" />
+        <img src={resbckImage} alt="" />
       </div>
-      <div className="resWriteUp">
-        <h1 data-aos="zoom-in-up">Sustainable Investing</h1>
+      <div className="resWriteUp" data-aos="zoom-in-up">
+        <h2>Sustainable Investing</h2>
         <div className="resContent">
-          <p data-aos="zoom-in-up">
+          <p>
             At <span>TRADEWAVE</span> Finance, we integrate environmental,
             social, and governance (ESG) considerations across the entire
             investment decision-making process and life cycle. We hold the
@@ -45,11 +45,7 @@ function Responsible() {
             its alignment with current best practices.
           </p>
           <div className="resImageWrapper">
-            <img
-              src={resImage}
-              alt="Conference Meeting"
-              data-aos="zoom-in-up"
-            />
+            <img src={resImage} alt="Conference Meeting" />
           </div>
         </div>
       </div>

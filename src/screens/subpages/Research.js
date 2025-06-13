@@ -58,15 +58,15 @@ function Research() {
   }, []);
 
   return (
-    <div className="researchWrapper">
-      <div className="r-section-1">
+    <div className="researchWrapper" data-aos="zoom-in-up">
+      <div className="r-section-1" data-aos="zoom-in-up">
         <div className="r-writeup">
           <div className="r-writeupBckImageWrapper">
-            <img src={rbckImg} alt="" data-aos="zoom-in-up" />
+            <img src={rbckImg} alt="" />
           </div>
           <div className="r-writeUpWrapper">
-            <h1 data-aos="zoom-in-up">Driven by Research</h1>
-            <p data-aos="zoom-in-up">
+            <h1>Driven by Research</h1>
+            <p>
               In an uncertain environment, the significance of independent,
               bottom-up research and analysis in the investment process becomes
               increasingly crucial. Our organizational structure cultivates a
@@ -75,7 +75,7 @@ function Research() {
             </p>
           </div>
           <div className="r-writeupImageWrapper">
-            <img src={rimge1} alt="" data-aos="zoom-in-up" />
+            <img src={rimge1} alt="" />
           </div>
         </div>
         <div className="r-cards">
@@ -83,21 +83,21 @@ function Research() {
             const { id, Headers, text } = item;
             return (
               <div className="cards" key={id} data-aos="zoom-in-up">
-                <h3 data-aos="zoom-in-up">{Headers}</h3>
-                <p data-aos="zoom-in-up">{text}</p>
+                <h3>{Headers}</h3>
+                <p>{text}</p>
               </div>
             );
           })}
         </div>
       </div>
-      <div className="r-section-2">
-        <div className="r-writeup">
+      <div className="r-section-2" data-aos="zoom-in-up">
+        <div className="r-writeup" data-aos="zoom-in-up">
           <div className="r-writeupBckImageWrapper">
-            <img src={rbckImg} alt="" data-aos="zoom-in-up" />
+            <img src={rbckImg} alt="" />
           </div>
           <div className="r-writeUpWrapper">
-            <h1 data-aos="zoom-in-up">Comprehensive Risk Management</h1>
-            <p data-aos="zoom-in-up">
+            <h1>Comprehensive Risk Management</h1>
+            <p>
               <span>TRADEWAVE</span> risk management is at the heart of
               everything we do. It starts with clearly defined and transparently
               communicated investment processes, includes formal ESG analysis
@@ -108,7 +108,7 @@ function Research() {
             </p>
           </div>
           <div className="r-writeupImageWrapper">
-            <img src={rimge2} alt="" data-aos="zoom-in-up" />
+            <img src={rimge2} alt="" />
           </div>
         </div>
         <div className="r-cards">

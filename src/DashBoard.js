@@ -1,6 +1,5 @@
-
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect, useMemo } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import "./DashboardScreens/styles/dashboard.css";
 
@@ -13,9 +12,31 @@ import Interface from "./DashboardScreens/Interface";
 import DashNav from "./DashboardScreens/SubComponent/DashNav";
 import HeaderNav from "./DashboardScreens/SubComponent/HeaderNav";
 import TransactionHistory from "./DashboardScreens/TransactionHistory";
-import Settings from "./DashboardScreens/Settings"
+import Settings from "./DashboardScreens/Settings";
 
 function DashBoard() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("redirect")) {
+      window.history.replaceState({}, document.title, location.pathname);
+    }
+  }, [location]);
+
+  const dashboardRoutes = useMemo(
+    () => [
+      { path: "/tradewave.github.io/", element: <Overview /> },
+      { path: "/deposit", element: <Deposit /> },
+      { path: "/profile", element: <Profile /> },
+      { path: "/referal", element: <Referals /> },
+      { path: "/withdraw", element: <Withdraw /> },
+      { path: "/settings", element: <Settings /> },
+      { path: "/interface", element: <Interface /> },
+      { path: "/history", element: <TransactionHistory /> }
+    ],
+    []
+  );
   return (
     <div className="dashboard-main-wrapper">
       <DashNav />
@@ -23,14 +44,9 @@ function DashBoard() {
         <HeaderNav />
         <div className="dash-main-content-wrapper">
           <Routes>
-            <Route path="/overview" element={<Overview />} />
-            <Route path="/deposit" element={<Deposit />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/referal" element={<Referals />} />
-            <Route path="/withdraw" element={<Withdraw />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/interface" element={<Interface />} />
-            <Route path="/history" element={<TransactionHistory />} />
+            {dashboardRoutes.map(({ path, element }, index) => (
+              <Route key={index} path={path} element={element} />
+            ))}
           </Routes>
         </div>
       </div>

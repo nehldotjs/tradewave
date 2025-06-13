@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Country, State } from "country-state-city";
 
 import mainBckImg from "../assets/pamm_levels.jpg";
@@ -8,15 +9,27 @@ import "../styles/signup.css";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
-import { FIREBASE_AUTH, db } from "../Firebase";
+import { FIREBASE_AUTH, GOOGLE_PROVIDER, db } from "../Firebase";
+import { signInWithPopup } from "firebase/auth";
+
+import AuthButton from "../PropAssets/AuthBtn1";
+
+import { HiEye } from "react-icons/hi";
+import { HiEyeOff } from "react-icons/hi";
+import { FcGoogle } from "react-icons/fc";
+import GoogleBtn from "../Components/GoogleBtn";
 
 function SignUp() {
   const [isChecked, setIsChecked] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedState, setSelectedState] = useState("");
   const [stateList, setStateList] = useState([]);
-
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+  const [isPass, setIsPass] = useState({
+    password: false,
+    confirmPassword: false
+  });
+
   const [isUserInfo, setIsUserInfo] = useState({
     email: "",
     password: "",
@@ -25,6 +38,7 @@ function SignUp() {
     lastName: "",
     gender: ""
   });
+
   const [isInput, setIsInput] = useState({
     email: false,
     password: false,
@@ -34,7 +48,6 @@ function SignUp() {
     gender: false
   });
 
-  const navigate = useNavigate();
   useEffect(() => {
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
@@ -52,11 +65,8 @@ function SignUp() {
     setScreenHeight(window.innerHeight);
   };
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
-
   const countries = Country.getAllCountries();
+
   const handleCountryChange = (event) => {
     const countryCode = event.target.value;
     setSelectedCountry(countryCode);
@@ -68,43 +78,80 @@ function SignUp() {
     setSelectedState(stateCode);
   };
 
-  const handleUserData = async () => {
-    try {
-      await createUserWithEmailAndPassword(
-        FIREBASE_AUTH,
-        isUserInfo.email,
-        isUserInfo.password
-      );
+  const navigate = useNavigate();
 
+  const signUpWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(FIREBASE_AUTH, GOOGLE_PROVIDER);
+      const user = result.user;
+
+      // Create user doc
       await addDoc(collection(db, "users"), {
         firstname: isUserInfo.firstName,
         lastname: isUserInfo.lastName,
         email: isUserInfo.email,
         country: selectedCountry,
         state: selectedState,
-        userUid: FIREBASE_AUTH?.currentUser?.uid
+        userUid: user.uid
       });
 
-      navigate("/overview");
+      await addDoc(collection(db, "userPortfolio"), {
+        balance: 0,
+        investment: 0,
+        roi: 0,
+        userUid: user.uid
+      });
+    } catch (error) {
+      console.error("Google Sign-Up Error:", error);
+    }
+  };
+
+  const handleUserData = async () => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        FIREBASE_AUTH,
+        isUserInfo.email,
+        isUserInfo.password
+      );
+
+      const user = userCredential.user;
+
+      // Create user doc
+      await addDoc(collection(db, "users"), {
+        firstname: isUserInfo.firstName,
+        lastname: isUserInfo.lastName,
+        email: isUserInfo.email,
+        country: selectedCountry,
+        state: selectedState,
+        userUid: user.uid
+      });
+
+      await addDoc(collection(db, "userPortfolio"), {
+        balance: 0,
+        investment: 0,
+        roi: 0,
+        userUid: user.uid
+      });
+
+      navigate("/tradewave.github.io/");
     } catch (err) {
       console.error("Error occurred:", err);
     }
   };
 
-  const handleSignUp = () => {
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+
     if (isUserInfo.firstName.length > 0) {
-      setIsInput((prevState) => {
-        return { ...prevState, firstname: false };
-      });
+      setIsInput((prevState) => ({ ...prevState, firstName: false }));
+
       if (isUserInfo.lastName.length > 0) {
-        setIsInput((prevState) => {
-          return { ...prevState, lastName: false };
-        });
+        setIsInput((prevState) => ({ ...prevState, lastName: false }));
+
         if (isUserInfo.email.length > 0) {
-          setIsInput((prevState) => {
-            return { ...prevState, email: false };
-          });
-          if (isUserInfo.password.length >= 5) {
+          setIsInput((prevState) => ({ ...prevState, email: false }));
+
+          if (isUserInfo.password.length >= 6) {
             if (isUserInfo.confirmPassword === isUserInfo.password) {
               if (isChecked) {
                 if (selectedCountry !== "") {
@@ -113,28 +160,22 @@ function SignUp() {
                   alert("Please choose your country");
                 }
               } else {
-                alert("Must accept our terms our terms and conditions");
+                alert("Must accept our terms and conditions");
               }
             } else {
-              alert("Password do not match");
+              alert("Passwords do not match");
             }
           } else {
-            alert("Password should be atleast six (6) characters");
+            alert("Password should be at least six (6) characters");
           }
         } else {
-          setIsInput((prevState) => {
-            return { ...prevState, email: true };
-          });
+          setIsInput((prevState) => ({ ...prevState, email: true }));
         }
       } else {
-        setIsInput((prevState) => {
-          return { ...prevState, lastName: true };
-        });
+        setIsInput((prevState) => ({ ...prevState, lastName: true }));
       }
     } else {
-      setIsInput((prevState) => {
-        return { ...prevState, firstName: true };
-      });
+      setIsInput((prevState) => ({ ...prevState, firstName: true }));
     }
   };
 
@@ -145,8 +186,9 @@ function SignUp() {
         <div className="s-backgrounmainimage">
           <img src={mainBckImg} alt="" />
         </div>
-        <div className="formWrapper">
-          <div className="formContainer">
+
+        <div className="s-formWrapper">
+          <div className="s-formContainer">
             <div className="userNames">
               <div className="s-firstName">
                 <label htmlFor="firstname">First name</label>
@@ -186,68 +228,105 @@ function SignUp() {
                 id="email"
               />
             </div>
+            <div className="s-location">
+              <div className="s-country">
+                <label htmlFor="country">Country</label>
+                <select
+                  name="country"
+                  id="country"
+                  onChange={handleCountryChange}>
+                  <option value="">Select a country</option>
+                  {countries.map((country) => (
+                    <option key={country.isoCode} value={country.isoCode}>
+                      {country.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-            <div className="s-country">
-              <label htmlFor="country">Country</label>
-              <select
-                name="country"
-                id="country"
-                onChange={handleCountryChange}>
-                <option value="">Select a country</option>
-                {countries.map((country) => (
-                  <option key={country.isoCode} value={country.isoCode}>
-                    {country.name}
+              <div className="s-state">
+                <label htmlFor="state">State</label>
+                <select name="state" id="state" onChange={handleStateChange}>
+                  <option value="" disabled>
+                    Select a state
                   </option>
-                ))}
-              </select>
+                  {stateList.map((state) => (
+                    <option key={state.isoCode} value={state.isoCode}>
+                      {state.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
-
-            <div className="s-state">
-              <label htmlFor="state">State</label>
-              <select name="state" id="state" onChange={handleStateChange}>
-                <option value="" disabled>
-                  Select a state
-                </option>
-                {stateList.map((state) => (
-                  <option key={state.isoCode} value={state.isoCode}>
-                    {state.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="s-password">
-              <label htmlFor="password">Password</label>
-              <input
-                style={{
-                  outline: isInput.password ? "1px solid red" : "none"
-                }}
-                type="password"
-                onChange={(e) =>
-                  setIsUserInfo({ ...isUserInfo, password: e.target.value })
-                }
-              />
-            </div>
-            <div className="s-confirmPassword">
-              <label htmlFor="confirmPassword">Confirm Password</label>
-              <input
-                style={{
-                  outline: isInput.confirmPassword ? "1px solid red" : "none"
-                }}
-                type="password"
-                onChange={(e) =>
-                  setIsUserInfo({
-                    ...isUserInfo,
-                    confirmPassword: e.target.value
-                  })
-                }
-              />
+            <div className="s-password-wrapper">
+              <div className="s-password">
+                <label htmlFor="password">Password</label>
+                <div className="passwordWrapper">
+                  {" "}
+                  <input
+                    style={{
+                      outline: isInput.password ? "1px solid red" : "none"
+                    }}
+                    type={isPass.password ? "text" : "password"}
+                    onChange={(e) =>
+                      setIsUserInfo({ ...isUserInfo, password: e.target.value })
+                    }
+                  />{" "}
+                  <div
+                    className="passwordView"
+                    onClick={() =>
+                      setIsPass((prevState) => ({
+                        ...prevState,
+                        password: !prevState.password
+                      }))
+                    }>
+                    {!isPass.password ? (
+                      <HiEyeOff className="passwordIcon" />
+                    ) : (
+                      <HiEye className="passwordIcon" />
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="s-confirmPassword">
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <div className="passwordWrapper">
+                  <input
+                    style={{
+                      outline: isInput.confirmPassword
+                        ? "1px solid red"
+                        : "none"
+                    }}
+                    type={isPass.confirmPassword ? "text" : "password"}
+                    onChange={(e) =>
+                      setIsUserInfo({
+                        ...isUserInfo,
+                        confirmPassword: e.target.value
+                      })
+                    }
+                  />
+                  <div
+                    className="passwordView"
+                    onClick={() =>
+                      setIsPass((prevState) => ({
+                        ...prevState,
+                        confirmPassword: !prevState.confirmPassword
+                      }))
+                    }>
+                    {!isPass.confirmPassword ? (
+                      <HiEyeOff color="black" className="passwordIcon" />
+                    ) : (
+                      <HiEye color="black" className="passwordIcon" />
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="s-TcWrapper">
               <input
                 type="checkbox"
                 checked={isChecked}
-                onChange={handleCheckboxChange}
+                onChange={() => setIsChecked(!isChecked)}
               />
               <p>
                 You agree to <span>Tradewave</span>
@@ -256,24 +335,17 @@ function SignUp() {
                 </Link>
               </p>
             </div>
-            <div className="s-SignUpBtn">
-              <button onClick={handleSignUp}>
-                <h3>Create Account</h3>
-              </button>
-            </div>
+            <AuthButton name="Sign Up" handleClick={handleSignUp} />
             <div className="s-LoginWrapper">
-              <p>
-                Already have an account?
-                <Link className="s-tcLoginBtn" to={"/login"}>
-                  Login
-                </Link>
-              </p>
+              <Link className="s-tcLoginBtn" to={"/login"}>
+                Already have an account? <span>Login</span>
+              </Link>
             </div>
           </div>
         </div>
         <div className="s-dashWriteUp">
           <h1>
-            Experience <span>Increased Flexibility</span>.
+            Experience <span>Increased Flexibility</span>
           </h1>
         </div>
       </div>

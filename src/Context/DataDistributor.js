@@ -10,8 +10,6 @@ const DataProvider = ({ children }) => {
 
 const contextValue = () => {
   let text = "hello world";
-
-  
   const result = { text };
   return result;
 };

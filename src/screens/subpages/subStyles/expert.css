@@ -1,13 +1,13 @@
 .expertWrapper {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     position: relative;
     margin: auto;
     height: auto;
     width: 100%;
 
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .expertBackgroundImage {
@@ -27,7 +27,7 @@
     align-items: center;
     justify-content: center;
     object-fit: cover;
-    display: flex;
+    display: none;
 }
 
 .expertBackgroundImage .exprt-mobile {
@@ -42,49 +42,102 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 90%;
     gap: 20px;
     margin: 20px;
     color: white;
     position: relative;
 }
 
-.expertWriteUp h1 {
+.expertWriteUp .expert-header {
     font-size: 50px;
+    font-weight: lighter;
+    width: 100%;
+    text-align: end;
+    letter-spacing: 20px;
 }
 
-.experCardWrapper {
+.expertCardWrapper {
     display: flex;
     width: 100%;
     height: auto;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: flex-start;
     gap: 20px;
 }
-
+z
 .expertCardContainer {
     flex: 1;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
-    width: 100%;
-    height: 250px;
-    gap: 10px;
-    padding: 15px;
 
-    font-size: 12px;
+    width: 100%;
     height: 100%;
+
+    gap: 10px;
+    padding: 40px 15px;
+
+    border-radius: 20px;
+    font-size: 12px;
     justify-content: flex-start;
     align-items: flex-start;
     backdrop-filter: blur(5px);
     background-color: rgba(0, 0, 0, 0.35);
+    cursor: pointer;
 
+    border: 1px solid 0b1120;
+
+}
+
+.expertCardContainer h1 {
+    color: #fff;
+    letter-spacing: 5px;
+    font-size: 12px;
+}
+
+.expertCardContainer .hr {
+    background-color: teal;
+
+}
+
+.expertCardContainer p {
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 1px;
+
+}
+
+.video-wrapper {
+    display: flex;
+    justify-content: center;
+    border-radius: 30px;
+    align-items: center;
+    overflow: hidden;
+    height: 60vh;
+    width: 80%;
+}
+
+.video-wrapper video {
+    display: flex;
+    margin: auto;
+    object-fit: cover;
 }
 
 @media screen and (max-width: 900px) {
     .expertWrapper {
         width: 100%;
         display: flex;
+        flex-direction: column;
+    }
+
+    .expertCardWrapper {
+        display: flex;
+        width: 100%;
+        height: auto;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+
         flex-direction: column;
     }
 
@@ -128,14 +181,31 @@
         margin: 20px;
         z-index: 1;
         color: white;
-        /* background-color: aquamarine; */
     }
 
-    .expertWriteUp h1 {
-        font-size: 20px;
+    .expertWriteUp .expert-header {
+        font-size: 50px;
+        font-weight: lighter;
+        letter-spacing: 10px;
     }
 
     .experCardWrapper {
         flex-direction: column;
+    }
+
+    .video-wrapper {
+        display: flex;
+        justify-content: center;
+        border-radius: 30px;
+        align-items: center;
+        overflow: hidden;
+        height: 40vh;
+        width: 90%;
+    }
+
+    .video-wrapper video {
+        display: flex;
+        margin: auto;
+        object-fit: cover;
     }
 }

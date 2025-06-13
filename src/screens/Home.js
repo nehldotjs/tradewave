@@ -6,7 +6,6 @@ import mapImg from "../assets//map.png";
 
 import Footer from "./subpages/Footer";
 import Hero from "./subpages/Hero";
-import SubAboutPage from "./subpages/SubAboutPage";
 import HowToTrade from "./subpages/HowToTrade";
 import TradeWidget from "./subpages/TradeWidget";
 import Entrepreneurs from "./subpages/Entrepreneurs";
@@ -23,17 +22,15 @@ function Home() {
     <div className="homeWrapper">
       <Nav />
       <Hero image={bckGrndImage} />
+      <TickerTapeWidget />
       <FinanceControl />
       <Expertise />
       <HowToTrade />
-      <SubAboutPage />
       <TradeWidget />
       <Entrepreneurs bckImg={mapImg} />
-      <TickerTapeWidget />
       <SubscriptionPlan />
       <Responsible />
       <Research />
-      <TickerTapeWidget />
       <Footer />
     </div>
   );

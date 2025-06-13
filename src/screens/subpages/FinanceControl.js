@@ -13,6 +13,8 @@ import svg6 from "../../assets/svg/undraw_statistic_chart_re_w0pk.svg";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+import SlickCarousel from "../../DashboardScreens/SubComponent/SlickCarousel";
+
 function FinanceControl() {
   useEffect(() => {
     AOS.init({
@@ -65,8 +67,20 @@ function FinanceControl() {
     }
   ];
 
+  const FinancialCard = ({ id, svgImage, header, Text }) => {
+    return (
+      <div className="financeCard" key={id}>
+        <div className="svgWrapper">
+          <img src={svgImage} alt="finance visual" />
+        </div>
+        <h2>{header}</h2>
+        <p>{Text}</p>
+      </div>
+    );
+  };
+
   return (
-    <div className="finacePageWrapper">
+    <div className="financePageWrapper">
       <div className="financeHeaderSection" data-aos="zoom-in-up">
         <div className="financeHeaderWriteUp">
           <h1>
@@ -78,25 +92,17 @@ function FinanceControl() {
           </p>
         </div>
         <div className="finceLearnMoreButton">
-          <Link className="financeBtn" to="/tradewave.github.io/">
+          <Link className="financeBtn" to="/About">
             <h3>Learn More</h3>
           </Link>
         </div>
       </div>
 
-      <div className="financeCardSection">
-        {financeCard.map((item) => {
-          const { id, Text, svgImage, header } = item;
-          return (
-            <div className="financeCard" key={id} data-aos="zoom-in-up">
-              <div className="svgWrapper">
-                <img src={svgImage} alt="board illustration" />
-              </div>
-              <h2>{header}</h2>
-              <p>{Text}</p>
-            </div>
-          );
-        })}{" "}
+      <div className="financeCardSection" data-aos="zoom-in-up">
+        <SlickCarousel
+          data={financeCard}
+          render={(item, index) => <FinancialCard key={index} {...item} />}
+        />
       </div>
     </div>
   );

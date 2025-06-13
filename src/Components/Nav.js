@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaGreaterThan } from "react-icons/fa";
+import { RxDropdownMenu } from "react-icons/rx";
 import "../styles/nav.css";
 
 // ASSET IMPORTS
 
 import logo from "../assets/favicon.png";
+import AuthButton from "../PropAssets/AuthBtn1";
 
 function Nav() {
   const [isBurgerMenu, setIsBurgerMenu] = useState(false);
@@ -46,13 +47,20 @@ function Nav() {
   const handleNav = () => {
     setIsBurgerMenu(() => (isBurgerMenu ? false : true));
   };
+
+  const handleClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <>
       {/* MOBILE NAV VERSION  */}
 
       <div className="nav-burgerBtn">
         <>
-          <Link to="/tradewave.github.io/" className="Mobile-logoWrapper">
+          <Link
+            onClick={handleClick}
+            to="/tradewave.github.io/"
+            className="Mobile-logoWrapper">
             <img src={logo} alt="trade wave logo" className="logo" />
             <h2 className="logoHeader">TradeWave</h2>
           </Link>
@@ -68,17 +76,21 @@ function Nav() {
         className="nav-mobile-Wrapper">
         <div className="nav-mobile-links-container">
           <div className="mobileLinkWrapper">
-            {/* <Link className="mobile-aboutLink" to="/">
-              Home
-            </Link> */}
-            <Link className="mobile-aboutLink" to="/About">
+            <Link
+              onClick={handleClick}
+              className="mobile-aboutLink"
+              to="/About">
               About
             </Link>
 
             {planSubLink.map((x) => {
               const { id, name, link } = x;
               return (
-                <Link className="nav-sub-Link" to={link} key={id}>
+                <Link
+                  onClick={handleClick}
+                  className="nav-sub-Link"
+                  to={link}
+                  key={id}>
                   {name}
                 </Link>
               );
@@ -87,13 +99,20 @@ function Nav() {
             {investmentSubLinks.map((x) => {
               const { id, name, link } = x;
               return (
-                <Link className="nav-sub-Link" to={link} key={id}>
+                <Link
+                  onClick={handleClick}
+                  className="nav-sub-Link"
+                  to={link}
+                  key={id}>
                   {name}
                 </Link>
               );
             })}
 
-            <Link to="/insights" className="mobile-insightLink">
+            <Link
+              onClick={handleClick}
+              to="/insights"
+              className="mobile-insightLink">
               INSIGHTS
             </Link>
           </div>
@@ -102,16 +121,15 @@ function Nav() {
 
       {/* WEB NAV VERSION  */}
       <div className="navWrapper">
-        <Link to="/tradewave.github.io/" className="logoWrapper">
+        <Link
+          onClick={handleClick}
+          to="/tradewave.github.io/"
+          className="logoWrapper">
           <img src={logo} alt="trade wave logo" className="logo" />
           <h2 className="logoHeader">TradeWave</h2>
         </Link>
 
         <div className="linksWrapper">
-          <Link className="aboutLink" to="/About">
-            About
-          </Link>
-
           <div className="parentSubLinks">
             <button
               className="sublinksHeader"
@@ -119,7 +137,7 @@ function Nav() {
               onMouseLeave={handleLeavePlanLinks}>
               PLANNING SERVICES
               <div className="greaterThan">
-                <FaGreaterThan color="white" />
+                <RxDropdownMenu size="20" />
               </div>
             </button>
             {planHover && (
@@ -131,7 +149,11 @@ function Nav() {
                   const { id, name, link } = x;
                   return (
                     <>
-                      <Link className="sublink" to={link} key={id}>
+                      <Link
+                        onClick={handleClick}
+                        className="sublink"
+                        to={link}
+                        key={id}>
                         {name}
                       </Link>
                     </>
@@ -147,7 +169,7 @@ function Nav() {
               onMouseLeave={handleInvestSubLinkLeave}>
               INVESTMENT PRODUCTS
               <div className="greaterThan">
-                <FaGreaterThan color="white" />
+                <RxDropdownMenu size="20" />
               </div>
             </button>
             {investSubLinks && (
@@ -159,7 +181,11 @@ function Nav() {
                   const { id, name, link } = x;
                   return (
                     <>
-                      <Link className="sublink" to={link} key={id}>
+                      <Link
+                        onClick={handleClick}
+                        className="sublink"
+                        to={link}
+                        key={id}>
                         {name}
                       </Link>
                     </>
@@ -168,18 +194,19 @@ function Nav() {
               </div>
             )}
           </div>
-
-          <Link to="/insights" className="insightLink">
+          <Link onClick={handleClick} className="aboutLink" to="/About">
+            About
+          </Link>
+          <Link onClick={handleClick} to="/insights" className="insightLink">
             INSIGHTS
           </Link>
         </div>
+
         <div className="authBtns">
-          <Link className="loginBtn" to="/login">
-            Login
+          <Link to="/login" className="heroAuthBtn">
+            <AuthButton name="Login" />
           </Link>
-          <Link className="signupBtn" to="/sign-up">
-            Register
-          </Link>
+          
         </div>
       </div>
     </>

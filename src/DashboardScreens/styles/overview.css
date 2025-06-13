@@ -1,38 +1,40 @@
 .overview-main-container {
+    flex: 1;
     width: 100%;
     height: 100%;
     display: flex;
 
     position: absolute;
-    flex-direction: column;
-
     align-items: center;
+    flex-direction: column;
     justify-content: center;
 }
 
 .overview-content-wrapper {
+    width: 100%;
     height: 100%;
     display: flex;
+    overflow: hidden;
     position: relative;
     flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
-    align-items: flex-start; 
-    overflow-y: scroll;
 }
-
 
 .overview-widget-wrapper {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: flex;
     position: relative;
+
 }
 
 .overview-widget {
     width: 100%;
+    height: 100%;
     display: flex;
-    height: 500px;
-    overflow: hidden;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (max-width:900px) {
@@ -41,13 +43,16 @@
         height: 100%;
         padding: 0px;
         display: flex;
-        overflow: unset;
+        overflow: unset; 
     }
 
     .overview-widget {
-        width: 100%;
+         height: 100%;
         display: flex;
-        height: 65vh;
-        overflow: hidden;
     }
+
+    .tradingChart {
+        display: flex;
+        height: 100%;
+     }
 }

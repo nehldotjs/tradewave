@@ -5,8 +5,10 @@
     display: flex;
     flex-direction: column;
     height: auto;
-    background-color: red;
     background-color: transparent;
+    position: relative;
+
+    /* display: none; */
 
 }
 

@@ -5,15 +5,16 @@ import { getFirestore } from "firebase/firestore";
 // import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDGk_PABYf693JhzXKMaEb4FYAT7aZU7rM",
-  authDomain: "tradewave-81881.firebaseapp.com",
-  projectId: "tradewave-81881",
-  storageBucket: "tradewave-81881.appspot.com",
-  messagingSenderId: "644287470247",
-  appId: "1:644287470247:web:e318656e680690753c9982",
-  measurementId: "G-T7LD2CJTER"
+  apiKey: "AIzaSyDuldbxLWSywxOsElPY1ohp-bXFPWEO0m4",
+  authDomain: "trade-wave-229ca.firebaseapp.com",
+  projectId: "trade-wave-229ca",
+  storageBucket: "trade-wave-229ca.firebasestorage.app",
+  messagingSenderId: "554900618375",
+  appId: "1:554900618375:web:ab179b00457b14708d8c22",
+  measurementId: "G-3WY589NWEJ"
 };
 
+// Initialize Firebase
 export const FIREBASE_APP = initializeApp(firebaseConfig);
 export const GOOGLE_PROVIDER = new GoogleAuthProvider();
 export const FIREBASE_AUTH = getAuth(FIREBASE_APP);
