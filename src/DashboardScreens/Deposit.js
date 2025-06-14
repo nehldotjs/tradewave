@@ -17,7 +17,7 @@ function Deposit() {
   });
 
   const [isDebitAmount, setIsDebitAmount] = useState(0);
-  const { cryptoValues } = CoinRateProvider();
+  const { cryptoData } = CoinRateProvider();
 
   const handleCopy = (item) => {
     if (!address.isCopy) {
@@ -60,7 +60,7 @@ function Deposit() {
   };
 
   function handleTransactionType() {
-    const result = cryptoValues?.map((prop, index) => (
+    const result = cryptoData?.map((prop, index) => (
       <div className="transaction__type" key={prop.id || index}>
         <button
           onClick={() => handleWallet(prop)}

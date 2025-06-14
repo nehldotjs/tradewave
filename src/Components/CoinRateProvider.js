@@ -2,42 +2,33 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function CoinRateProvider() {
-  const [coinData, setCoinData] = useState([]);
-  const [loading, setLoading] = useState(true); // Tracks loading state
+  const [cryptoData, setCryptoData] = useState([]);
 
   useEffect(() => {
-    const fetchCoinData = async () => {
+    const fetchData = async () => {
       try {
-        const { data } = await axios.get(
+        const response = await axios.get(
           "https://api.coingecko.com/api/v3/coins/markets",
           {
             params: {
               vs_currency: "usd",
-              order: "market_cap_desc",
-              per_page: 100,
-              page: 1,
-              sparkline: false
+              ids: "bitcoin,ethereum-classic,bitcoin-cash,solana"
             }
           }
         );
-        setCoinData(data);
+        setCryptoData(response.data);
       } catch (error) {
-        console.error("Error fetching coin data:", error);
-      } finally {
-        setLoading(false); // Set loading to false after fetch completes
+        console.error("Error fetching crypto data:", error);
       }
     };
 
-    return () => fetchCoinData();
+    fetchData();
+    const interval = setInterval(fetchData, 60000); // Refresh every 60 sec
+    return () => clearInterval(interval);
+    
   }, []);
 
-  if (loading) {
-    return { cryptoValues: [] };
-  }
-  const cryptoValues = ["bitcoin", "bitcoin-cash", "ethereum", "solana"].map(
-    (id) => coinData.find((coin) => coin.id === id) || null
-  );
-  return { cryptoValues };
+  return { cryptoData };
 }
 
 export default CoinRateProvider;
