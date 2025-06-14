@@ -202,7 +202,7 @@ function Deposit() {
                 flex: "1",
                 gap: "20px"
               }}>
-              <p>Select wallet :</p>
+              <p>Choose wallet :</p>
               <div
                 style={{
                   width: "100%",
