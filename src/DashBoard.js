@@ -26,7 +26,7 @@ function DashBoard() {
 
   const dashboardRoutes = useMemo(
     () => [
-      { path: "/tradewave.github.io/", element: <Overview /> },
+      { path: "/", element: <Overview /> },
       { path: "/deposit", element: <Deposit /> },
       { path: "/profile", element: <Profile /> },
       { path: "/referal", element: <Referals /> },

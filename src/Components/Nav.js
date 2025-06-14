@@ -59,7 +59,7 @@ function Nav() {
         <>
           <Link
             onClick={handleClick}
-            to="/tradewave.github.io/"
+            to="/"
             className="Mobile-logoWrapper">
             <img src={logo} alt="trade wave logo" className="logo" />
             <h2 className="logoHeader">TradeWave</h2>
@@ -123,7 +123,7 @@ function Nav() {
       <div className="navWrapper">
         <Link
           onClick={handleClick}
-          to="/tradewave.github.io/"
+          to="/"
           className="logoWrapper">
           <img src={logo} alt="trade wave logo" className="logo" />
           <h2 className="logoHeader">TradeWave</h2>

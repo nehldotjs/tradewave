@@ -15,7 +15,7 @@ function DashNav() {
   const { isNavActive } = PropData();
   const navLinks = [
     {
-      path: "/tradewave.github.io/",
+      path: "/",
       icon: <SlGraph />,
       label: "Chart"
     },

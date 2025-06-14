@@ -133,7 +133,7 @@ function SignUp() {
         userUid: user.uid
       });
 
-      navigate("/tradewave.github.io/");
+      navigate("/");
     } catch (err) {
       console.error("Error occurred:", err);
     }

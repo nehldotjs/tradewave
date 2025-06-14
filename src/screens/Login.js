@@ -26,7 +26,7 @@ function Login() {
         isUserInfo.email,
         isUserInfo.password
       );
-      navigate("/tradewave.github.io/");
+      navigate("/");
     } catch (error) {
       console.error("Error signing in:", error);
     }
@@ -35,7 +35,7 @@ function Login() {
   const handleSignUpWithGoogle = async () => {
     try {
       await signInWithPopup(FIREBASE_AUTH, GOOGLE_PROVIDER);
-      navigate("/tradewave.github.io/");
+      navigate("/");
     } catch (error) {
       console.error("Error signing in:", error);
     }
@@ -75,7 +75,7 @@ function Login() {
           </div>
 
           <div className="l-formWrapper">
-            <Link to="/tradewave.github.io/" className="loginHeader">
+            <Link to="/" className="loginHeader">
               <h1>TRADEWAVE</h1>
             </Link>
 

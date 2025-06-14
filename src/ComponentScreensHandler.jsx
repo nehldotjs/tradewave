@@ -25,7 +25,7 @@ import OptionTrading from "./screens/OptionTrading";
 import Infrastructure from "./screens/Infrastructure";
 
 const publicRoutes = [
-  { path: "/tradewave.github.io/", element: <Home /> },
+  { path: "/", element: <Home /> },
   { path: "/login", element: <Login /> },
   { path: "/about", element: <About /> },
   { path: "/assets", element: <Assets /> },

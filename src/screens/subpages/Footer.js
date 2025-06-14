@@ -64,7 +64,7 @@ function Footer() {
               <FaMapPin className="dot" color="#fff" size={"10px"} />
               <Link
                 onClick={handleClick}
-                to="/tradewave.github.io/"
+                to="/"
                 className="footerLink">
                 23 Valley Lane, Austin
               </Link>
@@ -73,7 +73,7 @@ function Footer() {
               <FaPhoneAlt className="dot" color="#fff" size={"10px"} />
               <Link
                 onClick={handleClick}
-                to="/tradewave.github.io/"
+                to="/"
                 className="footerLink">
                 +1 354 443 8447
               </Link>
@@ -162,28 +162,28 @@ function Footer() {
 
       <div className="subFooter" data-aos="slide-up">
         <div className="footerSocials">
-          <Link onClick={handleClick} to="/tradewave.github.io/">
+          <Link onClick={handleClick} to="/">
             <FaXTwitter
               color={"white"}
               className="footerSocialLinks"
               size={"15"}
             />
           </Link>
-          <Link onClick={handleClick} to="/tradewave.github.io/">
+          <Link onClick={handleClick} to="/ ">
             <FaTelegramPlane
               color={"white"}
               className="footerSocialLinks"
               size={"15"}
             />
           </Link>
-          <Link onClick={handleClick} to="/tradewave.github.io/">
+          <Link onClick={handleClick} to="/">
             <FaFacebookF
               color={"white"}
               className="footerSocialLinks"
               size={"15"}
             />
           </Link>
-          <Link onClick={handleClick} to="/tradewave.github.io/">
+          <Link onClick={handleClick} to="/">
             <FaDiscord
               color={"white"}
               className="footerSocialLinks"
