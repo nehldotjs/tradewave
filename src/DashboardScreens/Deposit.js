@@ -218,7 +218,7 @@ function Deposit() {
     } catch (err) {
       console.error("Error occurred:", err);
     } finally {
-      setIsLoading(true);
+      setIsLoading(false);
     }
   };
 

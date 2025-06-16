@@ -15,9 +15,7 @@ import { signInWithPopup } from "firebase/auth";
 import AuthButton from "../PropAssets/AuthBtn1";
 
 import { HiEye } from "react-icons/hi";
-import { HiEyeOff } from "react-icons/hi";
-import { FcGoogle } from "react-icons/fc";
-import GoogleBtn from "../Components/GoogleBtn";
+import { HiEyeOff } from "react-icons/hi"; 
 
 function SignUp() {
   const [isChecked, setIsChecked] = useState(false);
@@ -80,31 +78,7 @@ function SignUp() {
 
   const navigate = useNavigate();
 
-  const signUpWithGoogle = async () => {
-    try {
-      const result = await signInWithPopup(FIREBASE_AUTH, GOOGLE_PROVIDER);
-      const user = result.user;
-
-      // Create user doc
-      await addDoc(collection(db, "users"), {
-        firstname: isUserInfo.firstName,
-        lastname: isUserInfo.lastName,
-        email: isUserInfo.email,
-        country: selectedCountry,
-        state: selectedState,
-        userUid: user.uid
-      });
-
-      await addDoc(collection(db, "userPortfolio"), {
-        balance: 0,
-        investment: 0,
-        roi: 0,
-        userUid: user.uid
-      });
-    } catch (error) {
-      console.error("Google Sign-Up Error:", error);
-    }
-  };
+ 
 
   const handleUserData = async () => {
     try {
@@ -113,13 +87,12 @@ function SignUp() {
         isUserInfo.email,
         isUserInfo.password
       );
-
       const user = userCredential.user;
 
       // Create user doc
       await addDoc(collection(db, "users"), {
-        firstname: isUserInfo.firstName,
-        lastname: isUserInfo.lastName,
+        firstName: isUserInfo.firstName,
+        lastName: isUserInfo.lastName,
         email: isUserInfo.email,
         country: selectedCountry,
         state: selectedState,
@@ -127,9 +100,9 @@ function SignUp() {
       });
 
       await addDoc(collection(db, "userPortfolio"), {
+        roi: 0,
         balance: 0,
         investment: 0,
-        roi: 0,
         userUid: user.uid
       });
 
