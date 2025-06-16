@@ -8,14 +8,14 @@ import Nav from "../Components/Nav";
 import "../styles/signup.css";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, setDoc } from "firebase/firestore";
 import { FIREBASE_AUTH, GOOGLE_PROVIDER, db } from "../Firebase";
 import { signInWithPopup } from "firebase/auth";
 
 import AuthButton from "../PropAssets/AuthBtn1";
 
 import { HiEye } from "react-icons/hi";
-import { HiEyeOff } from "react-icons/hi"; 
+import { HiEyeOff } from "react-icons/hi";
 
 function SignUp() {
   const [isChecked, setIsChecked] = useState(false);
@@ -78,8 +78,6 @@ function SignUp() {
 
   const navigate = useNavigate();
 
- 
-
   const handleUserData = async () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -90,7 +88,7 @@ function SignUp() {
       const user = userCredential.user;
 
       // Create user doc
-      await addDoc(collection(db, "users"), {
+      await setDoc(collection(db, "users"), {
         firstName: isUserInfo.firstName,
         lastName: isUserInfo.lastName,
         email: isUserInfo.email,
@@ -99,14 +97,14 @@ function SignUp() {
         userUid: user.uid
       });
 
-      await addDoc(collection(db, "userPortfolio"), {
+      await setDoc(collection(db, "userPortfolio"), {
         roi: 0,
         balance: 0,
         investment: 0,
         userUid: user.uid
       });
 
-      navigate("/");
+      navigate("/overview");
     } catch (err) {
       console.error("Error occurred:", err);
     }
