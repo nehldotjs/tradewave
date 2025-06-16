@@ -29,7 +29,7 @@ function DashBoard() {
 
   const dashboardRoutes = useMemo(
     () => [
-      { path: "/", element: <Overview /> },
+      { path: "/overview", element: <Overview /> },
       { path: "/deposit", element: <Deposit /> },
       { path: "/profile", element: <Profile /> },
       { path: "/referal", element: <Referals /> },

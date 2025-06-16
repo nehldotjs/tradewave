@@ -214,7 +214,7 @@ function Deposit() {
         timestamp: new Date()
       });
 
-      Navigate("/"); // useNavigate from 'react-router-dom'
+      Navigate("/overview"); // useNavigate from 'react-router-dom'
     } catch (err) {
       console.error("Error occurred:", err);
     } finally {
