@@ -13,8 +13,11 @@ import DashNav from "./DashboardScreens/SubComponent/DashNav";
 import HeaderNav from "./DashboardScreens/SubComponent/HeaderNav";
 import TransactionHistory from "./DashboardScreens/TransactionHistory";
 import Settings from "./DashboardScreens/Settings";
+import LoaderScreen from "./PropAssets/LoaderScreen";
+import { PropData } from "./Context/PropDataHandler";
 
 function DashBoard() {
+  const { isLoading } = PropData();
   const location = useLocation();
 
   useEffect(() => {
@@ -37,6 +40,11 @@ function DashBoard() {
     ],
     []
   );
+
+   if (isLoading) {
+    return <LoaderScreen />;
+  }
+
   return (
     <div className="dashboard-main-wrapper">
       <DashNav />

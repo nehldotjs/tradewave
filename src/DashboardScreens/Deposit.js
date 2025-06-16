@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import "./styles/deposit.css";
 
 import CoinRateProvider from "../Components/CoinRateProvider";
+import { addDoc, collection } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { db, FIREBASE_AUTH } from "../Firebase";
+import { Navigate } from "react-router-dom";
+import { PropData } from "../Context/PropDataHandler";
 
 function Deposit() {
   const [address, setAddress] = useState({
@@ -15,9 +20,9 @@ function Deposit() {
     isRate: 0,
     isAmount: false
   });
-
   const [isDebitAmount, setIsDebitAmount] = useState(0);
   const { cryptoData } = CoinRateProvider();
+  const { setIsLoading } = PropData();
 
   const handleCopy = (item) => {
     if (!address.isCopy) {
@@ -181,12 +186,40 @@ function Deposit() {
               <p className="depositValue">{" " + isDebitAmount * btcValue}</p>
             </div>
             <div className="completPaymentBtn">
-              <button>Payment Completed</button>
+              <button onClick={handleNewTransactionPayment}>
+                Payment Completed
+              </button>
             </div>
           </div>
         )}
       </div>
     );
+  };
+
+  const handleNewTransactionPayment = async () => {
+    setIsLoading(true);
+    try {
+      const user = FIREBASE_AUTH.currentUser;
+
+      if (!user) {
+        console.error("User not authenticated");
+        return;
+      }
+
+      await addDoc(collection(db, "usersTransaction"), {
+        uid: user.uid,
+        amount: isDebitAmount,
+        walletName: isWallet.selectedWallet?.name || "",
+        isPending: true,
+        timestamp: new Date()
+      });
+
+      Navigate("/"); // useNavigate from 'react-router-dom'
+    } catch (err) {
+      console.error("Error occurred:", err);
+    } finally {
+      setIsLoading(true);
+    }
   };
 
   return (

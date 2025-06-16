@@ -10,9 +10,16 @@ function PropDataHandler({ children }) {
 const PropValues = () => {
   const [isNavActive, setIsNavActive] = useState(false);
   const [active, setActive] = useState("Standard");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const name = "Prop Data";
-  return { name, isNavActive, setIsNavActive, active, setActive };
+  return {
+    isLoading,
+    setIsLoading,
+    isNavActive,
+    setIsNavActive,
+    active,
+    setActive
+  };
 };
 
 function PropData() {

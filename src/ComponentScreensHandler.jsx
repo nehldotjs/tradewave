@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { FIREBASE_AUTH } from "./Firebase";
 import DashBoard from "./DashBoard";
+import ControlDash from "./Control-Room/ControlDash";
 
 // Screens
 import Tc from "./screens/Tc";
@@ -23,6 +24,11 @@ import Retirements from "./screens/Retirements";
 import Alternatives from "./screens/Alternatives";
 import OptionTrading from "./screens/OptionTrading";
 import Infrastructure from "./screens/Infrastructure";
+import LoaderScreen from "./PropAssets/LoaderScreen";
+
+// Replace with your actual admin UID
+// const ADMIN_UID = "iqRimyAYJlVRrrvs4oTXX0BTFTz2";
+const ADMIN_UID = process.env.REACT_APP_ADMIN_API_KEY;
 
 const publicRoutes = [
   { path: "/", element: <Home /> },
@@ -47,16 +53,38 @@ const publicRoutes = [
 ];
 
 function ComponentScreensHandler() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(undefined); // Start undefined to detect loading state
 
   useEffect(() => {
-    const unsubscribe = FIREBASE_AUTH.onAuthStateChanged(setUser);
-    return unsubscribe;
+    const unsubscribe = FIREBASE_AUTH.onAuthStateChanged((firebaseUser) => {
+      setUser(firebaseUser); // firebaseUser is either object or null
+    });
+
+    return unsubscribe; // Clean up
   }, []);
 
-  return user ? (
-    <DashBoard />
-  ) : (
+  // Still checking auth state
+  if (user === undefined) {
+    return (
+      <div className="loaderWrapper">
+        <LoaderScreen />
+      </div>
+    );
+  }
+
+  // If user is logged in and is the admin, go to Admin Dashboard
+
+  if (user && user.uid === ADMIN_UID) {
+    return <ControlDash />;
+  }
+
+  // If user is logged in (but not admin), go to normal Dashboard
+  if (user) {
+    return <DashBoard />;
+  }
+
+  // Otherwise show public routes (not logged in)
+  return (
     <Routes>
       {publicRoutes.map(({ path, element }) => (
         <Route key={path} path={path} element={element} />

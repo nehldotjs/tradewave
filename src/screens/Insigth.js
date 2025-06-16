@@ -2,24 +2,32 @@ import React, { useEffect, useState } from "react";
 import "../styles/insight.css";
 import Footer from "./subpages/Footer";
 import Nav from "../Components/Nav";
-import styled from "styled-components";
+import axios from "axios";
+import LoaderScreen from "../PropAssets/LoaderScreen";
 
 const Insight = () => {
-  const [newsUpdate, setNewsUpdate] = useState([]);
+  const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const apiKey = process.env.REACT_APP_NEWS_API_KEY;
+
+  const apiKey = process.env.REACT_APP_NEWS_API_KEY || "demo"; // fallback to 'demo' key for testing
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(
-          `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apiKey}`
+        const response = await axios.get(
+          "https://financialmodelingprep.com/api/v4/general_news",
+          {
+            params: {
+              limit: 5, // Number of articles
+              apikey: apiKey
+            }
+          }
         );
-        const { articles } = await res.json();
-        setNewsUpdate(articles);
-      } catch (err) {
-        setError(err.message);
+        setNews(response.data);
+      } catch (error) {
+        console.error("Error fetching stock market news:", error);
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -27,59 +35,35 @@ const Insight = () => {
     fetchData();
   }, [apiKey]);
 
-  const Loader = () => {
-    return (
-      <div className="loaderWrapper">
-        <StyledWrapper>
-          <div className="wrapper">
-            <div className="circle" />
-            <div className="circle" />
-            <div className="circle" />
-            <div className="shadow" />
-            <div className="shadow" />
-            <div className="shadow" />
-          </div>
-        </StyledWrapper>
-      </div>
-    );
-  };
-
   return (
     <div>
       <Nav />
       {loading ? (
-        <Loader />
+        <LoaderScreen />
       ) : error ? (
         <div style={{ padding: "2rem", textAlign: "center", color: "red" }}>
           <h2>Error loading news: {error}</h2>
         </div>
       ) : (
         <div className="news-container">
-          {newsUpdate
-            .filter((x) => x.urlToImage)
-            .map(
-              (
-                { title, urlToImage, publishedAt, description, author, url },
-                i
-              ) => (
-                <div className="insight-card" key={i}>
-                  <div className="in-cardImgWrapper">
-                    <img src={urlToImage} alt="News" />
-                  </div>
-                  <h2>{title}</h2>
-                  <p>{description}</p>
-                  <div className="insight-newsAuthor">
-                    {author && <h5 className="author-name">{author}</h5>}
-                    {publishedAt && (
-                      <p className="author-name">{publishedAt}</p>
-                    )}
-                  </div>
-                  <a href={url} target="_blank" rel="noopener noreferrer">
-                    <h6>Read More</h6>
-                  </a>
-                </div>
-              )
-            )}
+          {news.map(({ title, image, publishedDate, text, site, url }, i) => (
+            <div className="insight-card" key={i}>
+              <div className="in-cardImgWrapper">
+                <img src={image} alt="News" />
+              </div>
+              <h2>{title}</h2>
+              <p>{text}</p>
+              <div className="insight-newsAuthor">
+                {site && <h5 className="author-name">{site}</h5>}
+                {publishedDate && (
+                  <p className="author-name">{publishedDate}</p>
+                )}
+              </div>
+              <a href={url} target="_blank" rel="noopener noreferrer">
+                <h6>Read More</h6>
+              </a>
+            </div>
+          ))}
         </div>
       )}
       <Footer />
@@ -88,94 +72,3 @@ const Insight = () => {
 };
 
 export default Insight;
-
-const StyledWrapper = styled.div`
-  .wrapper {
-    width: 200px;
-    height: 60px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .circle {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    border-radius: 50%;
-    background-color: #fff;
-    left: 15%;
-    transform-origin: 50%;
-    animation: circle7124 0.5s alternate infinite ease;
-  }
-
-  @keyframes circle7124 {
-    0% {
-      top: 60px;
-      height: 5px;
-      border-radius: 50px 50px 25px 25px;
-      transform: scaleX(1.7);
-    }
-
-    40% {
-      height: 20px;
-      border-radius: 50%;
-      transform: scaleX(1);
-    }
-
-    100% {
-      top: 0%;
-    }
-  }
-
-  .circle:nth-child(2) {
-    left: 45%;
-    animation-delay: 0.2s;
-  }
-
-  .circle:nth-child(3) {
-    left: auto;
-    right: 15%;
-    animation-delay: 0.3s;
-  }
-
-  .shadow {
-    width: 20px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.9);
-    position: absolute;
-    top: 62px;
-    transform-origin: 50%;
-    z-index: -1;
-    left: 15%;
-    filter: blur(1px);
-    animation: shadow046 0.5s alternate infinite ease;
-  }
-
-  @keyframes shadow046 {
-    0% {
-      transform: scaleX(1.5);
-    }
-
-    40% {
-      transform: scaleX(1);
-      opacity: 0.7;
-    }
-
-    100% {
-      transform: scaleX(0.2);
-      opacity: 0.4;
-    }
-  }
-
-  .shadow:nth-child(4) {
-    left: 45%;
-    animation-delay: 0.2s;
-  }
-
-  .shadow:nth-child(5) {
-    left: auto;
-    right: 15%;
-    animation-delay: 0.3s;
-  }
-`;

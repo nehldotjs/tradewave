@@ -1,0 +1,484 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.loaderWrapper {
+    display: flex;
+    flex: 1;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.controlNav {
+    display: flex;
+    height: 100vh;
+    width: 30%;
+    background-color: blue;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    position: absolute;
+    flex-direction: column;
+    transition: 350ms all ease-in-out;
+    border-right: 1px solid white;
+}
+
+.isNavWrapper {
+    border: none;
+}
+
+.control-navBtn {
+    background-color: chartreuse;
+    height: 100px;
+    width: 100%;
+
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+    display: flex;
+}
+
+.control-navBtn button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: #2d2d2d;
+    outline: none;
+    padding: 5px;
+    position: absolute;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    transform: translateX(100%);
+    justify-content: center;
+    align-items: center;
+}
+
+.lines-wrapper {
+    width: 100%;
+    height: 40%;
+    position: relative;
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    /* overflow: hidden; */
+    transition: 350ms all ease-in-out;
+}
+
+isLinesHeight {
+    height: 100%;
+    background-color: green;
+}
+
+.control-navBtn .line1 {
+    transition: 500ms all ease-in-out;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    background-color: white;
+    bottom: 0px;
+    content: "";
+}
+
+.isline1 {
+    transform: rotate(45deg);
+    margin: auto;
+    bottom: 0px;
+    top: 0px;
+}
+
+.control-navBtn .line2 {
+    transition: 500ms all ease-in-out;
+    height: 2px;
+    width: 100%;
+    position: relative;
+    background-color: white;
+    bottom: 0px;
+    content: "";
+}
+
+.isline2 {
+    transform: translateX(-150%);
+    margin: auto;
+    bottom: 0px;
+    top: 0px;
+}
+
+.control-navBtn .line3 {
+    transition: 500ms all ease-in-out;
+    background-color: white;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    bottom: 0px;
+    top: 0px;
+    content: "";
+}
+
+.isline3 {
+    transform: rotate(-45deg);
+    margin: auto;
+    bottom: 0px;
+    top: 0px;
+}
+
+
+
+.control-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(32, 32, 32);
+    font-family: Arial, sans-serif;
+    color: #050505;
+}
+
+.control-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    position: relative;
+}
+
+.stats-wrapper {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 0px 50px;
+}
+
+.stats-figure-wrapper {
+    background-color: white;
+
+    display: flex;
+    height: 150px;
+    width: 400px;
+    padding: 20px;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.608);
+}
+
+.Transactions-header {
+    font-size: 15px;
+    font-weight: normal;
+    color: #2d2d2d;
+}
+
+.Transaction-Figure {
+    font-size: 10px;
+    font-weight: normal;
+    color: #2d2d2d;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Transaction-Figure p {
+    width: 100%;
+    display: flex;
+    font-size: 30px;
+    gap: 10px;
+    color: black;
+}
+
+.Transaction-Figure p span {
+    width: 100%;
+    display: flex;
+    color: black;
+    font-size: 40px;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+.stats-user-list {
+    background-color: #050505;
+    height: 150px;
+    width: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 20px;
+}
+
+.stats-users-header {
+    font-size: 15px;
+    font-weight: normal;
+    color: white;
+}
+
+.stats-users-wrapper {
+    font-size: 40px;
+    display: flex;
+    margin: auto;
+}
+
+/* //__________________________________________________________ */
+
+.userList-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 90%;
+    flex: 1;
+
+    overflow: hidden;
+    position: relative;
+}
+
+.ueserList-container {
+    gap: 20px;
+    padding-bottom: 20px;
+    align-items: flex-start;
+    scrollbar-color: black;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+
+}
+
+.ueserList-container {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+}
+
+.ueserList-container ::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
+
+
+.u-List-wrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    background-color: #05050583;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: none;
+    gap: 20px;
+    transition: 350ms all ease-in-out;
+    overflow: hidden;
+}
+
+.u-List-wrapper:hover {
+    background-color: #050505;
+}
+
+.u-list-container {
+    gap: 20px;
+    flex: 2;
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.u-list-user-info-container {
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.u-list-info-wrapper {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    width: 100%;
+}
+
+.u-list-info {
+    display: inline-flex;
+    min-width: max-content;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.u-list-info p {
+    gap: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+}
+
+.u-list-info p span {
+    width: 100px;
+    flex: 1;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.u-list-info {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+}
+
+.u-list-info ::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
+
+
+.u-info-btn-wrapper {
+    flex: .3;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.u-info-btn-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+}
+
+.u-list-arrow {
+    font-size: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* _______________________________________________________ */
+
+.control-links {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 350ms all ease-in-out;
+
+    overflow: hidden;
+    background-color: orangered;
+}
+
+.isActive {
+    width: 0%;
+    border: none;
+}
+
+.control-links-button {
+    gap: 30px;
+    flex: 1;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+
+}
+
+.control-auth-btn-wrapper {
+    background-color: darkmagenta;
+    display: flex;
+    width: 100%;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.control-auth-btn-wrapper button {
+    background-color: aqua;
+    display: flex;
+    width: 50%;
+    height: 30px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    bottom: 0px;
+
+    cursor: pointer;
+}
+
+@media screen and (max-width:900px) {
+    .controlNav {
+        display: flex;
+        height: 100vh;
+        width: 300px;
+        background-color: blue;
+        justify-content: space-between;
+        align-items: flex-start;
+
+
+        position: absolute;
+        flex-direction: column;
+        transition: 350ms all ease-in-out;
+    }
+
+    .isActive {
+        width: 0px;
+    }
+}
