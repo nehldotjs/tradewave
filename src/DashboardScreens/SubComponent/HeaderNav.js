@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
+import "./style/headerNav.css";
+
 import { useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { GiProfit } from "react-icons/gi";
 import { FaChartLine } from "react-icons/fa6";
 import { HiMiniBanknotes } from "react-icons/hi2";
 
-import "./style/headerNav.css";
+  import { db, FIREBASE_AUTH } from "../../Firebase";
+import useUserData from "../../Context/UserDataHandler";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 import { TickerTape } from "react-ts-tradingview-widgets";
-import HamBurgerBtn from "./HamBurgerBtn";
-import { FIREBASE_AUTH } from "../../Firebase";
-import useUserData from "../../Context/UserDataHandler";
 
 function HeaderNav() {
   const [stateActive, setStateActive] = useState(false);
@@ -18,18 +19,42 @@ function HeaderNav() {
     firstName: ""
   });
 
+  const [useCredit, setUserCredit] = useState([]);
   // Fetch user data from Firestore
-  const { isUserDetail } = useUserData(); // correct custom hook now
-  console.log("isUserDetail:", isUserDetail); // will be null until data loads
+  const { isUserDetail } = useUserData();
 
   useEffect(() => {
     if (isUserDetail && isUserDetail.firstName) {
       setUserProps({
         firstName: isUserDetail.firstName,
-        lastName: isUserDetail.lastName
+        lastName: isUserDetail.lastName,
+        userUID: isUserDetail.userMainUid
       });
     }
   }, [isUserDetail]);
+  const fetchUsers = async () => {
+    try {
+      const q = query(
+        collection(db, "userPortfolio"),
+        where("userUid", "==", userProps.userUID)
+      );
+
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setUserCredit(data);
+    } catch (error) {
+      console.error("Error getting documents with condition: ", error);
+    }
+  };
+
+  useEffect(() => {
+    if (userProps.userUID) {
+      fetchUsers();
+    }
+  }, [userProps.userUID]);
 
   const currentUserName = userProps.firstName ? userProps.firstName : "User";
   const handleImageClick = () => {
@@ -37,7 +62,6 @@ function HeaderNav() {
   };
 
   const navigate = useNavigate();
-
   const handleSignOut = async () => {
     try {
       await FIREBASE_AUTH.signOut();
@@ -56,25 +80,35 @@ function HeaderNav() {
             <div className="hn-b-wrapper">
               <HiMiniBanknotes />
               <h5>
-                $ <span>0.00</span>
+                ${" "}
+                <span>
+                  {useCredit.length > 0 ? useCredit[0].balance + 0.0 : "0.00"}
+                </span>
               </h5>
             </div>
             <div className="hn-b-wrapper">
               <FaChartLine />
               <h5>
-                $ <span>0.00</span>
+                ${" "}
+                <span>
+                  {useCredit.length > 0
+                    ? useCredit[0].investment + 0.0
+                    : "0.00"}
+                </span>
               </h5>
             </div>
             <div className="hn-b-wrapper">
               <GiProfit />
               <h5>
-                $ <span>0.00</span>
+                ${" "}
+                <span>
+                  {useCredit.length > 0 ? useCredit[0].roi + 0.0 : "0.00"}
+                </span>
               </h5>
             </div>
           </div>
 
           <div className="hn-b-wrapper-name">
-            <HamBurgerBtn />
             <div className="hn-b-p-name-container">
               <p className="hn-b-p-name">
                 <span className="hn-b-p-welcome">Hi, </span>
@@ -103,6 +137,7 @@ function HeaderNav() {
           Logout
         </button>
       </div>
+
     </div>
   );
 }

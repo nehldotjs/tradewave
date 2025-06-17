@@ -11,9 +11,26 @@ function HamBurgerBtn() {
 
   return (
     <div className="hamburgerBtn-wrapper">
-      <button
-        className={!isNavActive ? " hamburgerBtn" : "  hamburgerBtnIsActive"}
-        onClick={handleBurgerClick}></button>
+      <button className="hamburgerBtn" onClick={handleBurgerClick}>
+        <div
+          className={
+            !isNavActive
+              ? "dash-btn-line1"
+              : "dash-btn-line1 dash-btn-line1-anim "
+          }></div>
+        <div
+          className={
+            !isNavActive
+              ? "dash-btn-line2"
+              : "dash-btn-line2 dash-btn-line2-anim"
+          }></div>
+        <div
+          className={
+            !isNavActive
+              ? "dash-btn-line3"
+              : "dash-btn-line3 dash-btn-line3-anim"
+          }></div>
+      </button>
     </div>
   );
 }

@@ -28,7 +28,18 @@
     align-items: center;
     justify-content: center;
     background-color: #0b1120;
-}
+
+ }
+
+.dash-headerNav-section-wrapper h2 {
+    display: flex;
+    width: 30%;
+    height: 100%;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+
+  }
 
 .dash-headerNav-section-container {
     height: 100%;
@@ -138,9 +149,6 @@ span {
     padding-top: 10px
 }
 
-.dash-headerNav-section-wrapper h2 {
-    display: none;
-}
 
 .dashBoardSignOutWrapper {
     background-color: #7c5dc9;
@@ -246,6 +254,5 @@ span {
         color: transparent;
         display: flex;
 
-        font-size: 40px;
-    }
+     }
 }

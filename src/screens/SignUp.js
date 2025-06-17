@@ -111,7 +111,6 @@ function SignUp() {
       console.error("Error occurred:", err);
     }
   };
-  
 
   const handleSignUp = async (e) => {
     e.preventDefault();

@@ -10,6 +10,7 @@ import { FaUsers } from "react-icons/fa";
 // import { FiShield } from "react-icons/fi";
 
 import { PropData } from "../../Context/PropDataHandler";
+import HamBurgerBtn from "./HamBurgerBtn";
 
 function DashNav() {
   const { isNavActive } = PropData();
@@ -33,6 +34,7 @@ function DashNav() {
           ? "dashnav-main-wrapper isDashActive"
           : "dashnav-main-wrapper"
       }>
+
       <div className="dashNav-section-wrapper">
         <h2>TradeWave</h2>
         <div className="dashNavLink-Section-Wrapper">
@@ -43,6 +45,10 @@ function DashNav() {
           ))}
         </div>
         <p> &copy; 2006 - TradeWave All rights Reserved</p>
+      </div>
+
+      <div className="handleBurgerBtn">
+         <HamBurgerBtn />
       </div>
     </div>
   );

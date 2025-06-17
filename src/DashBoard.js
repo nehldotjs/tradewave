@@ -41,13 +41,12 @@ function DashBoard() {
     []
   );
 
-   if (isLoading) {
+  if (isLoading) {
     return <LoaderScreen />;
   }
 
   return (
     <div className="dashboard-main-wrapper">
-      <DashNav />
       <div className="dashboard-page">
         <HeaderNav />
         <div className="dash-main-content-wrapper">
@@ -58,6 +57,7 @@ function DashBoard() {
           </Routes>
         </div>
       </div>
+      <DashNav />
     </div>
   );
 }
