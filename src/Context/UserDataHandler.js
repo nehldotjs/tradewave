@@ -1,18 +1,12 @@
+// UserDataHandler.js
 import { useState, useEffect } from "react";
 import { FIREBASE_AUTH, db } from "../Firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
-function UserDataHandler() {
+function useUserData() {
   const [userDocuments, setUserDocuments] = useState([]);
-  const [isUserDetail, setIsUserDetail] = useState({
-    firstName: "",
-    lastName: "",
-    country: "",
-    state: "",
-    email: "",
-    userMainUid: ""
-  });
+  const [isUserDetail, setIsUserDetail] = useState(null); // starts as null, easier to check loading state
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, async (user) => {
@@ -22,7 +16,6 @@ function UserDataHandler() {
             collection(db, "users"),
             where("userUid", "==", user.uid)
           );
-
           const querySnapshot = await getDocs(q);
           const documents = querySnapshot.docs.map((doc) => doc.data());
           setUserDocuments(documents);
@@ -30,8 +23,8 @@ function UserDataHandler() {
           if (documents.length > 0) {
             const userData = documents[0];
             setIsUserDetail({
-              firstName: userData.firstName,
-              lastName: userData.firstName,
+              firstName: userData.firstname,
+              lastName: userData.lastname, // FIXED HERE
               country: userData.country,
               state: userData.state,
               email: userData.email,
@@ -44,11 +37,10 @@ function UserDataHandler() {
       }
     });
 
-    // Cleanup on unmount
     return () => unsubscribe();
   }, []);
 
   return { userDocuments, isUserDetail };
 }
 
-export default UserDataHandler;
+export default useUserData;

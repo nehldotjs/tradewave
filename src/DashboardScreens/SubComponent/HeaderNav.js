@@ -9,29 +9,27 @@ import "./style/headerNav.css";
 
 import { TickerTape } from "react-ts-tradingview-widgets";
 import HamBurgerBtn from "./HamBurgerBtn";
-
-import UserDataHandler from "../../Components/UserDataHandler";
 import { FIREBASE_AUTH } from "../../Firebase";
+import useUserData from "../../Context/UserDataHandler";
 
 function HeaderNav() {
   const [stateActive, setStateActive] = useState(false);
   const [userProps, setUserProps] = useState({
-    firstName: "",
-    lastName: ""
+    firstName: ""
   });
 
   // Fetch user data from Firestore
-  const { isUserDetail } = UserDataHandler();
+  const { isUserDetail } = useUserData(); // correct custom hook now
+  console.log("isUserDetail:", isUserDetail); // will be null until data loads
 
   useEffect(() => {
     if (isUserDetail && isUserDetail.firstName) {
       setUserProps({
-        firstName: isUserDetail.firstName || "",
-        lastName: isUserDetail.lastName || ""
+        firstName: isUserDetail.firstName,
+        lastName: isUserDetail.lastName
       });
     }
   }, [isUserDetail]);
-
   const currentUserName = userProps.firstName ? userProps.firstName : "User";
 
   const handleImageClick = () => {
@@ -80,7 +78,7 @@ function HeaderNav() {
             <div className="hn-b-p-name-container">
               <p className="hn-b-p-name">
                 <span className="hn-b-p-welcome">Hi, </span>
-                {currentUserName || "name here"}
+                {isUserDetail ? currentUserName : "Loading..."}
               </p>
             </div>
             <div className="hn-b-image-wrarpper">

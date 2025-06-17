@@ -74,9 +74,9 @@ function ComponentScreensHandler() {
 
   // If user is logged in and is the admin, go to Admin Dashboard
 
-  if (user && user.uid === ADMIN_UID) {
-    return <ControlDash />;
-  }
+  // if (user && user.uid === ADMIN_UID) {
+  //   return <ControlDash />;
+  // }
 
   // If user is logged in (but not admin), go to normal Dashboard
   if (user) {
