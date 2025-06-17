@@ -7,13 +7,12 @@ import { VscSettings } from "react-icons/vsc";
 import { BiHistory } from "react-icons/bi";
 import { SlGraph } from "react-icons/sl";
 import { FaUsers } from "react-icons/fa";
-// import { FiShield } from "react-icons/fi";
-
+ 
 import { PropData } from "../../Context/PropDataHandler";
 import HamBurgerBtn from "./HamBurgerBtn";
 
 function DashNav() {
-  const { isNavActive } = PropData();
+  const { isNavActive, setIsNavActive } = PropData();
   const navLinks = [
     {
       path: "/overview",
@@ -34,12 +33,15 @@ function DashNav() {
           ? "dashnav-main-wrapper isDashActive"
           : "dashnav-main-wrapper"
       }>
-
       <div className="dashNav-section-wrapper">
         <h2>TradeWave</h2>
         <div className="dashNavLink-Section-Wrapper">
           {navLinks.map(({ path, icon, label }, index) => (
-            <Link key={index} className="dn-link" to={path}>
+            <Link
+              key={index}
+              className="dn-link"
+              to={path}
+              onClick={() => setIsNavActive(!isNavActive)}>
               {icon} <h5>{label}</h5>
             </Link>
           ))}
@@ -48,7 +50,7 @@ function DashNav() {
       </div>
 
       <div className="handleBurgerBtn">
-         <HamBurgerBtn />
+        <HamBurgerBtn />
       </div>
     </div>
   );

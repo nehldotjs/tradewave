@@ -257,44 +257,77 @@ function Deposit() {
           <h4>Note:</h4>
           <div className="deposit-rule-list-wrapper">
             <ol>
-              <li>Send the exact amount in cryptocurrencies or more.</li>
               <li>
-                Do not use ETH Contract address as payment. Only regular ETH
-                Wallet
+                <strong>Send the Exact or Higher Amount:</strong>
+                <br />
+                Please ensure that you send the exact cryptocurrency amount
+                displayed on the payment screen, or a slightly higher amount.
+                Underpayments may lead to processing delays or payment failure.
               </li>
+
               <li>
-                Minimum Transaction Amount: The minimum transaction amount is
-                $50. You can initiate a transaction with at least $50 in one
-                transaction.
+                <strong>Use a Standard Wallet Address Only:</strong>
+                <br />
+                Do <strong>not</strong> send funds to an ETH contract address.
+                Always use a{" "}
+                <strong>regular Ethereum (ETH) wallet address</strong> to
+                complete your payment successfully.
               </li>
+
               <li>
-                Maximum Transaction Limit: You can deposit up to $1 million in a
-                single transaction.
+                <strong>Minimum Deposit Requirement:</strong>
+                <br />
+                The <strong>minimum transaction amount is $50 USD</strong>.
+                Transactions below this threshold cannot be processed.
               </li>
+
               <li>
-                Secure Storage of Private Keys: Your private keys, which grant
-                access to your cryptocurrency holdings, are securely encrypted.
-                We do not store your private keys on our servers to ensure
-                maximum security. Additionally, we employ multi-factor
-                authentication methods to enhance the security of your account.
+                <strong>Maximum Deposit Limit:</strong>
+                <br />
+                You can deposit up to <strong>$1,000,000 USD</strong> per
+                transaction. For larger deposits, please contact customer
+                support in advance.
               </li>
+
               <li>
-                Protection of Payment Information: We prioritize the protection
-                of your payment information. Your sensitive financial details
-                are used solely for transaction verification purposes and are
-                not shared with third parties.
+                <strong>Private Key Security:</strong>
+                <br />
+                Your private keys remain fully encrypted and under your control.{" "}
+                <strong>We do not store your private keys</strong> on our
+                servers, ensuring maximum wallet security. Multi-factor
+                authentication (MFA) is required to protect your account and
+                transaction activity.
               </li>
+
               <li>
-                Contact Customer Support for Assistance: If you encounter any
-                issues or have questions regarding your transaction, please
-                reach out to our customer support team for prompt assistance.
-                Attempting to use multiple wallets or cryptocurrency addresses
-                for deposits may result in transaction complications.
+                <strong>Protection of Sensitive Payment Information:</strong>
+                <br />
+                Your financial and payment details are handled with the highest
+                level of security and are used solely for transaction
+                verification.{" "}
+                <strong>
+                  We do not share or sell your data to any third parties
+                </strong>
+                .
               </li>
+
               <li>
-                Fee-Free Transactions: Deposits and transactions on our platform
-                are free of charge. We do not impose any transaction fees,
-                allowing you to transact with peace of mind.
+                <strong>For Any Assistance, Contact Support:</strong>
+                <br />
+                If you experience issues or have questions during the payment
+                process, please contact our{" "}
+                <strong>dedicated customer support team</strong> for immediate
+                assistance. Avoid using multiple wallets or addresses for a
+                single transaction, as this may cause processing errors.
+              </li>
+
+              <li>
+                <strong>Zero Transaction Fees:</strong>
+                <br />
+                Depositing funds on our platform is{" "}
+                <strong>completely free of charge</strong>. No additional
+                transaction fees will be applied, allowing you to transact
+                confidently.
               </li>
             </ol>
           </div>
