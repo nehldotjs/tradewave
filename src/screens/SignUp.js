@@ -8,7 +8,7 @@ import Nav from "../Components/Nav";
 import "../styles/signup.css";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { addDoc, collection, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { FIREBASE_AUTH, GOOGLE_PROVIDER, db } from "../Firebase";
 import { signInWithPopup } from "firebase/auth";
 
@@ -85,10 +85,11 @@ function SignUp() {
         isUserInfo.email,
         isUserInfo.password
       );
+
       const user = userCredential.user;
 
-      // Create user doc
-      await setDoc(collection(db, "users"), {
+      // Create user doc with UID as doc ID
+      await setDoc(doc(db, "users", user.uid), {
         firstName: isUserInfo.firstName,
         lastName: isUserInfo.lastName,
         email: isUserInfo.email,
@@ -97,7 +98,8 @@ function SignUp() {
         userUid: user.uid
       });
 
-      await setDoc(collection(db, "userPortfolio"), {
+      // Create user portfolio doc with UID as doc ID
+      await setDoc(doc(db, "userPortfolio", user.uid), {
         roi: 0,
         balance: 0,
         investment: 0,
@@ -109,6 +111,7 @@ function SignUp() {
       console.error("Error occurred:", err);
     }
   };
+  
 
   const handleSignUp = async (e) => {
     e.preventDefault();
