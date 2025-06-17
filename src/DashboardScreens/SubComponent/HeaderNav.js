@@ -10,8 +10,7 @@ import "./style/headerNav.css";
 import { TickerTape } from "react-ts-tradingview-widgets";
 import HamBurgerBtn from "./HamBurgerBtn";
 
-import UserDataHandler from "../../Components/UserDataHandler";
-import { FIREBASE_AUTH } from "../../Firebase";
+ import { FIREBASE_AUTH } from "../../Firebase";
 
 function HeaderNav() {
   const [stateActive, setStateActive] = useState(false);
@@ -21,7 +20,6 @@ function HeaderNav() {
     userImage: ""
   });
 
-  const { isUserDetail } = UserDataHandler();
   const currentUser = FIREBASE_AUTH?.currentUser;
 
   useEffect(() => {
@@ -31,8 +29,6 @@ function HeaderNav() {
 
       const photoUrl = currentUser?.photoURL;
 
-      console.log("Photo URL:", photoUrl); // 👈 This should show your image URL
-
       setUserProps({
         userImage: photoUrl,
         firstName: google_firstName
@@ -41,14 +37,7 @@ function HeaderNav() {
   }, [currentUser]);
 
   const currentUserName = () => {
-    const google_name = isUserDetail.firstname;
-    const customUserName = userProps.firstName;
-
-    if (currentUser) {
-      return google_name ? google_name : customUserName;
-    } else {
-      return "";
-    }
+    return currentUser ? userProps.firstName : "";
   };
 
   const handleImageClick = () => {
