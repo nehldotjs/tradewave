@@ -30,8 +30,8 @@ function UserDataHandler() {
           if (documents.length > 0) {
             const userData = documents[0];
             setIsUserDetail({
-              firstName: userData.firstname,
-              lastName: userData.lastname,
+              firstName: userData.firstName,
+              lastName: userData.firstName,
               country: userData.country,
               state: userData.state,
               email: userData.email,

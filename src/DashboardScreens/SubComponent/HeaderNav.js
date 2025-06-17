@@ -80,7 +80,7 @@ function HeaderNav() {
             <div className="hn-b-p-name-container">
               <p className="hn-b-p-name">
                 <span className="hn-b-p-welcome">Hi, </span>
-                {currentUserName}
+                {currentUserName || "name here"}
               </p>
             </div>
             <div className="hn-b-image-wrarpper">
