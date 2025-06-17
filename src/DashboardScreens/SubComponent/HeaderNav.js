@@ -90,6 +90,10 @@ function HeaderNav() {
         </div>
       </div>
 
+      <div className="header-tickertape-wrapper">
+        <TickerTape />
+      </div>
+
       <div className="dashBoardSignOutWrapper">
         <button
           className={
@@ -98,10 +102,6 @@ function HeaderNav() {
           onClick={handleSignOut}>
           Logout
         </button>
-      </div>
-
-      <div className="header-tickertape-wrapper">
-        <TickerTape />
       </div>
     </div>
   );
