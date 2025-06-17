@@ -15,9 +15,11 @@ import TransactionHistory from "./DashboardScreens/TransactionHistory";
 import Settings from "./DashboardScreens/Settings";
 import LoaderScreen from "./PropAssets/LoaderScreen";
 import { PropData } from "./Context/PropDataHandler";
+import { MdCancel } from "react-icons/md";
+import { GiCheckMark } from "react-icons/gi";
 
 function DashBoard() {
-  const { isLoading } = PropData();
+  const { isLoading, isNotifyIcon, setIsNotifyIcon } = PropData();
   const location = useLocation();
 
   useEffect(() => {
@@ -58,6 +60,27 @@ function DashBoard() {
         </div>
       </div>
       <DashNav />
+
+      <div className={isNotifyIcon ? "dash-notification-wrapper" : "inactive"}>
+        <div className="notification-container">
+          <div className="notify-cancel-b">
+            <button onClick={() => setIsNotifyIcon(false)}>
+              <MdCancel className="notify-cancel-btn-icon" />
+            </button>
+          </div>
+          <div className="notify-icon-wrapper">
+            <GiCheckMark
+              className="confirmed-icon"
+              style={{ color: "#7c5dc9", fontSize: "200px" }}
+            />
+          </div>
+
+          <p>
+            Hang tight! We're reviewing your payment and will credit your
+            account shortly.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

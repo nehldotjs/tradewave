@@ -27,7 +27,6 @@ import Infrastructure from "./screens/Infrastructure";
 import LoaderScreen from "./PropAssets/LoaderScreen";
 
 // Replace with your actual admin UID
-// const ADMIN_UID = "iqRimyAYJlVRrrvs4oTXX0BTFTz2";
 const ADMIN_UID = process.env.REACT_APP_ADMIN_API_KEY;
 
 const publicRoutes = [
@@ -74,23 +73,22 @@ function ComponentScreensHandler() {
 
   // If user is logged in and is the admin, go to Admin Dashboard
 
-  // if (user && user.uid === ADMIN_UID) {
-  //   return <ControlDash />;
-  // }
-
-  // If user is logged in (but not admin), go to normal Dashboard
-  if (user) {
-    return <DashBoard />;
+  if (user && user.uid === ADMIN_UID) {
+    return <ControlDash />;
+  }
+  // Otherwise show public routes (not logged in)
+  if (!user) {
+    return (
+      <Routes>
+        {publicRoutes.map(({ path, element }) => (
+          <Route key={path} path={path} element={element} />
+        ))}
+      </Routes>
+    );
   }
 
-  // Otherwise show public routes (not logged in)
-  return (
-    <Routes>
-      {publicRoutes.map(({ path, element }) => (
-        <Route key={path} path={path} element={element} />
-      ))}
-    </Routes>
-  );
+  // If user is logged in (but not admin), go to normal Dashboard
+  return <DashBoard />;
 }
 
 export default ComponentScreensHandler;

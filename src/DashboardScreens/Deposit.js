@@ -12,6 +12,7 @@ function Deposit() {
   const [address, setAddress] = useState({
     walletAddress: "bsbbubsjyujbshu748hiukhdsugdufbidsfbi"
   });
+  const { setIsNotifyIcon } = PropData();
 
   const [isWallet, setIsWallet] = useState({
     walletState: true,
@@ -219,6 +220,7 @@ function Deposit() {
       console.error("Error occurred:", err);
     } finally {
       setIsLoading(false);
+      setIsNotifyIcon(true);
     }
   };
 

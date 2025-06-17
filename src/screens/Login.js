@@ -26,20 +26,12 @@ function Login() {
         isUserInfo.email,
         isUserInfo.password
       );
-      navigate("/");
+      navigate("/overview");
     } catch (error) {
       console.error("Error signing in:", error);
     }
   };
-
-  const handleSignUpWithGoogle = async () => {
-    try {
-      await signInWithPopup(FIREBASE_AUTH, GOOGLE_PROVIDER);
-      navigate("/");
-    } catch (error) {
-      console.error("Error signing in:", error);
-    }
-  };
+ 
 
   const handleForgotPass = () => {
     console.log("CLICKED FORGOT PASSWORD");

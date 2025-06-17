@@ -1,34 +1,36 @@
 import React, { createContext, useContext, useState } from "react";
 
+// 1. Create Context
 const PropContext = createContext();
-function PropDataHandler({ children }) {
-  return (
-    <PropContext.Provider value={PropValues()}>{children}</PropContext.Provider>
-  );
-}
 
-const PropValues = () => {
+// 2. Context Provider
+const PropDataHandler = ({ children }) => {
   const [isNavActive, setIsNavActive] = useState(false);
   const [active, setActive] = useState("Standard");
   const [isLoading, setIsLoading] = useState(false);
+  const [isNotifyIcon, setIsNotifyIcon] = useState(false);
 
-  return {
-    isLoading,
-    setIsLoading,
+  const value = {
     isNavActive,
     setIsNavActive,
     active,
-    setActive
+    setActive,
+    isLoading,
+    setIsLoading,
+    isNotifyIcon,
+    setIsNotifyIcon
   };
+
+  return <PropContext.Provider value={value}>{children}</PropContext.Provider>;
 };
 
-function PropData() {
-  try {
-    const x = useContext(PropContext);
-    return x;
-  } catch (err) {
-    console.error(err);
+// 3. Custom Hook for using Context
+const PropData = () => {
+  const context = useContext(PropContext);
+  if (!context) {
+    throw new Error("usePropData must be used within a PropDataHandler");
   }
-}
+  return context;
+};
 
 export { PropDataHandler, PropData };
