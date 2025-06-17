@@ -16,7 +16,7 @@ function DashNav() {
   const { isNavActive } = PropData();
   const navLinks = [
     {
-      path: "/",
+      path: "/overview",
       icon: <SlGraph />,
       label: "Chart"
     },
@@ -44,7 +44,7 @@ function DashNav() {
             </Link>
           ))}
         </div>
-        <p> &copy; 2006 - TradeWave All rights Reserved</p>
+        <p> &copy; 2016 - TradeWave All rights Reserved</p>
       </div>
 
       <div className="handleBurgerBtn">

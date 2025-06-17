@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./styles/overview.css";
+import styled from "styled-components";
 
 function Overview() {
   useEffect(() => {
@@ -24,7 +25,17 @@ function Overview() {
       <div className="overview-content-wrapper">
         <div className="overview-widget-wrapper">
           <div className="overview-widget">
-            <div className="tradingChart"
+            <div className="chartLoader-wrapper">
+              <StyledWrapper>
+                <div className="loader">
+                  <span className="bar" />
+                  <span className="bar" />
+                  <span className="bar" />
+                </div>
+              </StyledWrapper>
+            </div>
+            <div
+              className="tradingChart"
               id="tradingview_widget"
               style={{ flex: 1, margin: "auto" }}></div>
           </div>
@@ -33,5 +44,42 @@ function Overview() {
     </div>
   );
 }
+
+const StyledWrapper = styled.div`
+  .loader {
+    display: flex;
+    align-items: center;
+  }
+
+  .bar {
+    display: inline-block;
+    width: 3px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    animation: scale-up4 1s linear infinite;
+  }
+
+  .bar:nth-child(2) {
+    height: 35px;
+    margin: 0 5px;
+    animation-delay: 0.25s;
+  }
+
+  .bar:nth-child(3) {
+    animation-delay: 0.5s;
+  }
+
+  @keyframes scale-up4 {
+    20% {
+      background-color: #ffff;
+      transform: scaleY(1.5);
+    }
+
+    40% {
+      transform: scaleY(1);
+    }
+  }
+`;
 
 export default Overview;

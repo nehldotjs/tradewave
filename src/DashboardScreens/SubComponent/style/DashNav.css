@@ -73,4 +73,22 @@
     .dashnav-main-wrapper {
         width: 70%;
     }
+
+    .dashNavLink-Section-Wrapper {
+
+        gap: 30px;
+    }
+
+    .dashNavLink-Section-Wrapper .dn-link {
+        text-decoration: none;
+        display: flex;
+        gap: 20px;
+        color: lightgray;
+
+        font-size: 25px;
+    }
+        .dashnav-main-wrapper p {
+            font-size: 12px;
+            text-align: center;
+        }
 }
