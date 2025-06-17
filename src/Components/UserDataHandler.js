@@ -5,8 +5,8 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 function UserDataHandler() {
   const [userDocuments, setUserDocuments] = useState([]);
   const [isUserDetail, setIsUserDetail] = useState({
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     country: "",
     state: "",
     email: "",
@@ -29,8 +29,8 @@ function UserDataHandler() {
         if (documents.length > 0) {
           const userData = documents[0];
           setIsUserDetail({
-            firstname: userData.firstname,
-            lastname: userData.lastname,
+            firstName: userData.firstname,
+            lastName: userData.lastname,
             country: userData.country,
             state: userData.state,
             email: userData.email,

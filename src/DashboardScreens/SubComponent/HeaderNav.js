@@ -10,7 +10,8 @@ import "./style/headerNav.css";
 import { TickerTape } from "react-ts-tradingview-widgets";
 import HamBurgerBtn from "./HamBurgerBtn";
 
- import { FIREBASE_AUTH } from "../../Firebase";
+import UserDataHandler from "../../Components/UserDataHandler";
+import { FIREBASE_AUTH } from "../../Firebase";
 
 function HeaderNav() {
   const [stateActive, setStateActive] = useState(false);
@@ -20,24 +21,22 @@ function HeaderNav() {
     userImage: ""
   });
 
+  // assuming this handles Firestore user data
+  const { isUserDetail } = UserDataHandler();
   const currentUser = FIREBASE_AUTH?.currentUser;
 
   useEffect(() => {
-    if (currentUser) {
-      const displayName = currentUser?.displayName;
-      const google_firstName = displayName ? displayName.split(" ")[0] : "";
-
-      const photoUrl = currentUser?.photoURL;
-
+    if (isUserDetail) {
       setUserProps({
-        userImage: photoUrl,
-        firstName: google_firstName
+        firstName: isUserDetail.firstName || "",
+        lastName: isUserDetail.lastName || "",
+        userImage: isUserDetail.userImage || ""
       });
     }
-  }, [currentUser]);
+  }, [isUserDetail]);
 
   const currentUserName = () => {
-    return currentUser ? userProps.firstName : "";
+    return userProps.firstName;
   };
 
   const handleImageClick = () => {
