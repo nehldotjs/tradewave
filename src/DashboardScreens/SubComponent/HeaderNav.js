@@ -30,8 +30,8 @@ function HeaderNav() {
       });
     }
   }, [isUserDetail]);
-  const currentUserName = userProps.firstName ? userProps.firstName : "User";
 
+  const currentUserName = userProps.firstName ? userProps.firstName : "User";
   const handleImageClick = () => {
     setStateActive((prev) => !prev);
   };
