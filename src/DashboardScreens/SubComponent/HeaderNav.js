@@ -17,37 +17,33 @@ function HeaderNav() {
   const [stateActive, setStateActive] = useState(false);
   const [userProps, setUserProps] = useState({
     firstName: "",
-    lastName: "",
-    userImage: ""
+    lastName: ""
   });
 
-  // assuming this handles Firestore user data
+  // Fetch user data from Firestore
   const { isUserDetail } = UserDataHandler();
-  const currentUser = FIREBASE_AUTH?.currentUser;
 
   useEffect(() => {
-    if (isUserDetail) {
+    if (isUserDetail && isUserDetail.firstName) {
       setUserProps({
         firstName: isUserDetail.firstName || "",
-        lastName: isUserDetail.lastName || "",
-        userImage: isUserDetail.userImage || ""
+        lastName: isUserDetail.lastName || ""
       });
     }
   }, [isUserDetail]);
 
-  const currentUserName = () => {
-    return userProps.firstName;
-  };
+  const currentUserName = userProps.firstName ? userProps.firstName : "User";
 
   const handleImageClick = () => {
-    setStateActive(!stateActive);
+    setStateActive((prev) => !prev);
   };
 
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
     try {
-      await FIREBASE_AUTH.signOut().then(() => navigate("/login"));
+      await FIREBASE_AUTH.signOut();
+      navigate("/login");
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -84,16 +80,12 @@ function HeaderNav() {
             <div className="hn-b-p-name-container">
               <p className="hn-b-p-name">
                 <span className="hn-b-p-welcome">Hi, </span>
-                {currentUserName()}
+                {currentUserName}
               </p>
             </div>
             <div className="hn-b-image-wrarpper">
               <button onClick={handleImageClick}>
-                {userProps.userImage ? (
-                  <img src={userProps.userImage} loading="lazy" alt="profile" />
-                ) : (
-                  <FaUser size={30} className="userIcon" />
-                )}
+                <FaUser size={30} className="userIcon" />
               </button>
             </div>
           </div>

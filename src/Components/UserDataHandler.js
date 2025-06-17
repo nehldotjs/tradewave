@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FIREBASE_AUTH, db } from "../Firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 function UserDataHandler() {
   const [userDocuments, setUserDocuments] = useState([]);
@@ -14,37 +15,37 @@ function UserDataHandler() {
   });
 
   useEffect(() => {
-    const fetchUserDocuments = async () => {
-      try {
-        const q = query(
-          collection(db, "users"),
-          where("userUid", "==", FIREBASE_AUTH.currentUser.uid)
-        );
+    const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, async (user) => {
+      if (user) {
+        try {
+          const q = query(
+            collection(db, "users"),
+            where("userUid", "==", user.uid)
+          );
 
-        const querySnapshot = await getDocs(q);
-        const documents = querySnapshot.docs.map((doc) => doc.data());
-        setUserDocuments(documents);
+          const querySnapshot = await getDocs(q);
+          const documents = querySnapshot.docs.map((doc) => doc.data());
+          setUserDocuments(documents);
 
-        // Extracting user details
-        if (documents.length > 0) {
-          const userData = documents[0];
-          setIsUserDetail({
-            firstName: userData.firstname,
-            lastName: userData.lastname,
-            country: userData.country,
-            state: userData.state,
-            email: userData.email,
-            userMainUid: userData.userUid
-          });
+          if (documents.length > 0) {
+            const userData = documents[0];
+            setIsUserDetail({
+              firstName: userData.firstname,
+              lastName: userData.lastname,
+              country: userData.country,
+              state: userData.state,
+              email: userData.email,
+              userMainUid: userData.userUid
+            });
+          }
+        } catch (error) {
+          console.error("Error fetching user documents:", error);
         }
-      } catch (error) {
-        console.error("Error fetching user documents:", error);
       }
-    };
+    });
 
-    if (FIREBASE_AUTH.currentUser) {
-      fetchUserDocuments();
-    }
+    // Cleanup on unmount
+    return () => unsubscribe();
   }, []);
 
   return { userDocuments, isUserDetail };
