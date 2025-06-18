@@ -71,7 +71,7 @@ function DashBoard() {
           <div className="notify-icon-wrapper">
             <GiCheckMark
               className="confirmed-icon"
-              style={{ color: "#7c5dc9", fontSize: "200px" }}
+              style={{ color: "#7c5dc9", fontSize: "100px" }}
             />
           </div>
 

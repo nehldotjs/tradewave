@@ -1,38 +1,43 @@
 import React, { useState, useEffect } from "react";
 import "./style/headerNav.css";
-
 import { useNavigate } from "react-router-dom";
+
+import { TickerTape } from "react-ts-tradingview-widgets";
+
 import { FaUser } from "react-icons/fa";
 import { GiProfit } from "react-icons/gi";
 import { FaChartLine } from "react-icons/fa6";
 import { HiMiniBanknotes } from "react-icons/hi2";
 
-  import { db, FIREBASE_AUTH } from "../../Firebase";
-import useUserData from "../../Context/UserDataHandler";
+import { db, FIREBASE_AUTH } from "../../Firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-import { TickerTape } from "react-ts-tradingview-widgets";
+import useUserData from "../../Context/UserDataHandler";
 
 function HeaderNav() {
   const [stateActive, setStateActive] = useState(false);
   const [userProps, setUserProps] = useState({
-    firstName: ""
+    firstName: "",
+    userUID: ""
   });
 
   const [useCredit, setUserCredit] = useState([]);
-  // Fetch user data from Firestore
-  const { isUserDetail } = useUserData();
 
+  // Get user document directly
+  const { userDocument } = useUserData();
+
+  // Set user props when document is available
   useEffect(() => {
-    if (isUserDetail && isUserDetail.firstName) {
+    if (userDocument) {
       setUserProps({
-        firstName: isUserDetail.firstName,
-        lastName: isUserDetail.lastName,
-        userUID: isUserDetail.userMainUid
+        firstName: userDocument.firstName,
+        userUID: userDocument.userUid
       });
     }
-  }, [isUserDetail]);
-  const fetchUsers = async () => {
+  }, [userDocument]);
+
+  // Fetch portfolio data when userUID is set
+  const fetchUserPortfolio = async () => {
     try {
       const q = query(
         collection(db, "userPortfolio"),
@@ -46,22 +51,23 @@ function HeaderNav() {
       }));
       setUserCredit(data);
     } catch (error) {
-      console.error("Error getting documents with condition: ", error);
+      console.error("Error getting user portfolio: ", error);
     }
   };
 
   useEffect(() => {
     if (userProps.userUID) {
-      fetchUsers();
+      fetchUserPortfolio();
     }
   }, [userProps.userUID]);
 
-  const currentUserName = userProps.firstName ? userProps.firstName : "User";
+  const currentUserName = userProps.firstName || "User";
+  const navigate = useNavigate();
+
   const handleImageClick = () => {
     setStateActive((prev) => !prev);
   };
 
-  const navigate = useNavigate();
   const handleSignOut = async () => {
     try {
       await FIREBASE_AUTH.signOut();
@@ -82,7 +88,9 @@ function HeaderNav() {
               <h5>
                 ${" "}
                 <span>
-                  {useCredit.length > 0 ? useCredit[0].balance + 0.0 : "0.00"}
+                  {useCredit.length > 0
+                    ? (useCredit[0].balance || 0).toFixed(2)
+                    : "0.00"}
                 </span>
               </h5>
             </div>
@@ -92,7 +100,7 @@ function HeaderNav() {
                 ${" "}
                 <span>
                   {useCredit.length > 0
-                    ? useCredit[0].investment + 0.0
+                    ? (useCredit[0].investment || 0).toFixed(2)
                     : "0.00"}
                 </span>
               </h5>
@@ -102,7 +110,9 @@ function HeaderNav() {
               <h5>
                 ${" "}
                 <span>
-                  {useCredit.length > 0 ? useCredit[0].roi + 0.0 : "0.00"}
+                  {useCredit.length > 0
+                    ? (useCredit[0].roi || 0).toFixed(2)
+                    : "0.00"}
                 </span>
               </h5>
             </div>
@@ -112,7 +122,7 @@ function HeaderNav() {
             <div className="hn-b-p-name-container">
               <p className="hn-b-p-name">
                 <span className="hn-b-p-welcome">Hi, </span>
-                {isUserDetail ? currentUserName : "Loading..."}
+                {userDocument ? currentUserName : "Loading..."}
               </p>
             </div>
             <div className="hn-b-image-wrarpper">
@@ -137,7 +147,6 @@ function HeaderNav() {
           Logout
         </button>
       </div>
-
     </div>
   );
 }

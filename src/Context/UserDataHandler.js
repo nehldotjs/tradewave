@@ -1,14 +1,12 @@
-// UserDataHandler.js
 import { useState, useEffect } from "react";
 import { FIREBASE_AUTH, db } from "../Firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
 function useUserData() {
-  const [userDocuments, setUserDocuments] = useState([]);
-  const [isUserDetail, setIsUserDetail] = useState(null); // starts as null, easier to check loading state
-
-  useEffect(() => {
+  const [userDocument, setUserDocument] = useState(null); // Single user doc
+  const [isUserDetail, setIsUserDetail] = useState(null); // for easy access
+   useEffect(() => {
     const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, async (user) => {
       if (user) {
         try {
@@ -16,23 +14,25 @@ function useUserData() {
             collection(db, "users"),
             where("userUid", "==", user.uid)
           );
-          const querySnapshot = await getDocs(q);
-          const documents = querySnapshot.docs.map((doc) => doc.data());
-          setUserDocuments(documents);
 
-          if (documents.length > 0) {
-            const userData = documents[0];
+          const querySnapshot = await getDocs(q);
+          const doc = querySnapshot.docs[0]?.data(); // Get first doc only
+
+          if (doc) {
+            setUserDocument(doc); // Store the full document
+
+            // Store simplified user details if needed elsewhere
             setIsUserDetail({
-              firstName: userData.firstName,
-              lastName: userData.lastName, // FIXED HERE
-              country: userData.country,
-              state: userData.state,
-              email: userData.email,
-              userMainUid: userData.userUid
+              firstName: doc.firstName,
+              lastName: doc.lastName,
+              country: doc.country,
+              state: doc.state,
+              email: doc.email,
+              userMainUid: doc.userUid
             });
           }
         } catch (error) {
-          console.error("Error fetching user documents:", error);
+          console.error("Error fetching user document:", error);
         }
       }
     });
@@ -40,7 +40,7 @@ function useUserData() {
     return () => unsubscribe();
   }, []);
 
-  return { userDocuments, isUserDetail };
+  return { userDocument, isUserDetail };
 }
 
 export default useUserData;

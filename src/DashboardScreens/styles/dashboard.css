@@ -41,7 +41,7 @@
     margin: auto;
     flex-direction: column;
 
-    gap: 30px;
+    gap: 20px;
     background-color: #7c5dc9b1;
     border-radius: 50px;
     justify-content: flex-start;
@@ -57,15 +57,20 @@
     width: 100%;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 20px;
-
+ 
 }
 
 .notify-cancel-b button {
     border: none;
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+    margin-right: 20px;
+    align-items: center;
+
     background: transparent;
 
- }
+}
 
 .notify-cancel-btn-icon {
     border-radius: 50%;

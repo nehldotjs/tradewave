@@ -13,8 +13,7 @@ function ControlDash() {
   const [isBtnActive, setIsBtnActive] = useState(false);
 
   const { setIsLoading } = PropData();
-  const loggedInUserId = FIREBASE_AUTH.currentUser.uid;
-
+ 
   useEffect(() => {
     const fetchUsers = async () => {
       setIsLoading(true);
