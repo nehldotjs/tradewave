@@ -21,7 +21,7 @@ function HeaderNav() {
     userUID: ""
   });
 
-  const [useCredit, setUserCredit] = useState([]);
+  const [portfolioTransactions, setPortfolioTransactions] = useState([]);
 
   // Get user document directly
   const { userDocument } = useUserData();
@@ -36,8 +36,8 @@ function HeaderNav() {
     }
   }, [userDocument]);
 
-  // Fetch portfolio data when userUID is set
-  const fetchUserPortfolio = async () => {
+  // Fetch userPortfolio transactions where userUid matches
+  const fetchUserPortfolioTransactions = async () => {
     try {
       const q = query(
         collection(db, "userPortfolio"),
@@ -49,17 +49,23 @@ function HeaderNav() {
         id: doc.id,
         ...doc.data()
       }));
-      setUserCredit(data);
+      setPortfolioTransactions(data);
     } catch (error) {
-      console.error("Error getting user portfolio: ", error);
+      console.error("Error getting user portfolio transactions: ", error);
     }
   };
 
   useEffect(() => {
     if (userProps.userUID) {
-      fetchUserPortfolio();
+      fetchUserPortfolioTransactions();
     }
   }, [userProps.userUID]);
+
+  // Calculate balance: sum of transactions where isPending is false
+  const totalBalance = portfolioTransactions
+    .filter((tx) => tx.isPending === false)
+    .reduce((sum, tx) => sum + Number(tx.amount || 0), 0)
+    .toFixed(2);
 
   const currentUserName = userProps.firstName || "User";
   const navigate = useNavigate();
@@ -86,34 +92,19 @@ function HeaderNav() {
             <div className="hn-b-wrapper">
               <HiMiniBanknotes />
               <h5>
-                ${" "}
-                <span>
-                  {useCredit.length > 0
-                    ? (useCredit[0].balance || 0).toFixed(2)
-                    : "0.00"}
-                </span>
+                $ <span>{totalBalance}</span>
               </h5>
             </div>
             <div className="hn-b-wrapper">
               <FaChartLine />
               <h5>
-                ${" "}
-                <span>
-                  {useCredit.length > 0
-                    ? (useCredit[0].investment || 0).toFixed(2)
-                    : "0.00"}
-                </span>
+                $ <span>0.00</span>
               </h5>
             </div>
             <div className="hn-b-wrapper">
               <GiProfit />
               <h5>
-                ${" "}
-                <span>
-                  {useCredit.length > 0
-                    ? (useCredit[0].roi || 0).toFixed(2)
-                    : "0.00"}
-                </span>
+                $ <span>0.00</span>
               </h5>
             </div>
           </div>

@@ -1,60 +1,59 @@
-import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { db, FIREBASE_AUTH } from "../Firebase";
+import { useNavigate } from "react-router-dom";
 
 import "./control.css";
-import { useNavigate } from "react-router-dom";
+
+import { db, FIREBASE_AUTH } from "../Firebase";
+import {
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  getDoc
+} from "firebase/firestore";
+
 import { MdOutlineDoubleArrow } from "react-icons/md";
+import { IoReturnDownBack } from "react-icons/io5";
+import { GiCheckMark } from "react-icons/gi";
+
 import { PropData } from "../Context/PropDataHandler";
 
-function ControlDash() {
-  const [allUsers, setAllUsers] = useState([]);
-  const [transactions, setTransactions] = useState([]);
-  const [isBtnActive, setIsBtnActive] = useState(false);
-  const [isUserSeclected, setIsUserSelected] = useState([]);
-
+// Custom Hook for fetching Firestore collections
+const useFetchCollection = (collectionName) => {
+  const [data, setData] = useState([]);
   const { setIsLoading } = PropData();
 
-  console.log(isUserSeclected);
-
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchData = async () => {
       setIsLoading(true);
       try {
-        const querySnapshot = await getDocs(collection(db, "users"));
-        const usersData = querySnapshot.docs.map((doc) => ({
+        const snapshot = await getDocs(collection(db, collectionName));
+        const collectionData = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data()
         }));
-        setAllUsers(usersData);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    const fetchTransactions = async () => {
-      setIsLoading(true);
-      try {
-        const querySnapshot = await getDocs(collection(db, "usersTransaction"));
-        const transactionList = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data()
-        }));
-        setTransactions(transactionList);
+        setData(collectionData);
       } catch (err) {
-        console.error("Error fetching transactions:", err);
+        console.error(`Error fetching ${collectionName}:`, err);
       } finally {
         setIsLoading(false);
       }
     };
+    fetchData();
+  }, [collectionName, setIsLoading]);
 
-    fetchUsers();
-    fetchTransactions();
-  }, [setIsLoading]);
+  return data;
+};
+
+function ControlDash() {
+  const allUsers = useFetchCollection("users");
+  const transactions = useFetchCollection("usersTransaction");
+  const [isUserSelected, setIsUserSelected] = useState(null);
+  const [isBtnActive, setIsBtnActive] = useState(false);
+  const [uniqueUserBalance, setUniqueUserBalance] = useState(false);
 
   const navigate = useNavigate();
+
   const handleSignOut = async () => {
     try {
       await FIREBASE_AUTH.signOut();
@@ -64,6 +63,72 @@ function ControlDash() {
     }
   };
 
+  // Function to update pending status and user's balance
+  const updatePendingTransaction = async (transaction) => {
+    try {
+      const transactionRef = doc(db, "usersTransaction", transaction.id);
+      const userDocRef = doc(db, "users", transaction.uid);
+      const userDocSnap = await getDoc(userDocRef);
+
+      if (userDocSnap.exists()) {
+        const userData = userDocSnap.data();
+        const currentBalance = Number(userData.balance || 0);
+        const updatedBalance = transaction.isPending
+          ? currentBalance + Number(transaction.amount || 0)
+          : currentBalance;
+
+        // Update user's balance only if transaction was pending
+        if (transaction.isPending) {
+          await updateDoc(userDocRef, {
+            balance: updatedBalance
+          });
+        }
+
+        // Always toggle isPending
+        await updateDoc(transactionRef, {
+          isPending: !transaction.isPending
+        });
+
+        alert(
+          "Transaction status toggled and user balance updated successfully!"
+        );
+      } else {
+        console.error("User document not found!");
+      }
+    } catch (error) {
+      console.error("Error updating transaction or balance:", error);
+    }
+  };
+
+  const userHandler = (user) => {
+    setIsUserSelected(user);
+    setUniqueUserBalance(true);
+  };
+
+  // Helper function to get latest transaction for a user
+  const getLatestTransaction = (uid) => {
+    const userTransactions = transactions
+      .filter((tx) => tx.uid === uid)
+      .sort((a, b) => {
+        const timeA = a.timestamp ? a.timestamp.toDate() : 0;
+        const timeB = b.timestamp ? b.timestamp.toDate() : 0;
+        return timeB - timeA;
+      });
+    return userTransactions[0]; // Latest
+  };
+
+  // Stats Calculations
+  const pendingAmount = transactions
+    .filter((tx) => tx.isPending)
+    .reduce((sum, tx) => sum + Number(tx.amount || 0), 0);
+
+  const totalAmount = transactions.reduce(
+    (sum, tx) => sum + Number(tx.amount || 0),
+    0
+  );
+
+  const balance = totalAmount - pendingAmount;
+
   return (
     <div className="control-wrapper">
       <div className="control-section">
@@ -72,7 +137,7 @@ function ControlDash() {
             <h1 className="Transactions-header">Pending</h1>
             <div className="Transaction-Figure">
               <p>
-                $ <span>2500</span>
+                $ <span>{pendingAmount}</span>
               </p>
             </div>
           </div>
@@ -80,7 +145,7 @@ function ControlDash() {
             <h1 className="Transactions-header">Balance</h1>
             <div className="Transaction-Figure">
               <p>
-                $ <span>2500</span>
+                $ <span>{balance}</span>
               </p>
             </div>
           </div>
@@ -88,7 +153,7 @@ function ControlDash() {
             <h1 className="Transactions-header">Total</h1>
             <div className="Transaction-Figure">
               <p>
-                $ <span>2500</span>
+                $ <span>{totalAmount}</span>
               </p>
             </div>
           </div>
@@ -101,24 +166,20 @@ function ControlDash() {
         </div>
 
         <div className="userList-wrapper">
-          <div className="ueserList-container">
+          <div
+            className={
+              !uniqueUserBalance
+                ? "userList-container"
+                : "userList-container listAnimation1"
+            }>
             {allUsers.map((user) => {
-              // Find transactions of this user
-              const userTransactions = transactions
-                .filter((tx) => tx.uid === user.userUid)
-                .sort((a, b) => {
-                  const timeA = a.timestamp ? a.timestamp.toDate() : 0;
-                  const timeB = b.timestamp ? b.timestamp.toDate() : 0;
-                  return timeB - timeA; // Latest first
-                });
-
-              const latestTransaction = userTransactions[0]; // Get the latest one
+              const latestTransaction = getLatestTransaction(user.userUid);
 
               return (
                 <button
                   key={user.id}
                   className="u-List-wrapper"
-                  onClick={() => setIsUserSelected(user)}>
+                  onClick={() => userHandler(user)}>
                   <div className="u-list-container">
                     <div className="u-list-user-info-container">
                       <h3>
@@ -133,22 +194,20 @@ function ControlDash() {
                       <div className="u-list-info-wrapper">
                         <div className="u-list-info">
                           <p>
-                            Transaction Amount:
-                            <span> $ {latestTransaction.amount}</span>
+                            Transaction Amount:{" "}
+                            <span>$ {latestTransaction.amount}</span>
                           </p>
                           <p>
                             Wallet: <span>{latestTransaction.walletName}</span>
                           </p>
-
                           <p>
-                            Pending:
+                            Pending:{" "}
                             <span>
                               {latestTransaction.isPending ? "Yes" : "No"}
                             </span>
                           </p>
-
                           <p>
-                            Time :
+                            Time:{" "}
                             <span>
                               {latestTransaction.timestamp
                                 ? latestTransaction.timestamp
@@ -176,11 +235,63 @@ function ControlDash() {
               );
             })}
           </div>
-        </div>
 
-        
+          {/* Unique User Transaction View */}
+          <div
+            className={
+              uniqueUserBalance
+                ? "uniqueUserBalanceWrapper"
+                : "uniqueUserBalanceWrapper listAnimation2"
+            }>
+            {uniqueUserBalance && (
+              <div className="toggleUserInfo-wrapper">
+                <h1>
+                  User Transaction Info:{" "}
+                  <span>
+                    {isUserSelected.firstName} {isUserSelected.lastName}
+                  </span>
+                </h1>
+                <button onClick={() => setUniqueUserBalance(false)}>
+                  <IoReturnDownBack />
+                </button>
+              </div>
+            )}
+            {isUserSelected && isUserSelected.userUid ? (
+              <div className="u-u-transactions">
+                {transactions
+                  .filter((x) => x.uid === isUserSelected?.userUid)
+                  .sort((a, b) =>
+                    b.isPending === a.isPending ? 0 : b.isPending ? 1 : -1
+                  )
+                  .map((x) => (
+                    <div key={x.id} className="transaction-item">
+                      <p>Transaction Amount: ${x.amount}</p>
+                      <p>Wallet Name: {x.walletName}</p>
+                      <p>Pending: {x.isPending ? "Yes" : "No"}</p>
+                      <p>
+                        Time:{" "}
+                        {x.timestamp
+                          ? x.timestamp.toDate().toLocaleString()
+                          : "No Date Available"}
+                      </p>
+                      <button
+                        className={
+                          x.isPending ? "pendingBtn" : "pendingBtn isPending"
+                        }
+                        onClick={() => updatePendingTransaction(x)}>
+                        <GiCheckMark />
+                      </button>
+                    </div>
+                  ))}
+              </div>
+            ) : (
+              <p>No user selected.</p>
+            )}
+          </div>
+        </div>
       </div>
 
+      {/* Side Navigation */}
       <div className={isBtnActive ? "controlNav" : "controlNav isActive"}>
         <div className="control-navBtn">
           <button onClick={() => setIsBtnActive(!isBtnActive)}>
