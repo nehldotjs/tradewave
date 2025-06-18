@@ -323,7 +323,6 @@ isLinesHeight {
 
 .u-list-info {
     display: inline-flex;
-    min-width: max-content;
     flex: 1;
     display: flex;
     align-items: center;
@@ -481,4 +480,53 @@ isLinesHeight {
     .isActive {
         width: 0px;
     }
+
+    .stats-wrapper {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 20px;
+        padding: 20px 50px;
+        margin-bottom: 10px;
+
+        overflow-x: scroll;
+    }
+
+    /* _________________________________________ */
+
+    .userList-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        width: 90%;
+        flex: 1;
+
+        overflow: hidden;
+        position: relative;
+        overflow-y: scroll;
+    }
+
+
+    .u-list-info-wrapper {
+        display: flex;
+
+        flex-wrap: wrap;
+        height: auto;
+        width: 100%;
+    }
+
+    .u-list-info {
+        display: flex;
+        flex: unset;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+
+        flex-wrap: wrap;
+     }
+
 }

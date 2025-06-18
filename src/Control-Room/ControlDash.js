@@ -11,9 +11,12 @@ function ControlDash() {
   const [allUsers, setAllUsers] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [isBtnActive, setIsBtnActive] = useState(false);
+  const [isUserSeclected, setIsUserSelected] = useState([]);
 
   const { setIsLoading } = PropData();
- 
+
+  console.log(isUserSeclected);
+
   useEffect(() => {
     const fetchUsers = async () => {
       setIsLoading(true);
@@ -112,11 +115,14 @@ function ControlDash() {
               const latestTransaction = userTransactions[0]; // Get the latest one
 
               return (
-                <button key={user.id} className="u-List-wrapper">
+                <button
+                  key={user.id}
+                  className="u-List-wrapper"
+                  onClick={() => setIsUserSelected(user)}>
                   <div className="u-list-container">
                     <div className="u-list-user-info-container">
                       <h3>
-                        {user.firstname} {user.lastname}
+                        {user.firstName} {user.lastName}
                       </h3>
                       <p>
                         Email: <span>{user.email}</span>
@@ -171,6 +177,8 @@ function ControlDash() {
             })}
           </div>
         </div>
+
+        
       </div>
 
       <div className={isBtnActive ? "controlNav" : "controlNav isActive"}>
