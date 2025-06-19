@@ -77,7 +77,6 @@ function SignUp() {
   };
 
   const navigate = useNavigate();
-
   const handleUserData = async () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -98,13 +97,16 @@ function SignUp() {
         userUid: user.uid
       });
 
-       
+      // 2. Create empty parent doc for userTransactions/{user.uid}
+      await setDoc(doc(db, "userTransactions", user.uid), {
+        userUid: user.uid // just an identifier or metadata
+      });
 
-      // 3. Create 'balance' subcollection inside "userTransactions/{user.uid}/balance"
+      // 3. Create 'balance' subcollection under userTransactions/{user.uid}/balance
 
       // ROI Document
       const roiRef = doc(db, "userTransactions", user.uid, "balance", "roi");
-      await setDoc(roiRef, { totalRoi: 0 }); // Initialize to 0 or any value
+      await setDoc(roiRef, { totalRoi: 0 });
 
       // Investment Document
       const investmentRef = doc(
@@ -114,7 +116,7 @@ function SignUp() {
         "balance",
         "investment"
       );
-      await setDoc(investmentRef, { totalInvestment: 0 }); // Initialize to 0 or any value
+      await setDoc(investmentRef, { totalInvestment: 0 });
 
       // Pending Transactions Document
       const pendingRef = doc(
@@ -124,15 +126,14 @@ function SignUp() {
         "balance",
         "pendingTransactions"
       );
-      await setDoc(pendingRef, {
-        transactions: [] // Initialize as empty array
-      });
+      await setDoc(pendingRef, { transactions: [] });
 
       navigate("/overview");
     } catch (err) {
       console.error("Error occurred:", err);
     }
   };
+  
 
   const handleSignUp = async (e) => {
     e.preventDefault();
