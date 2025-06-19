@@ -208,7 +208,7 @@ function Deposit() {
       }
 
       await addDoc(collection(db, "usersTransaction"), {
-        uid: user.uid,
+        userUid: user.uid,
         amount: isDebitAmount,
         walletName: isWallet.selectedWallet?.name || "",
         isPending: true,

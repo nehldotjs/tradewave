@@ -18,7 +18,6 @@ import { GiCheckMark } from "react-icons/gi";
 
 import { PropData } from "../Context/PropDataHandler";
 
-// Custom Hook for fetching Firestore collections
 const useFetchCollection = (collectionName) => {
   const [data, setData] = useState([]);
   const { setIsLoading } = PropData();
@@ -47,11 +46,10 @@ const useFetchCollection = (collectionName) => {
 
 function ControlDash() {
   const allUsers = useFetchCollection("users");
-  const transactions = useFetchCollection("usersTransaction");
+  const transactions = useFetchCollection("userTransactions");
   const [isUserSelected, setIsUserSelected] = useState(null);
   const [isBtnActive, setIsBtnActive] = useState(false);
   const [uniqueUserBalance, setUniqueUserBalance] = useState(false);
-
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -63,10 +61,9 @@ function ControlDash() {
     }
   };
 
-  // Function to update pending status and user's balance
   const updatePendingTransaction = async (transaction) => {
     try {
-      const transactionRef = doc(db, "usersTransaction", transaction.id);
+      const transactionRef = doc(db, "userTransactions", transaction.id);
       const userDocRef = doc(db, "users", transaction.uid);
       const userDocSnap = await getDoc(userDocRef);
 
@@ -77,14 +74,12 @@ function ControlDash() {
           ? currentBalance + Number(transaction.amount || 0)
           : currentBalance;
 
-        // Update user's balance only if transaction was pending
         if (transaction.isPending) {
           await updateDoc(userDocRef, {
             balance: updatedBalance
           });
         }
 
-        // Always toggle isPending
         await updateDoc(transactionRef, {
           isPending: !transaction.isPending
         });
@@ -105,19 +100,17 @@ function ControlDash() {
     setUniqueUserBalance(true);
   };
 
-  // Helper function to get latest transaction for a user
-  const getLatestTransaction = (uid) => {
+  const getLatestTransaction = (userUid) => {
     const userTransactions = transactions
-      .filter((tx) => tx.uid === uid)
+      .filter((tx) => tx.uid === userUid)
       .sort((a, b) => {
         const timeA = a.timestamp ? a.timestamp.toDate() : 0;
         const timeB = b.timestamp ? b.timestamp.toDate() : 0;
         return timeB - timeA;
       });
-    return userTransactions[0]; // Latest
+    return userTransactions[0];
   };
 
-  // Stats Calculations
   const pendingAmount = transactions
     .filter((tx) => tx.isPending)
     .reduce((sum, tx) => sum + Number(tx.amount || 0), 0);
@@ -128,6 +121,19 @@ function ControlDash() {
   );
 
   const balance = totalAmount - pendingAmount;
+
+  const sortedUsers = [...allUsers].sort((a, b) => {
+    const latestA = getLatestTransaction(a.userUid);
+    const latestB = getLatestTransaction(b.userUid);
+    if (!latestA && !latestB) return 0;
+    if (!latestA) return 1;
+    if (!latestB) return -1;
+    if (latestA.isPending && !latestB.isPending) return -1;
+    if (!latestA.isPending && latestB.isPending) return 1;
+    return (
+      (latestB.timestamp?.toDate() || 0) - (latestA.timestamp?.toDate() || 0)
+    );
+  });
 
   return (
     <div className="control-wrapper">
@@ -172,71 +178,61 @@ function ControlDash() {
                 ? "userList-container"
                 : "userList-container listAnimation1"
             }>
-            {allUsers.map((user) => {
-              const latestTransaction = getLatestTransaction(user.userUid);
+            <div className="userList-section-wrapper">
+              {sortedUsers.map((user) => {
+                const latestTransaction = getLatestTransaction(user.userUid);
 
-              return (
-                <button
-                  key={user.id}
-                  className="u-List-wrapper"
-                  onClick={() => userHandler(user)}>
-                  <div className="u-list-container">
-                    <div className="u-list-user-info-container">
-                      <h3>
-                        {user.firstName} {user.lastName}
-                      </h3>
-                      <p>
-                        Email: <span>{user.email}</span>
-                      </p>
-                    </div>
-
-                    {latestTransaction ? (
-                      <div className="u-list-info-wrapper">
-                        <div className="u-list-info">
-                          <p>
-                            Transaction Amount:{" "}
-                            <span>$ {latestTransaction.amount}</span>
-                          </p>
-                          <p>
-                            Wallet: <span>{latestTransaction.walletName}</span>
-                          </p>
-                          <p>
-                            Pending:{" "}
-                            <span>
+                return (
+                  <button
+                    key={user.id}
+                    className="u-List-wrapper"
+                    onClick={() => userHandler(user)}>
+                    <div className="u-list-container">
+                      <div className="u-list-user-info-container">
+                        <h3>
+                          {user.firstName} {user.lastName}
+                        </h3>
+                        <p>
+                          Email: <span>{user.email}</span>
+                        </p>
+                      </div>
+                      {latestTransaction &&
+                      latestTransaction.amount !== undefined ? (
+                        <div className="u-list-info-wrapper">
+                          <div className="u-list-info">
+                            <p>
+                              Transaction Amount: ${latestTransaction.amount}
+                            </p>
+                            <p>Wallet: {latestTransaction.walletName}</p>
+                            <p>
+                              Pending:{" "}
                               {latestTransaction.isPending ? "Yes" : "No"}
-                            </span>
-                          </p>
-                          <p>
-                            Time:{" "}
-                            <span>
+                            </p>
+                            <p>
+                              Time:{" "}
                               {latestTransaction.timestamp
                                 ? latestTransaction.timestamp
                                     .toDate()
                                     .toLocaleString()
                                 : "N/A"}
-                            </span>
-                          </p>
-                          <p>
-                            ID: <span>{latestTransaction.uid}</span>
-                          </p>
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    ) : (
-                      <p>No transactions found.</p>
-                    )}
-                  </div>
-
-                  <div className="u-info-btn-wrapper">
-                    <div className="u-info-btn-container">
-                      <MdOutlineDoubleArrow className="u-list-arrow" />
+                      ) : (
+                        <p>No transactions found.</p>
+                      )}
                     </div>
-                  </div>
-                </button>
-              );
-            })}
+                    <div className="u-info-btn-wrapper">
+                      <div className="u-info-btn-container">
+                        <MdOutlineDoubleArrow className="u-list-arrow" />
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}{" "}
+            </div>
           </div>
 
-          {/* Unique User Transaction View */}
           <div
             className={
               uniqueUserBalance
@@ -245,24 +241,36 @@ function ControlDash() {
             }>
             {uniqueUserBalance && (
               <div className="toggleUserInfo-wrapper">
-                <h1>
-                  User Transaction Info:{" "}
-                  <span>
+                <div className="cancel-buttonWrapper">
+                  <button onClick={() => setUniqueUserBalance(false)}>
+                    <IoReturnDownBack />
+                  </button>
+                </div>
+                <div className="u-u-name-wrapper">
+                  <p>User Transaction Info: </p>
+                  <h1>
                     {isUserSelected.firstName} {isUserSelected.lastName}
-                  </span>
-                </h1>
-                <button onClick={() => setUniqueUserBalance(false)}>
-                  <IoReturnDownBack />
-                </button>
+                  </h1>
+                </div>
               </div>
             )}
+
             {isUserSelected && isUserSelected.userUid ? (
               <div className="u-u-transactions">
-                {transactions
-                  .filter((x) => x.uid === isUserSelected?.userUid)
-                  .sort((a, b) =>
-                    b.isPending === a.isPending ? 0 : b.isPending ? 1 : -1
+                {[
+                  ...transactions.filter(
+                    (tx) => tx.uid === isUserSelected.userUid
                   )
+                ]
+                  .sort((a, b) => {
+                    if (a.isPending === b.isPending) {
+                      return (
+                        (b.timestamp?.toDate() || 0) -
+                        (a.timestamp?.toDate() || 0)
+                      );
+                    }
+                    return b.isPending - a.isPending;
+                  })
                   .map((x) => (
                     <div key={x.id} className="transaction-item">
                       <p>Transaction Amount: ${x.amount}</p>
