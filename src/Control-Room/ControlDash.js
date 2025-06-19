@@ -61,9 +61,9 @@ function ControlDash() {
     }
   };
 
+ 
   const updatePendingTransaction = async (transaction) => {
     try {
-      const transactionRef = doc(db, "userTransactions", transaction.id);
       const userDocRef = doc(db, "users", transaction.uid);
       const userDocSnap = await getDoc(userDocRef);
 
@@ -80,6 +80,14 @@ function ControlDash() {
           });
         }
 
+        const transactionRef = doc(
+          db,
+          "userTransactions",
+          transaction.uid,
+          "transactions",
+          transaction.id
+        );
+
         await updateDoc(transactionRef, {
           isPending: !transaction.isPending
         });
@@ -94,6 +102,7 @@ function ControlDash() {
       console.error("Error updating transaction or balance:", error);
     }
   };
+
 
   const userHandler = (user) => {
     setIsUserSelected(user);
@@ -205,11 +214,11 @@ function ControlDash() {
                             </p>
                             <p>Wallet: {latestTransaction.walletName}</p>
                             <p>
-                              Pending:{" "}
+                              Pending:
                               {latestTransaction.isPending ? "Yes" : "No"}
                             </p>
                             <p>
-                              Time:{" "}
+                              Time:
                               {latestTransaction.timestamp
                                 ? latestTransaction.timestamp
                                     .toDate()
@@ -229,7 +238,7 @@ function ControlDash() {
                     </div>
                   </button>
                 );
-              })}{" "}
+              })}
             </div>
           </div>
 
@@ -277,7 +286,7 @@ function ControlDash() {
                       <p>Wallet Name: {x.walletName}</p>
                       <p>Pending: {x.isPending ? "Yes" : "No"}</p>
                       <p>
-                        Time:{" "}
+                        Time:
                         {x.timestamp
                           ? x.timestamp.toDate().toLocaleString()
                           : "No Date Available"}

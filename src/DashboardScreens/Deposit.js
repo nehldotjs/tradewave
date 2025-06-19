@@ -207,15 +207,17 @@ function Deposit() {
         return;
       }
 
-      await addDoc(collection(db, "usersTransaction"), {
-        userUid: user.uid,
-        amount: isDebitAmount,
-        walletName: isWallet.selectedWallet?.name || "",
-        isPending: true,
-        timestamp: new Date()
-      });
+      await addDoc(
+        collection(db, "userTransactions", user.uid, "transactions"), // subcollection path
+        {
+          amount: isDebitAmount,
+          walletName: isWallet.selectedWallet?.name || "",
+          isPending: true,
+          timestamp: new Date()
+        }
+      );
 
-      Navigate("/overview"); // useNavigate from 'react-router-dom'
+      Navigate("/overview");
     } catch (err) {
       console.error("Error occurred:", err);
     } finally {
