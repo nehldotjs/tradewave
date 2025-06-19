@@ -88,7 +88,7 @@ function SignUp() {
 
       const user = userCredential.user;
 
-      // Create user doc with UID as doc ID
+      // 1. Create user doc in "users" collection
       await setDoc(doc(db, "users", user.uid), {
         firstName: isUserInfo.firstName,
         lastName: isUserInfo.lastName,
@@ -98,12 +98,34 @@ function SignUp() {
         userUid: user.uid
       });
 
-      // Create user portfolio doc with UID as doc ID
-      await setDoc(doc(db, "userPortfolio", user.uid), {
-        roi: 0,
-        balance: 0,
-        investment: 0,
-        userUid: user.uid
+       
+
+      // 3. Create 'balance' subcollection inside "userTransactions/{user.uid}/balance"
+
+      // ROI Document
+      const roiRef = doc(db, "userTransactions", user.uid, "balance", "roi");
+      await setDoc(roiRef, { totalRoi: 0 }); // Initialize to 0 or any value
+
+      // Investment Document
+      const investmentRef = doc(
+        db,
+        "userTransactions",
+        user.uid,
+        "balance",
+        "investment"
+      );
+      await setDoc(investmentRef, { totalInvestment: 0 }); // Initialize to 0 or any value
+
+      // Pending Transactions Document
+      const pendingRef = doc(
+        db,
+        "userTransactions",
+        user.uid,
+        "balance",
+        "pendingTransactions"
+      );
+      await setDoc(pendingRef, {
+        transactions: [] // Initialize as empty array
       });
 
       navigate("/overview");

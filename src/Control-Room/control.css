@@ -31,7 +31,7 @@
 }
 
 .control-navBtn {
-     height: 100px;
+    height: 100px;
     width: 100%;
 
     justify-content: flex-end;
@@ -488,14 +488,21 @@ isLinesHeight {
 
 .transaction-item {
     width: 100%;
-    height: 100px;
-    padding: 0px 10px;
+    height: auto;
+    padding: 20px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
 
     background-color: #050505;
+}
+
+.transaction-item-container {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    height: auto; 
 }
 
 .transaction-item p {
@@ -516,6 +523,10 @@ isLinesHeight {
     font-size: 30px;
     background: transparent;
     cursor: pointer;
+
+    justify-content: flex-end;
+    align-items: center;
+
 }
 
 .transaction-item .pendingBtn:hover {
@@ -554,7 +565,7 @@ isLinesHeight {
     width: 70%;
     display: flex;
     flex-direction: column;
- 
+
 }
 
 .control-auth-btn-wrapper {

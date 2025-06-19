@@ -13,6 +13,7 @@ import { db, FIREBASE_AUTH } from "../../Firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
 import useUserData from "../../Context/UserDataHandler";
+import { useBalance } from "../../Context/BalanceProvider";
 
 function HeaderNav() {
   const [stateActive, setStateActive] = useState(false);
@@ -25,6 +26,7 @@ function HeaderNav() {
 
   // Get user document directly
   const { userDocument } = useUserData();
+  const { balanceData, fetchBalanceData, updateBalanceData } = useBalance();
 
   // Set user props when document is available
   useEffect(() => {
@@ -35,6 +37,13 @@ function HeaderNav() {
       });
     }
   }, [userDocument]);
+  
+  useEffect(() => {
+    const userId = userProps.userUID; // Replace with dynamic user ID
+    fetchBalanceData(userId);
+  }, []);
+
+  console.log("Balance Data:", balanceData);
 
   // Fetch userPortfolio transactions where userUid matches
   const fetchUserPortfolioTransactions = async () => {

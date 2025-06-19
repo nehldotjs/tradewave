@@ -9,7 +9,9 @@ import {
   getDocs,
   doc,
   updateDoc,
-  getDoc
+  getDoc,
+  query,
+  where
 } from "firebase/firestore";
 
 import { MdOutlineDoubleArrow } from "react-icons/md";
@@ -44,9 +46,48 @@ const useFetchCollection = (collectionName) => {
   return data;
 };
 
+const fetchAllTransactions = async () => {
+  try {
+    // Step 1: Get all users
+    const usersSnapshot = await getDocs(collection(db, "users"));
+    const users = usersSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    const allTransactions = [];
+
+    // Step 2: For each user, get their subcollection transactions
+    for (const user of users) {
+      const transactionsRef = collection(
+        db,
+        "userTransactions",
+        user.id,
+        "transactions"
+      );
+      const transactionsSnapshot = await getDocs(transactionsRef);
+
+      const userTransactions = transactionsSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        uid: user.id, // attach user ID to each transaction
+        ...doc.data()
+      }));
+
+      allTransactions.push(...userTransactions); // add to final result
+    }
+
+    return allTransactions;
+  } catch (error) {
+    console.error("Error fetching all transactions:", error);
+    return [];
+  }
+};
+
 function ControlDash() {
   const allUsers = useFetchCollection("users");
-  const transactions = useFetchCollection("userTransactions");
+  const [allTransactions, setAllTransactions] = useState([]);
+  const [totalCompleted, setTotalCompleted] = useState(0);
+
   const [isUserSelected, setIsUserSelected] = useState(null);
   const [isBtnActive, setIsBtnActive] = useState(false);
   const [uniqueUserBalance, setUniqueUserBalance] = useState(false);
@@ -61,7 +102,19 @@ function ControlDash() {
     }
   };
 
- 
+  useEffect(() => {
+    const fetchData = async () => {
+      const transactions = await fetchAllTransactions();
+      setAllTransactions(transactions);
+    };
+
+    fetchData();
+  }, []);
+  const userHandler = (user) => {
+    setIsUserSelected(user);
+    setUniqueUserBalance(true);
+  };
+
   const updatePendingTransaction = async (transaction) => {
     try {
       const userDocRef = doc(db, "users", transaction.uid);
@@ -103,14 +156,8 @@ function ControlDash() {
     }
   };
 
-
-  const userHandler = (user) => {
-    setIsUserSelected(user);
-    setUniqueUserBalance(true);
-  };
-
   const getLatestTransaction = (userUid) => {
-    const userTransactions = transactions
+    const userTransactions = allTransactions
       .filter((tx) => tx.uid === userUid)
       .sort((a, b) => {
         const timeA = a.timestamp ? a.timestamp.toDate() : 0;
@@ -120,16 +167,59 @@ function ControlDash() {
     return userTransactions[0];
   };
 
-  const pendingAmount = transactions
+  const pendingAmount = allTransactions
     .filter((tx) => tx.isPending)
     .reduce((sum, tx) => sum + Number(tx.amount || 0), 0);
 
-  const totalAmount = transactions.reduce(
-    (sum, tx) => sum + Number(tx.amount || 0),
-    0
-  );
+  const getTotalCompletedTransactions = async () => {
+    try {
+      let total = 0;
 
-  const balance = totalAmount - pendingAmount;
+      // Step 1: Get all user IDs
+      const usersSnapshot = await getDocs(collection(db, "users"));
+      const userDocs = usersSnapshot.docs;
+
+      // Step 2: Loop through each user to access their transactions subcollection
+      for (const userDoc of userDocs) {
+        const userId = userDoc.id;
+
+        // Query: Only transactions where isPending is false
+        const transactionsRef = collection(
+          db,
+          "userTransactions",
+          userId,
+          "transactions"
+        );
+        const completedTransactionsQuery = query(
+          transactionsRef,
+          where("isPending", "==", false)
+        );
+        const transactionsSnapshot = await getDocs(completedTransactionsQuery);
+
+        // Step 3: Sum the amounts
+        transactionsSnapshot.forEach((doc) => {
+          const data = doc.data();
+          total += Number(data.amount || 0);
+        });
+      }
+
+      return total;
+    } catch (error) {
+      console.error("Error fetching completed transactions total:", error);
+      return 0;
+    }
+  };
+
+  useEffect(() => {
+    const fetchTotal = async () => {
+      const total = await getTotalCompletedTransactions();
+      setTotalCompleted(total);
+    };
+
+    fetchTotal();
+  }, []);
+
+  // const balance = totalAmount - pendingAmount;
 
   const sortedUsers = [...allUsers].sort((a, b) => {
     const latestA = getLatestTransaction(a.userUid);
@@ -156,19 +246,17 @@ function ControlDash() {
               </p>
             </div>
           </div>
-          <div className="stats-figure-wrapper">
+          {/* <div className="stats-figure-wrapper">
             <h1 className="Transactions-header">Balance</h1>
             <div className="Transaction-Figure">
-              <p>
-                $ <span>{balance}</span>
-              </p>
+              <p>$ <span>{balance}</span></p>
             </div>
-          </div>
+          </div> */}
           <div className="stats-figure-wrapper">
             <h1 className="Transactions-header">Total</h1>
             <div className="Transaction-Figure">
               <p>
-                $ <span>{totalAmount}</span>
+                $ <span>{totalCompleted}</span>
               </p>
             </div>
           </div>
@@ -267,7 +355,7 @@ function ControlDash() {
             {isUserSelected && isUserSelected.userUid ? (
               <div className="u-u-transactions">
                 {[
-                  ...transactions.filter(
+                  ...allTransactions.filter(
                     (tx) => tx.uid === isUserSelected.userUid
                   )
                 ]
@@ -282,15 +370,17 @@ function ControlDash() {
                   })
                   .map((x) => (
                     <div key={x.id} className="transaction-item">
-                      <p>Transaction Amount: ${x.amount}</p>
-                      <p>Wallet Name: {x.walletName}</p>
-                      <p>Pending: {x.isPending ? "Yes" : "No"}</p>
-                      <p>
-                        Time:
-                        {x.timestamp
-                          ? x.timestamp.toDate().toLocaleString()
-                          : "No Date Available"}
-                      </p>
+                      <div className="transaction-item-container">
+                        <p>Transaction Amount: ${x.amount}</p>
+                        <p>Wallet Name: {x.walletName}</p>
+                        <p>Pending: {x.isPending ? "Yes" : "No"}</p>
+                        <p>
+                          Time:
+                          {x.timestamp
+                            ? x.timestamp.toDate().toLocaleString()
+                            : "No Date Available"}
+                        </p>
+                      </div>
                       <button
                         className={
                           x.isPending ? "pendingBtn" : "pendingBtn isPending"
