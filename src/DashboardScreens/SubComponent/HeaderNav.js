@@ -85,8 +85,10 @@ function HeaderNav() {
     <div className="dash-headerNav-main">
       <div className="dash-headerNav-section-wrapper">
         <h2>TradeWave</h2>
+
         <div className="dash-headerNav-section-container">
           <div className="hn-balance-wrapper">
+
             <div className="hn-b-wrapper">
               <HiMiniBanknotes />
               <h5>
@@ -97,7 +99,7 @@ function HeaderNav() {
             <div className="hn-b-wrapper">
               <FaChartLine />
               <h5>
-                ${" "}
+                $
                 <span className="roiContainer">
                   {balanceData.roi ? balanceData.roi.totalRoi : "0.00"}
                 </span>
@@ -107,9 +109,10 @@ function HeaderNav() {
             <div className="hn-b-wrapper">
               <GiProfit />
               <h5>
-                $ <span className="userPending">{userPending} . 00</span>
+                $ <span className="userPending">{userPending}</span>
               </h5>
             </div>
+
           </div>
 
           <div className="hn-b-wrapper-name">

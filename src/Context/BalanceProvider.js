@@ -75,10 +75,7 @@ export const BalanceProvider = ({ children }) => {
         const data = docSnap.data();
         totalPendingAmount += Number(data.amount || 0);
       });
-
-      console.log(
-        `Total Pending Amount for user ${userId}: $${totalPendingAmount}`
-      );
+      ;
       return totalPendingAmount;
     } catch (error) {
       console.error("Error fetching pending transactions:", error);
@@ -101,9 +98,7 @@ export const BalanceProvider = ({ children }) => {
         totalPendingAmount += Number(data.amount || 0);
       });
 
-      console.log(
-        `Total Pending Amount for user ${userId}: $${totalPendingAmount}`
-      );
+
       return totalPendingAmount;
     } catch (error) {
       console.error("Error fetching pending transactions:", error);
@@ -112,6 +107,7 @@ export const BalanceProvider = ({ children }) => {
   };
 
   // Update 'balance' subcollection data for the user
+
   const updateBalanceData = async (
     userId,
     roiValue,

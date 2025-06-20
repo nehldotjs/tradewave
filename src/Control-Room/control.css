@@ -502,7 +502,7 @@ isLinesHeight {
     gap: 10px;
     display: flex;
     flex-direction: column;
-    height: auto; 
+    height: auto;
 }
 
 .transaction-item p {
@@ -598,7 +598,7 @@ isLinesHeight {
         display: flex;
         height: 100vh;
         width: 300px;
-        background-color: blue;
+        background-color: rgb(32, 32, 32);
         justify-content: space-between;
         align-items: flex-start;
 

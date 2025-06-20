@@ -56,24 +56,24 @@
     gap: 30px;
     align-items: center;
     justify-content: space-evenly;
+
 }
 
 .hn-b-wrapper {
+    padding: 5px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 20px;
-    padding: 3px 10px;
+    justify-content: center;
 }
 
 .hn-b-wrapper p {
-    text-transform: capitalize;
     color: #7c5dc9;
+    text-transform: capitalize;
 }
 
 .hn-b-wrapper h5 {
-    display: flex;
     gap: 5px;
+    display: flex;
     color: rgb(19, 179, 67);
 }
 
@@ -111,7 +111,7 @@
     display: flex;
     font-size: 10px;
     font-weight: normal;
-    
+
     /* background-color: aqua; */
 }
 
@@ -217,7 +217,6 @@
 
     }
 
-
     .dash-headerNav-section-container {
         height: 100%;
         width: 100%;
@@ -231,20 +230,22 @@
     }
 
     .hn-balance-wrapper {
-        display: flex;
         gap: 10px;
+        display: flex;
         align-items: center;
         justify-content: space-evenly;
+        padding: unset;
+        width: 100%;
     }
 
     .hn-b-wrapper {
-        display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        gap: 20px;
+        display: flex;
+        gap: 10px;
+        width: auto;
         padding: 3px 10px;
         border-radius: 5px;
-        width: 100%;
     }
 
     .hn-b-wrapper-name {
