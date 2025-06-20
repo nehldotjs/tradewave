@@ -42,52 +42,78 @@ function Referals() {
   return (
     <div className="ref-wrapper">
       <div className="ref-container">
- 
-        <div className="ref-link-wrapper">
-          <div className="ref-link-image-wrapper">
-            <img
-              src="https://images.unsplash.com/photo-1461532257246-777de18cd58b?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt=""
-            />
 
-            <div className="ref-link-container">
-              <h3>Refer Ecom Freedom make money</h3>
-              <p>
-                Share your referral link with your friend to <br /> 
-                unlock more opportunity
-              </p>
-              <button>click here to get referral link</button>
+
+        <div className="ref-wrapper">
+          <div className="ref-container">
+
+            {/* Referral Link Section */}
+            <div className="ref-link-wrapper">
+              <div className="ref-link-image-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1461532257246-777de18cd58b?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Referral Banner"
+                />
+                <div className="ref-link-container">
+                  <h3>Refer Ecom Freedom & Make Money</h3>
+                  <p>
+                    Share your referral link with your friend to <br />
+                    unlock more opportunities!
+                  </p>
+                  <button>Click here to get your referral link</button>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className="ref-earning">
-          <div className="ref-table">
-            <table
-              border="1"
-              cellPadding="10"
-              style={{ width: "100%", borderCollapse: "collapse" }}>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>commission</th>
-                  <th>signup-date</th>
-                  <th>Earnings</th>
-                </tr>
-              </thead>
-              <tbody>
-                {peopleData.map((person, index) => (
-                  <tr key={index}>
-                    <td>{person.name}</td>
-                    <td>{person.favoriteSubject}</td>
-                    <td>{person.number}</td>
-                    <td>{person.age}</td>
-                    <td>{person.occupation}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            {/* Referral Promo Section */}
+            <div className="ref-earning" style={{
+              background: "linear-gradient(90deg, #ff7e5f, #feb47b)",
+              padding: "20px",
+              borderRadius: "10px",
+              color: "white",
+              textAlign: "center",
+              fontFamily: "Arial, sans-serif",
+              maxWidth: "500px",
+              margin: "0 auto"
+            }}>
+              <div
+                style={{
+                  background: "linear-gradient(90deg, #ff7e5f, #feb47b)",
+                  padding: "20px",
+                  borderRadius: "10px",
+                  color: "white",
+                  textAlign: "center",
+                  fontFamily: "Arial, sans-serif",
+                  maxWidth: "500px",
+                  margin: "0 auto"
+                }}
+              >
+                <h2>🎉 Invite & Earn Big! 🎉</h2>
+                <p style={{ fontSize: "18px", margin: "10px 0" }}>
+                  Share the excitement – refer your friends and unlock{" "}
+                  <strong>exclusive rewards!</strong> 💰
+                </p>
+                <p style={{ fontSize: "16px" }}>
+                  The more you refer, the more you earn. 🚀 Start building your
+                  referral empire today! 🔗✨
+                </p>
+                <a
+                  href="#referral-link"
+                  style={{
+                    backgroundColor: "#fff",
+                    color: "#ff7e5f",
+                    padding: "10px 20px",
+                    borderRadius: "5px",
+                    textDecoration: "none",
+                    fontWeight: "bold",
+                    display: "inline-block",
+                    marginTop: "10px"
+                  }}
+                >
+                  Your Referral Link is On Its Way...
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

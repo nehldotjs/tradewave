@@ -1,0 +1,108 @@
+.withdraw-wrapper {
+    width: 100%;
+    /* background: linear-gradient(135deg, #f0f4f8, #d9e2ec); */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px;
+
+
+}
+
+.withdraw-container {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    margin: auto;
+}
+
+.withdraw-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.coin-selection label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.coin-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.coin-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #173c65;
+    transition: all 0.3s ease;
+}
+
+.coin-button:hover {
+    border-color: #4a90e2;
+}
+
+.coin-button.selected {
+    border-color: #4a90e2;
+    background: #4a90e2;
+}
+
+.coin-button span {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.input-group {
+    margin: 15px 0;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+
+    color: black;
+}
+
+.input-group input:focus {
+    border-color: #4a90e2;
+}
+
+.withdraw-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #4a90e2, #007bff);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.withdraw-btn:hover {
+    background: linear-gradient(90deg, #3b7dd8, #006ae6);
+}

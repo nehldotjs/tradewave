@@ -18,16 +18,13 @@
      flex-direction: column;
  }
 
-
  .th-container .th-header {
      font-size: 12px;
-
      background: linear-gradient(to left, #7c5dc9, transparent, transparent);
      padding: 2px 5px;
      text-transform: capitalize;
      border-radius: 0px 20px 20px 0px;
      width: 100%;
-
      justify-content: flex-end;
      align-items: center;
      display: flex;
@@ -90,5 +87,5 @@
          gap: 10px;
 
          overflow-x: scroll;
-      }
+     }
  }

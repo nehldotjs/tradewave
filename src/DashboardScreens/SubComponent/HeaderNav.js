@@ -16,13 +16,57 @@ import { useBalance } from "../../Context/BalanceProvider";
 
 function HeaderNav() {
   const [stateActive, setStateActive] = useState(false);
-  const [userProps, setUserProps] = useState({
-    firstName: "",
-    userUID: ""
-  });
+  const { userDocument } = useUserData();
+  const {
+    balanceData,
+    fetchBalanceData,
+    userProps, setUserProps,
 
-  const [userPending, setUserPending] = useState(0);
-  const [userBalance, setUserBalance] = useState(0);
+    userPending, setUserPending,
+    userBalance, setUserBalance,
+
+
+
+    sumUserApprovedTransact,
+    setSumUserApprovedTransac,
+
+    getApprovedTransactionsTotal,
+    getUserPendingTransactionTotal,
+  } = useBalance();
+
+  useEffect(() => {
+    if (userDocument) {
+      setUserProps({
+        firstName: userDocument.firstName,
+        userUID: userDocument.userUid
+      });
+
+
+    }
+  }, [userDocument]);
+
+  useEffect(() => {
+    if (userProps.userUID) {
+      fetchBalanceData(userProps.userUID);
+
+      getApprovedTransactionsTotal(userProps.userUID).then((total) => {
+        setSumUserApprovedTransac(total);
+      });
+
+      getUserPendingTransactionTotal(userProps.userUID).then((total) => {
+        setUserPending(total);
+      });
+    }
+  }, [userProps.userUID]);
+
+
+  const currentUserName = userProps.firstName || "User";
+  const navigate = useNavigate();
+
+  const handleImageClick = () => {
+    setStateActive((prev) => !prev);
+  };
+
 
   const handleSignOut = async () => {
     try {
@@ -31,54 +75,6 @@ function HeaderNav() {
     } catch (error) {
       console.error("Error signing out:", error);
     }
-  };
-
-  // Get user document directly
-  const { userDocument } = useUserData();
-  const {
-    balanceData,
-    fetchBalanceData,
-    getUserPendingTransactionTotal,
-    getBalanceTransactionTotal
-  } = useBalance();
-
-  // Set user props when document is available
-  useEffect(() => {
-    if (userDocument) {
-      setUserProps({
-        firstName: userDocument.firstName,
-        userUID: userDocument.userUid
-      });
-    }
-  }, [userDocument]);
-
-  useEffect(() => {
-    if (userProps.userUID) {
-      fetchBalanceData(userProps.userUID);
-    }
-  }, [userProps.userUID]);
-
-  useEffect(() => {
-    if (userProps.userUID) {
-      getUserPendingTransactionTotal(userProps.userUID).then((total) => {
-        setUserPending(total);
-      });
-    }
-  }, [userProps.userUID]);
-
-  useEffect(() => {
-    if (userProps.userUID) {
-      getBalanceTransactionTotal(userProps.userUID).then((total) => {
-        setUserBalance(total);
-      });
-    }
-  }, [userProps.userUID]);
-
-  const currentUserName = userProps.firstName || "User";
-  const navigate = useNavigate();
-
-  const handleImageClick = () => {
-    setStateActive((prev) => !prev);
   };
 
   return (
@@ -92,7 +88,7 @@ function HeaderNav() {
             <div className="hn-b-wrapper">
               <HiMiniBanknotes />
               <h5>
-                $ <span className="mainBalance">{userBalance} . 00</span>
+                $ <span className="mainBalance">{sumUserApprovedTransact} </span>
               </h5>
             </div>
 

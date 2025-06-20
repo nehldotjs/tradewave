@@ -21,6 +21,17 @@ export const BalanceProvider = ({ children }) => {
     pendingTransactions: []
   });
 
+  const [userProps, setUserProps] = useState({
+    firstName: "",
+    userUID: ""
+  });
+
+  const [userPending, setUserPending] = useState(0);
+  const [userBalance, setUserBalance] = useState(0);
+  const [userTransac, setUserTransac] = useState([]);
+
+  const [sumUserApprovedTransact, setSumUserApprovedTransac] = useState(0);
+
   // Fetch 'balance' subcollection data for the user
   const fetchBalanceData = async (userId) => {
     try {
@@ -32,6 +43,7 @@ export const BalanceProvider = ({ children }) => {
         "balance",
         "investment"
       );
+
       const pendingRef = doc(
         db,
         "userTransactions",
@@ -60,9 +72,27 @@ export const BalanceProvider = ({ children }) => {
     }
   };
 
+  // Get ALL transactions for user
+  const getUserAllTransactions = async (userId) => {
+    try {
+      const transactionsRef = collection(db, "userTransactions", userId, "transactions");
+      const querySnapshot = await getDocs(transactionsRef);
+
+      const allTransactions = querySnapshot.docs.map((docSnap) => ({
+        id: docSnap.id,
+        ...docSnap.data()
+      }));
+
+      return allTransactions;
+    } catch (error) {
+      console.error("Error fetching user transactions:", error);
+      return []; // Return empty array on failure
+    }
+  };
+
+  // Get TOTAL pending amount
   const getUserPendingTransactionTotal = async (userId) => {
     try {
-      // Query all transactions under userTransactions/{userId}/transactions where isPending == true
       const pendingQuery = query(
         collection(db, "userTransactions", userId, "transactions"),
         where("isPending", "==", true)
@@ -75,39 +105,37 @@ export const BalanceProvider = ({ children }) => {
         const data = docSnap.data();
         totalPendingAmount += Number(data.amount || 0);
       });
-      ;
+
       return totalPendingAmount;
     } catch (error) {
       console.error("Error fetching pending transactions:", error);
       return 0;
     }
   };
-  const getBalanceTransactionTotal = async (userId) => {
+
+  // ✅ Fixed: Get TOTAL approved (not pending) amount
+  const getApprovedTransactionsTotal = async (userId) => {
     try {
-      // Query all transactions under userTransactions/{userId}/transactions where isPending == true
-      const pendingQuery = query(
-        collection(db, "userTransactions", userId, "transactions"),
-        where("isPending", "==", false)
+      const q = query(
+        collection(db, "userTransactions", userId, "transactions"), // Fixed: Proper subcollection path
+        where("isPending", "==", false) // Only approved transactions
       );
 
-      const querySnapshot = await getDocs(pendingQuery);
-      let totalPendingAmount = 0;
+      const querySnapshot = await getDocs(q);
+      let totalAmount = 0;
 
-      querySnapshot.forEach((docSnap) => {
-        const data = docSnap.data();
-        totalPendingAmount += Number(data.amount || 0);
+      querySnapshot.forEach((doc) => {
+        totalAmount += Number(doc.data().amount || 0);
       });
 
-
-      return totalPendingAmount;
+      return totalAmount;
     } catch (error) {
-      console.error("Error fetching pending transactions:", error);
+      console.error("Error fetching approved transactions:", error);
       return 0;
     }
   };
 
-  // Update 'balance' subcollection data for the user
-
+  // Update balance data
   const updateBalanceData = async (
     userId,
     roiValue,
@@ -136,7 +164,8 @@ export const BalanceProvider = ({ children }) => {
       await setDoc(investmentRef, { totalInvestment: investmentValue });
       await setDoc(pendingRef, { transactions: pendingTxArray });
 
-      // Refresh the local state
+      // Refresh local state
+
       fetchBalanceData(userId);
     } catch (error) {
       console.error("Error updating balance data:", error);
@@ -150,9 +179,20 @@ export const BalanceProvider = ({ children }) => {
         fetchBalanceData,
         updateBalanceData,
 
+        getUserAllTransactions,
+        getApprovedTransactionsTotal, // Accepts userId now
         getUserPendingTransactionTotal,
-        getBalanceTransactionTotal
-      }}>
+
+        sumUserApprovedTransact,
+        setSumUserApprovedTransac,
+
+        userProps, setUserProps,
+
+        userPending, setUserPending,
+        userBalance, setUserBalance,
+        userTransac, setUserTransac,
+      }}
+    >
       {children}
     </BalanceContext.Provider>
   );
