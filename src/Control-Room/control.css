@@ -551,6 +551,7 @@ isLinesHeight {
     justify-content: space-between;
     transition: 350ms all ease-in-out;
 
+
     overflow: hidden;
 }
 
@@ -565,6 +566,8 @@ isLinesHeight {
     width: 70%;
     display: flex;
     flex-direction: column;
+
+
 
 }
 
@@ -594,6 +597,35 @@ isLinesHeight {
 }
 
 @media screen and (max-width:900px) {
+    .control-links {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        transition: 350ms all ease-in-out;
+
+
+        overflow: hidden;
+    }
+
+    .control-links-button {
+        padding-top: 30%;
+        gap: 30px;
+        flex: 1;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .control-link {
+        width: 100%;
+        display: flex;
+        padding: 20px;
+     }
+
     .controlNav {
         display: flex;
         height: 100vh;

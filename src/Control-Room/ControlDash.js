@@ -180,7 +180,7 @@ function ControlDash() {
       const userDocs = usersSnapshot.docs;
 
       // Step 2: Loop through each user to access their transactions subcollection
-     
+
       for (const userDoc of userDocs) {
         const userId = userDoc.id;
 
@@ -295,7 +295,7 @@ function ControlDash() {
                         </p>
                       </div>
                       {latestTransaction &&
-                      latestTransaction.amount !== undefined ? (
+                        latestTransaction.amount !== undefined ? (
                         <div className="u-list-info-wrapper">
                           <div className="u-list-info">
                             <p>
@@ -310,8 +310,8 @@ function ControlDash() {
                               Time:
                               {latestTransaction.timestamp
                                 ? latestTransaction.timestamp
-                                    .toDate()
-                                    .toLocaleString()
+                                  .toDate()
+                                  .toLocaleString()
                                 : "N/A"}
                             </p>
                           </div>
@@ -416,10 +416,11 @@ function ControlDash() {
 
         <div
           className={isBtnActive ? "control-links" : "control-links isActive"}>
+
           <div className="control-links-button">
-            <div className="chat-control-wrapper">Chats</div>
-            <div className="transaction-control-wrapper">Transactions</div>
-            <div className="users-control-wrapper">Users</div>
+            <div className=" control-link chat-control-wrapper">Chats</div>
+            <div className="control-link  transaction-control-wrapper">Transactions</div>
+            <div className="control-link  users-control-wrapper">Users</div>
           </div>
           <div className="control-auth-btn-wrapper">
             <button onClick={handleSignOut}>Log Out</button>
