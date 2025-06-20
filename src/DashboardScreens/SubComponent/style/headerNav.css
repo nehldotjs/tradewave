@@ -29,7 +29,7 @@
     justify-content: center;
     background-color: #0b1120;
 
- }
+}
 
 .dash-headerNav-section-wrapper h2 {
     display: flex;
@@ -39,7 +39,7 @@
     justify-content: center;
     align-items: center;
 
-  }
+}
 
 .dash-headerNav-section-container {
     height: 100%;
@@ -68,7 +68,6 @@
 
 .hn-b-wrapper p {
     text-transform: capitalize;
-    font-weight: 500;
     color: #7c5dc9;
 }
 
@@ -78,8 +77,17 @@
     color: rgb(19, 179, 67);
 }
 
-span {
-    color: gray;
+.hn-b-wrapper h5 .mainBalance {
+    color: green;
+    font-weight: 500;
+}
+
+.hn-b-wrapper h5 .roiContainer {
+    color: purple;
+}
+
+.hn-b-wrapper h5 .userPending {
+    color: orange;
 }
 
 .hn-b-wrapper-name {
@@ -103,6 +111,7 @@ span {
     display: flex;
     font-size: 10px;
     font-weight: normal;
+    
     /* background-color: aqua; */
 }
 
@@ -254,5 +263,5 @@ span {
         color: transparent;
         display: flex;
 
-     }
+    }
 }

@@ -1,16 +1,27 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import React, { createContext, useContext, useState } from "react";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  query,
+  where,
+  getDocs
+} from "firebase/firestore";
 import { db } from "../Firebase";
 
+// Create Context
 const BalanceContext = createContext();
 
+// Provider to wrap around your App or part of App
 export const BalanceProvider = ({ children }) => {
   const [balanceData, setBalanceData] = useState({
-    roi: null,
-    investment: null,
+    roi: { totalRoi: 0 },
+    investment: { totalInvestment: 0 },
     pendingTransactions: []
   });
 
+  // Fetch 'balance' subcollection data for the user
   const fetchBalanceData = async (userId) => {
     try {
       const roiRef = doc(db, "userTransactions", userId, "balance", "roi");
@@ -29,13 +40,17 @@ export const BalanceProvider = ({ children }) => {
         "pendingTransactions"
       );
 
-      const roiSnap = await getDoc(roiRef);
-      const investmentSnap = await getDoc(investmentRef);
-      const pendingSnap = await getDoc(pendingRef);
+      const [roiSnap, investmentSnap, pendingSnap] = await Promise.all([
+        getDoc(roiRef),
+        getDoc(investmentRef),
+        getDoc(pendingRef)
+      ]);
 
       setBalanceData({
-        roi: roiSnap.exists() ? roiSnap.data() : null,
-        investment: investmentSnap.exists() ? investmentSnap.data() : null,
+        roi: roiSnap.exists() ? roiSnap.data() : { totalRoi: 0 },
+        investment: investmentSnap.exists()
+          ? investmentSnap.data()
+          : { totalInvestment: 0 },
         pendingTransactions: pendingSnap.exists()
           ? pendingSnap.data().transactions
           : []
@@ -45,6 +60,58 @@ export const BalanceProvider = ({ children }) => {
     }
   };
 
+  const getUserPendingTransactionTotal = async (userId) => {
+    try {
+      // Query all transactions under userTransactions/{userId}/transactions where isPending == true
+      const pendingQuery = query(
+        collection(db, "userTransactions", userId, "transactions"),
+        where("isPending", "==", true)
+      );
+
+      const querySnapshot = await getDocs(pendingQuery);
+      let totalPendingAmount = 0;
+
+      querySnapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        totalPendingAmount += Number(data.amount || 0);
+      });
+
+      console.log(
+        `Total Pending Amount for user ${userId}: $${totalPendingAmount}`
+      );
+      return totalPendingAmount;
+    } catch (error) {
+      console.error("Error fetching pending transactions:", error);
+      return 0;
+    }
+  };
+  const getBalanceTransactionTotal = async (userId) => {
+    try {
+      // Query all transactions under userTransactions/{userId}/transactions where isPending == true
+      const pendingQuery = query(
+        collection(db, "userTransactions", userId, "transactions"),
+        where("isPending", "==", false)
+      );
+
+      const querySnapshot = await getDocs(pendingQuery);
+      let totalPendingAmount = 0;
+
+      querySnapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        totalPendingAmount += Number(data.amount || 0);
+      });
+
+      console.log(
+        `Total Pending Amount for user ${userId}: $${totalPendingAmount}`
+      );
+      return totalPendingAmount;
+    } catch (error) {
+      console.error("Error fetching pending transactions:", error);
+      return 0;
+    }
+  };
+
+  // Update 'balance' subcollection data for the user
   const updateBalanceData = async (
     userId,
     roiValue,
@@ -60,6 +127,7 @@ export const BalanceProvider = ({ children }) => {
         "balance",
         "investment"
       );
+
       const pendingRef = doc(
         db,
         "userTransactions",
@@ -72,7 +140,7 @@ export const BalanceProvider = ({ children }) => {
       await setDoc(investmentRef, { totalInvestment: investmentValue });
       await setDoc(pendingRef, { transactions: pendingTxArray });
 
-      // Optionally refetch after update
+      // Refresh the local state
       fetchBalanceData(userId);
     } catch (error) {
       console.error("Error updating balance data:", error);
@@ -81,7 +149,14 @@ export const BalanceProvider = ({ children }) => {
 
   return (
     <BalanceContext.Provider
-      value={{ balanceData, fetchBalanceData, updateBalanceData }}>
+      value={{
+        balanceData,
+        fetchBalanceData,
+        updateBalanceData,
+
+        getUserPendingTransactionTotal,
+        getBalanceTransactionTotal
+      }}>
       {children}
     </BalanceContext.Provider>
   );

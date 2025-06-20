@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+ import { Link, useNavigate } from "react-router-dom";
 import { Country, State } from "country-state-city";
 
 import mainBckImg from "../assets/pamm_levels.jpg";
@@ -8,14 +7,12 @@ import Nav from "../Components/Nav";
 import "../styles/signup.css";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
-import { FIREBASE_AUTH, GOOGLE_PROVIDER, db } from "../Firebase";
-import { signInWithPopup } from "firebase/auth";
-
+import { doc, setDoc } from "firebase/firestore";
 import AuthButton from "../PropAssets/AuthBtn1";
 
 import { HiEye } from "react-icons/hi";
 import { HiEyeOff } from "react-icons/hi";
+import { db, FIREBASE_AUTH } from "../Firebase";
 
 function SignUp() {
   const [isChecked, setIsChecked] = useState(false);
@@ -133,7 +130,6 @@ function SignUp() {
       console.error("Error occurred:", err);
     }
   };
-  
 
   const handleSignUp = async (e) => {
     e.preventDefault();
