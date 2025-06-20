@@ -21,7 +21,7 @@ function Hero(prop) {
             </p>
             <div className="heroAuthButton">
               <Link to="/login" className="heroAuthBtn">
-                <GetStarted name="Get Started" />
+                <GetStarted  />
               </Link>
             </div>
           </div>
