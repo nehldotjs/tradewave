@@ -2,7 +2,7 @@ import React from "react";
 
 import "./subStyles/hero.css";
 import { Link } from "react-router-dom";
-import AuthButton from "../../PropAssets/AuthBtn1";
+import GetStarted from "../../PropAssets/GetStarted";
 
 function Hero(prop) {
   const { image } = prop;
@@ -21,7 +21,7 @@ function Hero(prop) {
             </p>
             <div className="heroAuthButton">
               <Link to="/login" className="heroAuthBtn">
-                <AuthButton name="Get Started" />
+                <GetStarted name="Get Started" />
               </Link>
             </div>
           </div>
