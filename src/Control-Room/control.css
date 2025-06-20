@@ -23,7 +23,8 @@
     position: absolute;
     flex-direction: column;
     transition: 350ms all ease-in-out;
- }
+
+}
 
 .isNavWrapper {
     border: none;
