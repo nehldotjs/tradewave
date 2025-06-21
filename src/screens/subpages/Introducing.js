@@ -12,11 +12,11 @@ function AboutIntroduction(prop) {
         <p>
           Welcome to the forefront of global finance with TradeWave, where we
           proudly stand as a leading multi-asset alternative investment firm
-          managing an impressive <span>$591 billion</span> in assets. Our
+          managing an impressive <span>$283 million+</span> in assets. Our
           unwavering commitment surpasses traditional success metrics; we are on
           a mission to create enduring impact for our esteemed investors,
           dynamic teams, flourishing businesses, and the communities we proudly
-          call home. Since our inception in 2014, we've redefined asset
+          call home. Since our inception in 2016, we've redefined asset
           management through an innovative consulting-based approach. Forming
           strategic alliances with management teams, we not only challenge the
           status quo but also spark transformative change. Our vision transcends
