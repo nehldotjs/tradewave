@@ -25,6 +25,7 @@ import Alternatives from "./screens/Alternatives";
 import OptionTrading from "./screens/OptionTrading";
 import Infrastructure from "./screens/Infrastructure";
 import LoaderScreen from "./PropAssets/LoaderScreen";
+import SystemDataHandler from "./Control-Room/SystemDataHandler";
 
 // Replace with your actual admin UID
 const ADMIN_UID = process.env.REACT_APP_ADMIN_API_KEY;
@@ -33,7 +34,7 @@ const publicRoutes = [
   { path: "/", element: <Home /> },
   { path: "/login", element: <Login /> },
   { path: "/about", element: <About /> },
-  // { path: "/assets", element: <Assets /> }, 
+  // { path: "/assets", element: <Assets /> },
   { path: "/sign-up", element: <SignUp /> },
   { path: "/insights", element: <Insigth /> },
   { path: "/real-estate", element: <Estate /> },
@@ -71,10 +72,12 @@ function ComponentScreensHandler() {
     );
   }
 
-  // If user is logged in and is the admin, go to Admin Dashboard
-
   if (user && user.uid === ADMIN_UID) {
-    return <ControlDash />;
+    return (
+      
+        <SystemDataHandler />
+    
+    );
   }
   // Otherwise show public routes (not logged in)
   if (!user) {

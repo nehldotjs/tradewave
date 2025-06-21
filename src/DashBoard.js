@@ -17,6 +17,7 @@ import LoaderScreen from "./PropAssets/LoaderScreen";
 import { PropData } from "./Context/PropDataHandler";
 import { MdCancel } from "react-icons/md";
 import { GiCheckMark } from "react-icons/gi";
+import CareAgent from "./DashboardScreens/SubComponent/CareAgent";
 
 function DashBoard() {
   const { isLoading, isNotifyIcon, setIsNotifyIcon } = PropData();
@@ -59,7 +60,13 @@ function DashBoard() {
           </Routes>
         </div>
       </div>
+
       <DashNav />
+
+
+      <CareAgent />
+
+      {/* ______________________________________________________ */}
 
       <div className={isNotifyIcon ? "dash-notification-wrapper" : "inactive"}>
         <div className="notification-container">
@@ -81,6 +88,7 @@ function DashBoard() {
           </p>
         </div>
       </div>
+
     </div>
   );
 }

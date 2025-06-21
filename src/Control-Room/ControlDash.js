@@ -1,9 +1,10 @@
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import "./control.css";
+import "./styles/control.css";
 
-import { db, FIREBASE_AUTH } from "../Firebase";
+import { db,  } from "../Firebase";
 import {
   collection,
   getDocs,
@@ -93,14 +94,7 @@ function ControlDash() {
   const [uniqueUserBalance, setUniqueUserBalance] = useState(false);
   const navigate = useNavigate();
 
-  const handleSignOut = async () => {
-    try {
-      await FIREBASE_AUTH.signOut();
-      navigate("/login");
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
-  };
+ 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -399,34 +393,7 @@ function ControlDash() {
         </div>
       </div>
 
-      {/* Side Navigation */}
-      <div className={isBtnActive ? "controlNav" : "controlNav isActive"}>
-        <div className="control-navBtn">
-          <button onClick={() => setIsBtnActive(!isBtnActive)}>
-            <div
-              className={
-                isBtnActive ? "lines-wrapper" : "lines-wrapper isLinesHeight"
-              }>
-              <div className={!isBtnActive ? "line1" : "line1 isline1"}></div>
-              <div className={!isBtnActive ? "line2" : "line2 isline2"}></div>
-              <div className={!isBtnActive ? "line3" : "line3 isline3"}></div>
-            </div>
-          </button>
-        </div>
-
-        <div
-          className={isBtnActive ? "control-links" : "control-links isActive"}>
-
-          <div className="control-links-button">
-            <div className=" control-link chat-control-wrapper">Chats</div>
-            <div className="control-link  transaction-control-wrapper">Transactions</div>
-            <div className="control-link  users-control-wrapper">Users</div>
-          </div>
-          <div className="control-auth-btn-wrapper">
-            <button onClick={handleSignOut}>Log Out</button>
-          </div>
-        </div>
-      </div>
+     
     </div>
   );
 }

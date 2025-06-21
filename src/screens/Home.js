@@ -31,9 +31,9 @@ function Home() {
       <TradeWidget />
       <Entrepreneurs bckImg={mapImg} />
       <SubscriptionPlan />
-      <MoreAbout/>
       <Responsible />
       <Research />
+      <MoreAbout/>
       <Footer />
     </div>
   );
