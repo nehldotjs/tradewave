@@ -33,7 +33,7 @@ const publicRoutes = [
   { path: "/", element: <Home /> },
   { path: "/login", element: <Login /> },
   { path: "/about", element: <About /> },
-  { path: "/assets", element: <Assets /> },
+  // { path: "/assets", element: <Assets /> }, 
   { path: "/sign-up", element: <SignUp /> },
   { path: "/insights", element: <Insigth /> },
   { path: "/real-estate", element: <Estate /> },

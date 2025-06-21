@@ -16,8 +16,8 @@ function Hero(prop) {
           </div>
           <div className="heroWriteUp">
             <p>
-              "Navigating the Market Seas with a Strategy Anchored in Risk
-              Management and Profit Potential."
+              Navigating the Market Seas with a Strategy Anchored in Risk
+              Management and Profit Potential.
             </p>
             <div className="heroAuthButton">
               <Link to="/login" className="heroAuthBtn">

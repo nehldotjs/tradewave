@@ -17,6 +17,8 @@ import Responsible from "./subpages/Responsible";
 import Research from "./subpages/Research";
 import Nav from "../Components/Nav";
 
+import MoreAbout from "./subpages/MoreAbout";
+
 function Home() {
   return (
     <div className="homeWrapper">
@@ -29,6 +31,7 @@ function Home() {
       <TradeWidget />
       <Entrepreneurs bckImg={mapImg} />
       <SubscriptionPlan />
+      <MoreAbout/>
       <Responsible />
       <Research />
       <Footer />

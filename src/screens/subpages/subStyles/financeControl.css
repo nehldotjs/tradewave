@@ -39,7 +39,7 @@
 
 .financeHeaderWriteUp h1 span {
     background: linear-gradient(to right, rgb(0, 180, 180),
-            rgb(128, 240, 128));
+    #7c5dc9);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

@@ -19,20 +19,20 @@
 
 
     margin-top: 20px;
+
+    backdrop-filter: blur(5px);
 }
 
 .Mobile-logoWrapper,
 .logoWrapper {
-    backdrop-filter: blur(5px);
     padding: 0px 10px;
-    border-radius: 10px;
 }
 
 .logoWrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
+    height: 50px;
     gap: 10px;
     width: auto;
     text-decoration: none;
@@ -164,7 +164,7 @@
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
-    padding: 10px; 
+    padding: 10px;
     position: relative;
     flex-direction: column;
 
@@ -356,7 +356,7 @@
     flex-direction: column;
     position: fixed;
     z-index: 99;
-    background-color: #7c5dc9;
+    background-color: #0b1120;
     top: 0px;
     right: 0px;
     padding: 20px;
@@ -432,21 +432,35 @@
     .nav-burgerBtn {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding: 20px 20px;
-        width: 100%;
+        justify-content: center;
+        padding: 5px 20px;
+        width: 90%;
+        margin-top: 20px;
+        align-self: center;
+        backdrop-filter: blur(5px);
+        background-color: rgba(0, 0, 0, 0.356);
+
+        border-radius: 20px;
+
     }
 
     .Mobile-logoWrapper {
         display: flex;
         height: 50px;
-        gap: 20px;
+        width: 100%;
+        left: 0px;
         align-items: center;
         text-decoration: none;
+
+        justify-content: space-between;
     }
 
     .Mobile-logoWrapper .logo {
         height: 100%;
         width: auto;
+    }
+
+    .Mobile-logoWrapper .logoHeader {
+        margin: auto;
     }
 }

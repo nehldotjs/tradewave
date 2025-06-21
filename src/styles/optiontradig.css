@@ -93,10 +93,11 @@
     display: flex;
     flex-direction: column;
     width: 90%;
-    height: 80vh;
+    height: auto;
     justify-content: center;
     align-items: center;
     margin: auto;
+
 }
 
 .opt-getStarted-Btn {
@@ -177,4 +178,10 @@
         flex-direction: column;
         margin: auto;
     }
+
+    .optt-tradeWave-widget {
+    overflow-x: scroll;
+
+    }
+
 }

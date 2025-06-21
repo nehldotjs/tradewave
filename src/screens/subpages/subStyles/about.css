@@ -65,6 +65,7 @@
     justify-content: center;
     align-items: flex-start;
     color: darkgray;
+
 }
 
 
@@ -101,7 +102,7 @@
         display: flex;
         justify-content: space-evenly;
         height: auto;
-        padding: 5% ;
+        padding: 5%;
         gap: 30px;
         flex-direction: column;
         overflow: hidden;
@@ -124,8 +125,15 @@
     }
 
     .aboutWriteUp p {
-        flex: 1;text-align: center;
+        flex: 1;
+        text-align: center;
         width: 100%;
         cursor: pointer;
+    }
+
+    .certificateBtn {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
     }
 }
